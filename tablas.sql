@@ -1,16 +1,49 @@
--- Crear tabla Usuarios
 CREATE TABLE Usuarios (
     id_usuario SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellidos VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    rol VARCHAR(20) CHECK (rol IN ('administrador', 'entrenador', 'jugador')) NOT NULL,
+    rol VARCHAR(20) CHECK (rol IN ('administrador', 'entrenador', 'jugador', 'arbitro')) NOT NULL,
     telefono VARCHAR(20),
-    activo BOOLEAN DEFAULT true
+    activo BOOLEAN DEFAULT true,
+    foto VARCHAR(255),
 );
 
--- Crear tabla Ligas
+
+CREATE TABLE Administradores (
+    id_administrador SERIAL PRIMARY KEY,
+    id_usuario INTEGER UNIQUE NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
+
+
+CREATE TABLE Entrenadores (
+    id_entrenador SERIAL PRIMARY KEY,
+    id_usuario INTEGER UNIQUE NOT NULL,
+    id_equipo INTEGER,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    FOREIGN KEY (id_equipo) REFERENCES Equipos(id_equipo)
+);
+
+
+CREATE TABLE Jugadores (
+    id_jugador SERIAL PRIMARY KEY,
+    nombre_jugador VARCHAR(100) NOT NULL,
+    id_equipo INTEGER,
+    posicion VARCHAR(50) NOT NULL,
+    numero_camiseta INTEGER,
+    UNIQUE(id_equipo, numero_camiseta),
+    FOREIGN KEY (id_equipo) REFERENCES Equipos(id_equipo)
+);
+
+CREATE TABLE Arbitros (
+    id_arbitro SERIAL PRIMARY KEY,
+    id_usuario INTEGER UNIQUE NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
+);
+
+
 CREATE TABLE Ligas (
     id_liga SERIAL PRIMARY KEY,
     nombre_liga VARCHAR(100) NOT NULL,
@@ -20,101 +53,105 @@ CREATE TABLE Ligas (
     descripcion TEXT
 );
 
--- Crear tabla Equipos
+
 CREATE TABLE Equipos (
     id_equipo SERIAL PRIMARY KEY,
     nombre_equipo VARCHAR(100) NOT NULL,
-    entrenador_id INTEGER REFERENCES Usuarios(id_usuario),
+    id_entrenador INTEGER,
     categoria VARCHAR(50) NOT NULL,
     fundacion INTEGER,
-    id_liga INTEGER REFERENCES Ligas(id_liga),
+    id_liga INTEGER,
     escudo VARCHAR(255),
-    UNIQUE(nombre_equipo, id_liga)
+    UNIQUE(nombre_equipo, id_liga),
+    FOREIGN KEY (id_entrenador) REFERENCES Entrenadores(id_entrenador),
+    FOREIGN KEY (id_liga) REFERENCES Ligas(id_liga)
 );
 
--- Crear tabla Jugadores
-CREATE TABLE Jugadores (
-    id_jugador SERIAL PRIMARY KEY,
-    nombre_jugador VARCHAR(100) NOT NULL,
-    id_equipo INTEGER REFERENCES Equipos(id_equipo),
-    posicion VARCHAR(50) NOT NULL,
-    fecha_nacimiento DATE NOT NULL,
-    numero_camiseta INTEGER,
-    foto VARCHAR(255),
-    UNIQUE(id_equipo, numero_camiseta)
-);
 
--- Crear tabla Partidos
+
+
 CREATE TABLE Partidos (
     id_partido SERIAL PRIMARY KEY,
     fecha_partido DATE NOT NULL,
     hora_partido TIME NOT NULL,
-    equipo_local_id INTEGER REFERENCES Equipos(id_equipo),
-    equipo_visitante_id INTEGER REFERENCES Equipos(id_equipo),
+    equipo_local_id INTEGER NOT NULL,
+    equipo_visitante_id INTEGER NOT NULL,
     resultado VARCHAR(10),
     ubicacion VARCHAR(100) NOT NULL,
-    arbitro VARCHAR(100),
-    id_liga INTEGER REFERENCES Ligas(id_liga),
+    id_arbitro INTEGER,
+    id_liga INTEGER,
     jornada INTEGER NOT NULL,
-    CHECK (equipo_local_id != equipo_visitante_id)
+    FOREIGN KEY (equipo_local_id) REFERENCES Equipos(id_equipo),
+    FOREIGN KEY (equipo_visitante_id) REFERENCES Equipos(id_equipo),
+    FOREIGN KEY (id_liga) REFERENCES Ligas(id_liga)
+    FOREIGN KEY (id_arbitro) REFERENCES Arbitros(id_arbitro);
 );
 
--- Crear tabla Entrenamientos
+
 CREATE TABLE Entrenamientos (
     id_entrenamiento SERIAL PRIMARY KEY,
     fecha_hora_entrenamiento TIMESTAMP NOT NULL,
-    id_equipo INTEGER REFERENCES Equipos(id_equipo),
-    duracion INTEGER NOT NULL CHECK (duracion > 0)
+    id_equipo INTEGER NOT NULL,
+    duracion INTEGER NOT NULL CHECK (duracion > 0),
+    FOREIGN KEY (id_equipo) REFERENCES Equipos(id_equipo)
 );
 
--- Crear tabla Asistencias
+
 CREATE TABLE Asistencias (
     id_asistencia SERIAL PRIMARY KEY,
-    id_entrenamiento INTEGER REFERENCES Entrenamientos(id_entrenamiento),
-    id_jugador INTEGER REFERENCES Jugadores(id_jugador),
+    id_entrenamiento INTEGER NOT NULL,
+    id_jugador INTEGER NOT NULL,
     asistio BOOLEAN NOT NULL DEFAULT false,
     justificacion TEXT,
-    UNIQUE(id_entrenamiento, id_jugador)
+    UNIQUE(id_entrenamiento, id_jugador),
+    FOREIGN KEY (id_entrenamiento) REFERENCES Entrenamientos(id_entrenamiento),
+    FOREIGN KEY (id_jugador) REFERENCES Jugadores(id_jugador)
 );
 
--- Crear tabla Estadisticas_Individuales
+
 CREATE TABLE Estadisticas_Individuales (
     id_estadistica SERIAL PRIMARY KEY,
-    id_jugador INTEGER REFERENCES Jugadores(id_jugador),
-    id_partido INTEGER REFERENCES Partidos(id_partido),
+    id_jugador INTEGER NOT NULL,
+    id_partido INTEGER NOT NULL,
     goles INTEGER DEFAULT 0,
     asistencias INTEGER DEFAULT 0,
     tarjetas_amarillas INTEGER DEFAULT 0,
     tarjetas_rojas INTEGER DEFAULT 0,
     mejor_jugador BOOLEAN DEFAULT false,
     minutos_jugados INTEGER CHECK (minutos_jugados >= 0 AND minutos_jugados <= 90),
-    UNIQUE(id_jugador, id_partido)
+    UNIQUE(id_jugador, id_partido),
+    FOREIGN KEY (id_jugador) REFERENCES Jugadores(id_jugador),
+    FOREIGN KEY (id_partido) REFERENCES Partidos(id_partido)
 );
 
--- Crear tabla Estadisticas_Equipo
+
 CREATE TABLE Estadisticas_Equipo (
     id_estadistica_equipo SERIAL PRIMARY KEY,
-    id_equipo INTEGER REFERENCES Equipos(id_equipo),
-    id_partido INTEGER REFERENCES Partidos(id_partido),
+    id_equipo INTEGER NOT NULL,
+    id_partido INTEGER NOT NULL,
     goles INTEGER DEFAULT 0,
     tarjetas_amarillas INTEGER DEFAULT 0,
     tarjetas_rojas INTEGER DEFAULT 0,
-    UNIQUE(id_equipo, id_partido)
+    UNIQUE(id_equipo, id_partido),
+    FOREIGN KEY (id_equipo) REFERENCES Equipos(id_equipo),
+    FOREIGN KEY (id_partido) REFERENCES Partidos(id_partido)
 );
 
--- Crear tabla Logros
+
 CREATE TABLE Logros (
     id_logro SERIAL PRIMARY KEY,
     nombre_logro VARCHAR(100) NOT NULL UNIQUE,
     descripcion TEXT NOT NULL,
-    imagen TEXT NOT NULL,
+    imagen TEXT NOT NULL
 );
 
--- Crear tabla Logros_Desbloqueados
+
 CREATE TABLE Logros_Desbloqueados (
     id_logro_desbloqueado SERIAL PRIMARY KEY,
-    id_jugador INTEGER REFERENCES Jugadores(id_jugador),
-    id_logro INTEGER REFERENCES Logros(id_logro),
+    id_jugador INTEGER NOT NULL,
+    id_logro INTEGER NOT NULL,
     fecha_desbloqueo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(id_jugador, id_logro)
+    UNIQUE(id_jugador, id_logro),
+    FOREIGN KEY (id_jugador) REFERENCES Jugadores(id_jugador),
+    FOREIGN KEY (id_logro) REFERENCES Logros(id_logro)
 );
