@@ -15,6 +15,7 @@ CREATE TABLE Ligas (
     id_liga SERIAL PRIMARY KEY,
     nombre_liga VARCHAR(100) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
+    grupo VARCHAR(50) NOT NULL,
     temporada VARCHAR(20) NOT NULL,
     descripcion TEXT
 );
@@ -105,7 +106,8 @@ CREATE TABLE Estadisticas_Equipo (
 CREATE TABLE Logros (
     id_logro SERIAL PRIMARY KEY,
     nombre_logro VARCHAR(100) NOT NULL UNIQUE,
-    descripcion TEXT NOT NULL
+    descripcion TEXT NOT NULL,
+    imagen TEXT NOT NULL,
 );
 
 -- Crear tabla Logros_Desbloqueados
