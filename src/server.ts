@@ -1,4 +1,5 @@
 import express from "express";
+import usuarioRouter from "./usuarios/infrastructure/rest/usuario.rest"
 
 const app = express();
 const swaggerUi = require("swagger-ui-express");
@@ -17,6 +18,6 @@ app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const api = "/api";
-//app.use(`${api}/usuarios`, usuarioRouter);
+app.use(`${api}/usuarios`, usuarioRouter);
 
 export default app;

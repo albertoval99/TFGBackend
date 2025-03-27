@@ -12,7 +12,7 @@ const usuarioUseCases = new UsuarioUseCases(new UsuarioRepositoryPostgres());
 const createToken = (usuario: Usuario): string => {
     const payload = {
         user: {
-            alias: usuario.email,
+            email: usuario.email,
             rol: usuario.rol,
         },
     };
@@ -26,7 +26,7 @@ const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
         const token: string | undefined = authHeader && authHeader.split(" ")[1];
         if (token) {
             const decoded: any = jwt.verify(token, SECRET_KEY);
-            req.body.user = decoded.user;
+            req.body.user = decoded.user; 
             next();
         } else {
             throw new Error("Token no proporcionado");
@@ -37,19 +37,23 @@ const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-
-const esAdministrador = async (req: Request, res: Response, next: NextFunction) => {
+const esAdministrador = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { email } = req.body.user;
+        const user = req.body.user; 
 
-        const user = await usuarioUseCases.getUserByEmail(email);
+        if (!user || !user.email || !user.rol) {
+            res.status(401).json({ message: "Usuario no autenticado" });
+            return; 
+        }
+        const dbUser = await usuarioUseCases.getUserByEmail(user.email);
 
-        if (!user) {
-            return res.status(404).json({ message: "Usuario no encontrado" });
+        if (!dbUser) {
+            res.status(404).json({ message: "Usuario no encontrado" });
+            return;
         }
 
-        if (user.rol === "administrador") {
-            next();
+        if (dbUser.rol === "administrador") {
+            next(); 
         } else {
             res.status(403).json({ message: "Acceso denegado. Solo administradores." });
         }
@@ -59,15 +63,14 @@ const esAdministrador = async (req: Request, res: Response, next: NextFunction) 
     }
 };
 
-
-const esEntrenador = async (req: Request, res: Response, next: NextFunction) => {
+const esEntrenador = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { email } = req.body.user;
-
+        const { email } = req.body.user; 
         const user = await usuarioUseCases.getUserByEmail(email);
 
         if (!user) {
-            return res.status(404).json({ message: "Usuario no encontrado" });
+            res.status(404).json({ message: "Usuario no encontrado" });
+            return;
         }
 
         if (user.rol === "entrenador") {
@@ -82,14 +85,14 @@ const esEntrenador = async (req: Request, res: Response, next: NextFunction) => 
 };
 
 
-const esJugador = async (req: Request, res: Response, next: NextFunction) => {
+const esJugador = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { email } = req.body.user;
-
+        const { email } = req.body.user; 
         const user = await usuarioUseCases.getUserByEmail(email);
 
         if (!user) {
-            return res.status(404).json({ message: "Usuario no encontrado" });
+            res.status(404).json({ message: "Usuario no encontrado" });
+            return;
         }
 
         if (user.rol === "jugador") {
@@ -103,14 +106,14 @@ const esJugador = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-const esArbitro = async (req: Request, res: Response, next: NextFunction) => {
+const esArbitro = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { email } = req.body.user;
-
+        const { email } = req.body.user; 
         const user = await usuarioUseCases.getUserByEmail(email);
 
         if (!user) {
-            return res.status(404).json({ message: "Usuario no encontrado" });
+            res.status(404).json({ message: "Usuario no encontrado" });
+            return;
         }
 
         if (user.rol === "arbitro") {
