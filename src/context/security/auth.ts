@@ -3,6 +3,7 @@ import jwt, { Secret } from "jsonwebtoken";//npm install jsonwebtoken
 import UsuarioUseCases from "../../usuarios/application/usuario.usecases";
 import UsuarioRepositoryPostgres from "../../usuarios/infrastructure/db/usuario.repository.postgres";
 import Usuario from "../../usuarios/domain/Usuario";
+import Administrador from "../../usuarios/domain/Adminisitrador";
 
 const SECRET_KEY: Secret = "malladetaFootballZoneSecretKey";
 
@@ -16,9 +17,8 @@ const createToken = (usuario: Usuario): string => {
             rol: usuario.rol,
         },
     };
-    return jwt.sign(payload, SECRET_KEY, { expiresIn: "1d" });
+    return jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
 };
-
 
 const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -26,7 +26,7 @@ const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
         const token: string | undefined = authHeader && authHeader.split(" ")[1];
         if (token) {
             const decoded: any = jwt.verify(token, SECRET_KEY);
-            req.body.user = decoded.user; 
+            req.body.user = decoded.user;
             next();
         } else {
             throw new Error("Token no proporcionado");
@@ -39,11 +39,11 @@ const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
 
 const esAdministrador = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const user = req.body.user; 
+        const user = req.body.user;
 
         if (!user || !user.email || !user.rol) {
             res.status(401).json({ message: "Usuario no autenticado" });
-            return; 
+            return;
         }
         const dbUser = await usuarioUseCases.getUserByEmail(user.email);
 
@@ -53,7 +53,7 @@ const esAdministrador = async (req: Request, res: Response, next: NextFunction):
         }
 
         if (dbUser.rol === "administrador") {
-            next(); 
+            next();
         } else {
             res.status(403).json({ message: "Acceso denegado. Solo administradores." });
         }
@@ -65,7 +65,7 @@ const esAdministrador = async (req: Request, res: Response, next: NextFunction):
 
 const esEntrenador = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { email } = req.body.user; 
+        const { email } = req.body.user;
         const user = await usuarioUseCases.getUserByEmail(email);
 
         if (!user) {
@@ -87,7 +87,7 @@ const esEntrenador = async (req: Request, res: Response, next: NextFunction): Pr
 
 const esJugador = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { email } = req.body.user; 
+        const { email } = req.body.user;
         const user = await usuarioUseCases.getUserByEmail(email);
 
         if (!user) {
@@ -108,7 +108,7 @@ const esJugador = async (req: Request, res: Response, next: NextFunction): Promi
 
 const esArbitro = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { email } = req.body.user; 
+        const { email } = req.body.user;
         const user = await usuarioUseCases.getUserByEmail(email);
 
         if (!user) {
