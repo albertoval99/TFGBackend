@@ -4,6 +4,7 @@ import UsuarioUseCases from "../../usuarios/application/usuario.usecases";
 import UsuarioRepositoryPostgres from "../../usuarios/infrastructure/db/usuario.repository.postgres";
 import Usuario from "../../usuarios/domain/Usuario";
 import Administrador from "../../usuarios/domain/Adminisitrador";
+import { executeQuery } from "../db/postgres.db";
 
 const SECRET_KEY: Secret = "malladetaFootballZoneSecretKey";
 
@@ -66,14 +67,23 @@ const esAdministrador = async (req: Request, res: Response, next: NextFunction):
 const esEntrenador = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         const { email } = req.body.user;
-        const user = await usuarioUseCases.getUserByEmail(email);
+        // Para obtener el id_equipo al registrar jugador
+        const query = `
+            SELECT u.*, e.id_equipo 
+            FROM usuarios u 
+            JOIN entrenadores e ON u.id_usuario = e.id_usuario 
+            WHERE u.email = $1
+        `;
+        const values = [email];
+        const result = await executeQuery(query, values);
 
-        if (!user) {
+        if (!result[0]) {
             res.status(404).json({ message: "Usuario no encontrado" });
             return;
         }
 
-        if (user.rol === "entrenador") {
+        if (result[0].rol === "entrenador") {
+            req.body.id_equipo = result[0].id_equipo;
             next();
         } else {
             res.status(403).json({ message: "Acceso denegado. Solo entrenadores." });

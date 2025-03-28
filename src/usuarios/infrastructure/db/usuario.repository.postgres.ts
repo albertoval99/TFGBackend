@@ -85,22 +85,74 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         return rows[0];
     }
 
+    async eliminarUsuario(id_usuario: number): Promise<void> {
+        const query = 'DELETE FROM usuarios WHERE id_usuario = $1';
+        const values = [id_usuario];
+        await executeQuery(query, values);
+    }
+
     async loginAdministrador(administrador: Administrador): Promise<Administrador> {
         const query = 'SELECT * FROM usuarios WHERE email = $1';
         const values = [administrador.email];
 
         const result = await executeQuery(query, values);
 
-        if (result.length === 0) throw new Error("Administrador no encontrado")
+        if (result.length === 0) throw { message: "Email incorrecto" }
 
         return result[0];
     }
 
-   
-    async eliminarUsuario(id_usuario: number): Promise<void> {
-        const query = 'DELETE FROM usuarios WHERE id_usuario = $1';
-        const values = [id_usuario];
-        await executeQuery(query, values);
+    async loginEntrenador(entrenador: Entrenador): Promise<Entrenador> {
+        const query = `
+            SELECT e.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
+            FROM entrenadores e
+            JOIN usuarios u ON e.id_usuario = u.id_usuario
+            WHERE u.email = $1 AND u.rol = 'entrenador'
+        `;
+        const values = [entrenador.email];
+        const result = await executeQuery(query, values);
+    
+        if (result.length === 0) {
+            return null;
+        }
+    
+        return result[0];
     }
+    
+    async loginArbitro(arbitro: Arbitro): Promise<Arbitro> {
+        const query = `
+            SELECT a.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
+            FROM arbitros a
+            JOIN usuarios u ON a.id_usuario = u.id_usuario
+            WHERE u.email = $1 AND u.rol = 'arbitro'
+        `;
+        const values = [arbitro.email];
+        const result = await executeQuery(query, values);
+    
+        if (result.length === 0) {
+            return null;
+        }
+    
+        return result[0];
+    }
+    
+    async loginJugador(jugador: Jugador): Promise<Jugador> {
+        const query = `
+            SELECT j.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
+            FROM jugadores j
+            JOIN usuarios u ON j.id_usuario = u.id_usuario
+            WHERE u.email = $1 AND u.rol = 'jugador'
+        `;
+        const values = [jugador.email];
+        const result = await executeQuery(query, values);
+    
+        if (result.length === 0) {
+            return null;
+        }
+    
+        return result[0];
+    }
+
+   
 
 }

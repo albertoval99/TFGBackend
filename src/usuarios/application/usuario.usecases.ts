@@ -222,6 +222,18 @@ export default class UsuarioUseCases {
             throw { message: "El email ya está registrado" };
         }
 
+        const query = `
+        SELECT * FROM jugadores 
+        WHERE id_equipo = $1 AND numero_camiseta = $2 AND activo = true
+    `;
+        const values = [jugador.id_equipo, jugador.numero_camiseta];
+        const result = await executeQuery(query, values);
+
+        if (result.length > 0) {
+            console.log("❌ El número de camiseta ya está en uso en este equipo");
+            throw { message: "El número de camiseta ya está en uso en este equipo" };
+        }
+
         const cifrada = hash(jugador.password);
         jugador.password = cifrada;
 
@@ -282,16 +294,96 @@ export default class UsuarioUseCases {
 
         if (!adminEncontrado) {
             console.log("❌ Administrador no encontrado");
-            throw { message: "Credenciales incorrectas" };
+            throw { message: "El email es incorrecto" };
         }
 
         const passwordValida = compare(administrador.password, adminEncontrado.password);
 
         if (!passwordValida) {
             console.log("❌ Contraseña incorrecta");
-            throw { message: "Credenciales incorrectas" };
+            throw { message: "Contraseña incorrecta" };
         }
 
         return adminEncontrado;
+    }
+
+    async loginEntrenador(entrenador: Entrenador): Promise<Entrenador> {
+        if (!entrenador.email) {
+            console.log("❌ Falta el email del entrenador");
+            throw { message: "Falta el email del entrenador" };
+        }
+        if (!entrenador.password) {
+            console.log("❌ Falta la contraseña del entrenador");
+            throw { message: "Falta la contraseña del entrenador" };
+        }
+
+        const entrenadorEncontrado = await this.usuarioRepository.loginEntrenador(entrenador);
+
+        if (!entrenadorEncontrado) {
+            console.log("❌ Entrenador no encontrado");
+            throw { message: "El email es incorrecto" };
+        }
+
+        const passwordValida = compare(entrenador.password, entrenadorEncontrado.password);
+
+        if (!passwordValida) {
+            console.log("❌ Contraseña incorrecta");
+            throw { message: "Contraseña incorrecta" };
+        }
+
+        return entrenadorEncontrado;
+    }
+
+    async loginArbitro(arbitro: Arbitro): Promise<Arbitro> {
+        if (!arbitro.email) {
+            console.log("❌ Falta el email del árbitro");
+            throw { message: "Falta el email del árbitro" };
+        }
+        if (!arbitro.password) {
+            console.log("❌ Falta la contraseña del árbitro");
+            throw { message: "Falta la contraseña del árbitro" };
+        }
+        const arbitroEncontrado = await this.usuarioRepository.loginArbitro(arbitro);
+
+        if (!arbitroEncontrado) {
+            console.log("❌ Árbitro no encontrado");
+            throw { message: "El email es incorrecto" };
+        }
+
+        const passwordValida = compare(arbitro.password, arbitroEncontrado.password);
+
+        if (!passwordValida) {
+            console.log("❌ Contraseña incorrecta");
+            throw { message: "Contraseña incorrecta" };
+        }
+
+        return arbitroEncontrado;
+    }
+
+    async loginJugador(jugador: Jugador): Promise<Jugador> {
+        if (!jugador.email) {
+            console.log("❌ Falta el email del jugador");
+            throw { message: "Falta el email del jugador" };
+        }
+        if (!jugador.password) {
+            console.log("❌ Falta la contraseña del jugador");
+            throw { message: "Falta la contraseña del jugador" };
+        }
+    
+        const jugadorEncontrado = await this.usuarioRepository.loginJugador(jugador);
+    
+        if (!jugadorEncontrado) {
+            console.log("❌ Jugador no encontrado");
+            throw { message: "El email es incorrecto" };
+        }
+    
+        const passwordValida = compare(jugador.password, jugadorEncontrado.password);
+    
+        if (!passwordValida) {
+            console.log("❌ Contraseña incorrecta");
+            throw { message: "Contraseña incorrecta" };
+        }
+    
+        return jugadorEncontrado;
     }
 }

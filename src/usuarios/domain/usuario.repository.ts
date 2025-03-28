@@ -12,4 +12,7 @@ export default interface UsuarioRepository{
     registrarJugador(jugador: Jugador): Promise<Jugador>;
     eliminarUsuario(id_usuario: number): Promise<void>;
     loginAdministrador(administrador: Administrador): Promise<Administrador>;
+    loginEntrenador(entrenador: Entrenador): Promise<Entrenador>;
+    loginArbitro(arbitro: Arbitro): Promise<Arbitro>;
+    loginJugador(jugador: Jugador): Promise<Jugador>;
 }
