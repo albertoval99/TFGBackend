@@ -93,7 +93,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
 
     async loginAdministrador(administrador: Administrador): Promise<Administrador> {
         const query = `
-        SELECT a.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
+        SELECT a.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto, u.rol
         FROM administradores a
         JOIN usuarios u ON a.id_usuario = u.id_usuario
         WHERE u.email = $1 AND u.rol = 'administrador'
@@ -111,7 +111,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
 
     async loginEntrenador(entrenador: Entrenador): Promise<Entrenador> {
         const query = `
-            SELECT e.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
+            SELECT e.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto, u.rol
             FROM entrenadores e
             JOIN usuarios u ON e.id_usuario = u.id_usuario
             WHERE u.email = $1 AND u.rol = 'entrenador'
@@ -128,7 +128,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
 
     async loginArbitro(arbitro: Arbitro): Promise<Arbitro> {
         const query = `
-            SELECT a.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
+            SELECT a.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto, u.rol
             FROM arbitros a
             JOIN usuarios u ON a.id_usuario = u.id_usuario
             WHERE u.email = $1 AND u.rol = 'arbitro'
@@ -145,7 +145,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
 
     async loginJugador(jugador: Jugador): Promise<Jugador> {
         const query = `
-            SELECT j.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
+            SELECT j.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto, u.rol
             FROM jugadores j
             JOIN usuarios u ON j.id_usuario = u.id_usuario
             WHERE u.email = $1 AND u.rol = 'jugador'
