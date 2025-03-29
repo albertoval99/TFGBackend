@@ -123,7 +123,7 @@ router.post(
     }
 });
 
-
+/** 
 // POST http://localhost:3000/api/usuarios/loginAdministrador
 router.post(
     "/loginAdministrador",
@@ -299,6 +299,55 @@ router.post(
         });
     }
 });
+*/
 
+router.post("/login", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { email, password, userType } = req.body;
+
+        if (!email || !password || !userType) {
+            res.status(400).json({ message: "Faltan campos obligatorios" });
+            return;
+        }
+
+        let usuario;
+        switch (userType) {
+            case 'Administrador':
+                usuario = await usuarioUseCases.loginAdministrador({ email, password });
+                break;
+            case 'Entrenador':
+                usuario = await usuarioUseCases.loginEntrenador({ email, password });
+                break;
+            case 'Arbitro':
+                usuario = await usuarioUseCases.loginArbitro({ email, password });
+                break;
+            case 'Jugador':
+                usuario = await usuarioUseCases.loginJugador({ email, password });
+                break;
+            default:
+                res.status(400).json({ message: "Tipo de usuario no válido" });
+                return;
+        }
+
+        const token = createToken({
+            email: usuario.email,
+            rol: userType.toLowerCase()
+        });
+
+        res.status(200).json({
+            usuario: {
+                ...usuario,
+                rol: userType.toLowerCase()
+            },
+            token
+        });
+
+    } catch (error) {
+        console.error(`❌ Error en login: ${error}`);
+        res.status(500).json({
+            message: error.message || "Error en el inicio de sesión",
+        });
+    }
+});
 
 export default router;
