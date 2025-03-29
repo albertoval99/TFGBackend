@@ -386,4 +386,16 @@ export default class UsuarioUseCases {
     
         return jugadorEncontrado;
     }
+
+
+    async getAllUsuarios(): Promise<Usuario[]> {
+        const usuarios = await this.usuarioRepository.getAllUsuarios();
+        if(usuarios && usuarios.length > 0){
+            return usuarios;
+        }else{
+            console.log("❌ No se encontraron usuarios");
+            throw { message: "No se encontraron usuarios" };
+        }
+        
+    }
 }

@@ -153,6 +153,15 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         return result[0];
     }
 
+    async getAllUsuarios(): Promise<Usuario[]> {
+        const query = 'SELECT * FROM usuarios';
+        const result = await executeQuery(query);
+
+        return result.map((row:any) => ({
+            ...row //Devolver todo
+        }));
+    }
+
    
 
 }

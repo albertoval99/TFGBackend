@@ -15,4 +15,5 @@ export default interface UsuarioRepository{
     loginEntrenador(entrenador: Entrenador): Promise<Entrenador>;
     loginArbitro(arbitro: Arbitro): Promise<Arbitro>;
     loginJugador(jugador: Jugador): Promise<Jugador>;
+    getAllUsuarios(): Promise<Usuario[]>;
 }
