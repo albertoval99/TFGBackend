@@ -92,12 +92,19 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
     }
 
     async loginAdministrador(administrador: Administrador): Promise<Administrador> {
-        const query = 'SELECT * FROM usuarios WHERE email = $1';
+        const query = `
+        SELECT a.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
+        FROM administradores a
+        JOIN usuarios u ON a.id_usuario = u.id_usuario
+        WHERE u.email = $1 AND u.rol = 'administrador'
+    `;
         const values = [administrador.email];
 
         const result = await executeQuery(query, values);
 
-        if (result.length === 0) throw { message: "Email incorrecto" }
+        if (result.length === 0) {
+            return null;
+        }
 
         return result[0];
     }
@@ -111,14 +118,14 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         `;
         const values = [entrenador.email];
         const result = await executeQuery(query, values);
-    
+
         if (result.length === 0) {
             return null;
         }
-    
+
         return result[0];
     }
-    
+
     async loginArbitro(arbitro: Arbitro): Promise<Arbitro> {
         const query = `
             SELECT a.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
@@ -128,14 +135,14 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         `;
         const values = [arbitro.email];
         const result = await executeQuery(query, values);
-    
+
         if (result.length === 0) {
             return null;
         }
-    
+
         return result[0];
     }
-    
+
     async loginJugador(jugador: Jugador): Promise<Jugador> {
         const query = `
             SELECT j.*, u.nombre, u.apellidos, u.email, u.password, u.telefono, u.foto
@@ -145,11 +152,11 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         `;
         const values = [jugador.email];
         const result = await executeQuery(query, values);
-    
+
         if (result.length === 0) {
             return null;
         }
-    
+
         return result[0];
     }
 
@@ -157,11 +164,11 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         const query = 'SELECT * FROM usuarios';
         const result = await executeQuery(query);
 
-        return result.map((row:any) => ({
+        return result.map((row: any) => ({
             ...row //Devolver todo
         }));
     }
 
-   
+
 
 }

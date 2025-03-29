@@ -27,6 +27,9 @@ const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
         const token: string | undefined = authHeader && authHeader.split(" ")[1];
         if (token) {
             const decoded: any = jwt.verify(token, SECRET_KEY);
+            if (!decoded || !decoded.user || !decoded.user.email || !decoded.user.rol) {
+                throw new Error("Token inválido o incompleto");
+            }
             req.body.user = decoded.user;
             next();
         } else {

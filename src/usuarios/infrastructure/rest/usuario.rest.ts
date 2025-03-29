@@ -81,47 +81,47 @@ router.post(
     esAutorizado,
     esEntrenador,
     async (req: Request, res: Response): Promise<void> => {
-    try {
-        const {
-            nombre,
-            apellidos,
-            email,
-            password,
-            telefono,
-            foto,
-            posicion,
-            numero_camiseta,
-            id_equipo,  // Viene de esEntrenador
-            activo
-        } = req.body;
+        try {
+            const {
+                nombre,
+                apellidos,
+                email,
+                password,
+                telefono,
+                foto,
+                posicion,
+                numero_camiseta,
+                id_equipo,  // Viene de esEntrenador
+                activo
+            } = req.body;
 
-        if (!nombre || !apellidos || !email || !password || !posicion || !numero_camiseta) {
-            res.status(400).json({ message: "Faltan campos obligatorios" });
-            return;
+            if (!nombre || !apellidos || !email || !password || !posicion || !numero_camiseta) {
+                res.status(400).json({ message: "Faltan campos obligatorios" });
+                return;
+            }
+
+            const jugadorRegistrado = await usuarioUseCases.registrarJugador({
+                nombre,
+                apellidos,
+                email,
+                password,
+                telefono,
+                foto,
+                id_equipo,
+                posicion,
+                numero_camiseta,
+                activo
+            });
+
+            res.status(201).json({
+                message: "Jugador creado exitosamente",
+                jugador: jugadorRegistrado,
+            });
+        } catch (error) {
+            console.error("❌ Error al crear el jugador:", error);
+            res.status(500).json({ message: "Error al crear el jugador", error: error.message });
         }
-
-        const jugadorRegistrado = await usuarioUseCases.registrarJugador({
-            nombre,
-            apellidos,
-            email,
-            password,
-            telefono,
-            foto,
-            id_equipo,  
-            posicion,
-            numero_camiseta,
-            activo
-        });
-
-        res.status(201).json({
-            message: "Jugador creado exitosamente",
-            jugador: jugadorRegistrado,
-        });
-    } catch (error) {
-        console.error("❌ Error al crear el jugador:", error);
-        res.status(500).json({ message: "Error al crear el jugador", error: error.message });
-    }
-});
+    });
 
 /** 
 // POST http://localhost:3000/api/usuarios/loginAdministrador
@@ -300,28 +300,27 @@ router.post(
     }
 });
 */
-
 router.post("/login", async (req: Request, res: Response): Promise<void> => {
     try {
-        const { email, password, userType } = req.body;
+        const { email, password, rol } = req.body;
 
-        if (!email || !password || !userType) {
+        if (!email || !password || !rol) {
             res.status(400).json({ message: "Faltan campos obligatorios" });
             return;
         }
 
         let usuario;
-        switch (userType) {
-            case 'Administrador':
+        switch (rol) {
+            case 'administrador':
                 usuario = await usuarioUseCases.loginAdministrador({ email, password });
                 break;
-            case 'Entrenador':
+            case 'entrenador':
                 usuario = await usuarioUseCases.loginEntrenador({ email, password });
                 break;
-            case 'Arbitro':
+            case 'arbitro':
                 usuario = await usuarioUseCases.loginArbitro({ email, password });
                 break;
-            case 'Jugador':
+            case 'jugador':
                 usuario = await usuarioUseCases.loginJugador({ email, password });
                 break;
             default:
@@ -329,15 +328,16 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
                 return;
         }
 
+
         const token = createToken({
             email: usuario.email,
-            rol: userType.toLowerCase()
+            rol: usuario.rol
         });
 
         res.status(200).json({
             usuario: {
                 ...usuario,
-                rol: userType.toLowerCase()
+                rol: usuario.rol
             },
             token
         });
@@ -350,16 +350,17 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
     }
 });
 
+
 router.get("/", async (req: Request, res: Response): Promise<void> => {
     try {
-      const usuarios = await usuarioUseCases.getAllUsuarios();
-      res.status(200).json({ usuarios });
+        const usuarios = await usuarioUseCases.getAllUsuarios();
+        res.status(200).json({ usuarios });
     } catch (error) {
-      console.error("❌ Error al obtener usuarios:", error);
-      res.status(500).json({
-        message: error.message || "Error al obtener usuarios",
-      });
+        console.error("❌ Error al obtener usuarios:", error);
+        res.status(500).json({
+            message: error.message || "Error al obtener usuarios",
+        });
     }
-  });
+});
 
 export default router;
