@@ -60,7 +60,6 @@ CREATE TABLE Equipos (
     id_equipo SERIAL PRIMARY KEY,
     nombre_equipo VARCHAR(100) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
-    fundacion INTEGER,
     id_liga INTEGER,
     escudo VARCHAR(255),
     UNIQUE (nombre_equipo, id_liga),
