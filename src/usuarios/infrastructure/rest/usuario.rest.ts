@@ -362,5 +362,57 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
         });
     }
 });
+/** 
+// GET http://localhost:3000/api/usuarios/email
+router.get("/:email", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { email } = req.params;
+        const usuario = await usuarioUseCases.getUserByEmail(email);
+
+        if (!usuario) {
+            res.status(404).json({ message: "Usuario no encontrado" });
+            return;
+        }
+
+        res.status(200).json(usuario);
+    } catch (error) {
+        console.error("❌ Error al obtener usuario por email:", error);
+        res.status(500).json({
+            message: error.message || "Error al obtener usuario",
+        });
+    }
+});*/
+
+// GET http://localhost:3000/api/usuarios/id/id
+router.get("/id/:id_usuario", async (req: Request, res: Response): Promise<void> => {
+    try {
+        // Extraemos id_usuario de req.params
+        const { id_usuario } = req.params;
+
+        // Convertimos id_usuario de string a number
+        const idUsuarioNum = parseInt(id_usuario); // O usar parseInt(id_usuario) si prefieres
+
+        // Verificamos que la conversión fue exitosa
+        if (isNaN(idUsuarioNum)) {
+            res.status(400).json({ message: "El ID de usuario no es válido." });
+            return;
+        }
+
+        // Ahora pasamos el número a la función que lo requiere como número
+        const usuario = await usuarioUseCases.getEntrenadorById(idUsuarioNum);
+
+        if (!usuario) {
+            res.status(404).json({ message: "Usuario no encontrado" });
+            return;
+        }
+
+        res.status(200).json(usuario);
+    } catch (error) {
+        console.error("❌ Error al obtener usuario por id:", error);
+        res.status(500).json({
+            message: error.message || "Error al obtener usuario",
+        });
+    }
+});
 
 export default router;

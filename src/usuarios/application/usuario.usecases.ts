@@ -23,6 +23,16 @@ export default class UsuarioUseCases {
         return user;
     }
 
+    async getEntrenadorById(id_usuario: number): Promise<Usuario | null> {
+        const user = await this.usuarioRepository.getEntrenadorById(id_usuario);
+        if (!user) {
+            console.log(`❌No se encontró el usuario con id: ${id_usuario}`);
+            throw new Error("Usuario no encontrado");
+        }
+        console.log("✅ Usuario encontrado:", user);
+        return user;
+    }
+
     async registroUsuario(usuario: Usuario): Promise<Usuario> {
         if (!usuario.nombre) {
             console.log("❌ Falta el nombre del usuario");

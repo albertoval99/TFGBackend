@@ -12,13 +12,15 @@ const usuarioUseCases = new UsuarioUseCases(new UsuarioRepositoryPostgres());
 
 
 const createToken = (usuario: Usuario): string => {
+    console.log("Objeto usuario en createToken:", usuario);
     const payload = {
         user: {
             email: usuario.email,
             rol: usuario.rol,
+            id_usuario: usuario.id_usuario
         },
     };
-    return jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
+    return jwt.sign(payload, SECRET_KEY, { expiresIn: "8h" });
 };
 
 const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
@@ -27,7 +29,7 @@ const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
         const token: string | undefined = authHeader && authHeader.split(" ")[1];
         if (token) {
             const decoded: any = jwt.verify(token, SECRET_KEY);
-            if (!decoded || !decoded.user || !decoded.user.email || !decoded.user.rol) {
+            if (!decoded || !decoded.user ||!decoded.user.id_usuario || !decoded.user.email || !decoded.user.rol) {
                 throw new Error("Token inválido o incompleto");
             }
             req.body.user = decoded.user;

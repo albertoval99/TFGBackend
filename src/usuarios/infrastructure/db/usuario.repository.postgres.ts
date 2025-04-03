@@ -168,6 +168,19 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             ...row //Devolver todo
         }));
     }
+    async getEntrenadorById(id_usuario: number): Promise<Usuario | null> {
+        const query = 'SELECT * FROM entrenadores WHERE id_usuario = $1';
+        const values = [id_usuario];
+
+        const rows = await executeQuery(query, values);
+
+        if (rows.length === 0) {
+            console.log("❌ Usuario no encontrado con el email:", id_usuario);
+            return null;
+        }
+
+        return rows[0];
+    }
 
 
 
