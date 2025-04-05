@@ -331,7 +331,8 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
 
         const token = createToken({
             email: usuario.email,
-            rol: usuario.rol
+            rol: usuario.rol,
+            id_usuario: usuario.id_usuario 
         });
 
         res.status(200).json({
@@ -383,8 +384,8 @@ router.get("/:email", async (req: Request, res: Response): Promise<void> => {
     }
 });*/
 
-// GET http://localhost:3000/api/usuarios/id/id
-router.get("/id/:id_usuario", async (req: Request, res: Response): Promise<void> => {
+// GET http://localhost:3000/api/usuarios/entrenador/id
+router.get("/entrenador/:id_usuario", async (req: Request, res: Response): Promise<void> => {
     try {
         // Extraemos id_usuario de req.params
         const { id_usuario } = req.params;

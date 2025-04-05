@@ -12,4 +12,18 @@ export default class EquipoRepositoryPostgres implements EquipoRepository {
         }
         return result;
     }
+
+    async getEquipoById(id_equipo: number): Promise<Equipo | null> {
+        const query = 'SELECT * FROM equipos WHERE id_equipo = $1';
+        const values = [id_equipo];
+
+        const rows = await executeQuery(query, values);
+
+        if (rows.length === 0) {
+            console.log("❌ Equipo no encontrado por el id:", id_equipo);
+            return null;
+        }
+
+        return rows[0];
+    }
 }

@@ -16,4 +16,13 @@ export default class EquipoUseCases {
             throw { message: "No se encontraron equipos" };
         }
     }
+    async getEquipoById(id_equipo: number): Promise<Equipo | null> {
+        const equipo=await this.equipoRepository.getEquipoById(id_equipo);
+        if(!equipo){
+            console.log(`❌No se encontró el equipo con id: ${id_equipo}`);
+            throw new Error("Equipo no encontrado");
+        }
+        console.log("✅ Equipo encontrado:",equipo);
+        return equipo;
+    }
 }

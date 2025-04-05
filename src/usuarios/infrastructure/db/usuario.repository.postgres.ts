@@ -175,7 +175,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         const rows = await executeQuery(query, values);
 
         if (rows.length === 0) {
-            console.log("❌ Usuario no encontrado con el email:", id_usuario);
+            console.log("❌ Usuario no encontrado con el ID:", id_usuario);
             return null;
         }
 
