@@ -90,8 +90,8 @@ router.post(
                 telefono,
                 foto,
                 posicion,
+                id_equipo,
                 numero_camiseta,
-                id_equipo,  // Viene de esEntrenador
                 activo
             } = req.body;
 
@@ -107,8 +107,8 @@ router.post(
                 password,
                 telefono,
                 foto,
-                id_equipo,
                 posicion,
+                id_equipo,
                 numero_camiseta,
                 activo
             });
@@ -119,7 +119,7 @@ router.post(
             });
         } catch (error) {
             console.error("❌ Error al crear el jugador:", error);
-            res.status(500).json({ message: "Error al crear el jugador", error: error.message });
+            res.status(500).json({ message: `Error al crear el jugador: ${error.message}`});
         }
     });
 
