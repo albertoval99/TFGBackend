@@ -187,7 +187,7 @@ router.get("/", async (req: Request, res: Response): Promise<void> => {
         });
     }
 });
-/** 
+
 // GET http://localhost:3000/api/usuarios/email
 router.get("/:email", async (req: Request, res: Response): Promise<void> => {
     try {
@@ -206,7 +206,7 @@ router.get("/:email", async (req: Request, res: Response): Promise<void> => {
             message: error.message || "Error al obtener usuario",
         });
     }
-});*/
+});
 
 // GET http://localhost:3000/api/usuarios/entrenador/id
 router.get("/entrenador/:id_usuario", async (req: Request, res: Response): Promise<void> => {
