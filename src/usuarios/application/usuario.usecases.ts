@@ -282,7 +282,7 @@ export default class UsuarioUseCases {
                 // Si falla el registro en la tabla jugadores, eliminamos el usuario
                 await this.usuarioRepository.eliminarUsuario(usuarioRegistrado.id_usuario);
                 console.log("❌ Error al registrar en la tabla jugadores");
-                throw { message: "Error al registrar el jugador" };
+                throw { message: `Error al registrar el jugador: ${error}` };
             }
         } catch (error) {
             console.log("❌ Error al registrar el usuario");
