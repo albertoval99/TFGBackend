@@ -26,4 +26,37 @@ export default class EquipoRepositoryPostgres implements EquipoRepository {
 
         return rows[0];
     }
+
+    async getEquipoByNombre(nombre_equipo: string, id_liga: number): Promise<Equipo | null> {
+        const query = 'SELECT * FROM equipos WHERE nombre_equipo = $1 AND id_liga = $2';
+        const values = [nombre_equipo, id_liga];
+        const rows = await executeQuery(query, values);
+
+        if (rows.length === 0) {
+            return null;
+        }
+        return rows[0];
+    }
+
+
+    async registrarEquipo(equipo: Equipo): Promise<Equipo> {
+        const equipoExistente = await this.getEquipoByNombre(equipo.nombre_equipo, equipo.id_liga);
+        if (equipoExistente) {
+            throw { message: "Ya existe un equipo con ese nombre en la liga seleccionada" };
+        }
+
+        const query = `
+        INSERT INTO equipos (nombre_equipo, id_liga, escudo)
+        VALUES ($1, $2, $3)
+        RETURNING *
+    `;
+        const values = [
+            equipo.nombre_equipo,
+            equipo.id_liga,
+            equipo.escudo
+        ];
+
+        const rows = await executeQuery(query, values);
+        return rows[0];
+    }
 }

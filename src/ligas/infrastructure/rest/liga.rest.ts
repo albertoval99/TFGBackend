@@ -1,6 +1,6 @@
 import express, { Router, Request, Response } from "express";
 
-import { esAutorizado, esAdministrador, esEntrenador, createToken } from "../../../context/security/auth";
+import { esAutorizado, esAdministrador} from "../../../context/security/auth";
 import LigaUseCases from "../../application/liga.usecases";
 import LigaRepositoryPostgres from "../db/liga.repository.postgres";
 

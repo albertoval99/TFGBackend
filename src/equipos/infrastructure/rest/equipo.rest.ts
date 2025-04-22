@@ -1,10 +1,12 @@
 import express, { Router, Request, Response } from "express";
 import EquipoUseCases from "../../application/equipo.usecases";
 import EquipoRepositoryPostgres from "../db/equipo.repository.postgres";
+import LigaRepositoryPostgres from "../../../ligas/infrastructure/db/liga.repository.postgres";
+import { esAutorizado, esAdministrador } from "../../../context/security/auth";
 
 
 const router = express.Router();
-const equipoUseCases = new EquipoUseCases(new EquipoRepositoryPostgres);
+const equipoUseCases = new EquipoUseCases(new EquipoRepositoryPostgres,new LigaRepositoryPostgres());
 
 
 // GET  http://localhost:3000/api/equipos/getEquipos
@@ -50,6 +52,36 @@ router.get("/:id_equipo", async (req: Request, res: Response): Promise<void> => 
     }
 });
 
+// POST http://localhost:3000/api/equipos/registroEquipo
+router.post(
+    "/registroEquipo",
+    esAutorizado,
+    esAdministrador,
+    async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { nombre_equipo, id_liga, escudo } = req.body;
 
+            if (!nombre_equipo || !id_liga) {
+                res.status(400).json({ message: "Faltan campos obligatorios" });
+                return;
+            }
+
+            const equipoRegistrado = await equipoUseCases.registroEquipo({
+                nombre_equipo,
+                id_liga,
+                escudo
+            });
+
+            res.status(201).json({
+                message: "Equipo creado exitosamente",
+                equipo: equipoRegistrado
+            });
+
+        } catch (error: any) {
+            console.error("❌ Error al crear el equipo:", error);
+            res.status(500).json({ message: error.message || "Error al crear el equipo" });
+        }
+    }
+);
 
 export default router

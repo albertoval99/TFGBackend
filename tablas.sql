@@ -59,9 +59,8 @@ CREATE TABLE Ligas (
 CREATE TABLE Equipos (
     id_equipo SERIAL PRIMARY KEY,
     nombre_equipo VARCHAR(100) NOT NULL,
-    categoria VARCHAR(50) NOT NULL,
-    id_liga INTEGER,
-    escudo VARCHAR(255),
+    id_liga INTEGER NOT NULL,
+    escudo VARCHAR(255) NOT NULL,
     UNIQUE (nombre_equipo, id_liga),
     FOREIGN KEY (id_liga) REFERENCES Ligas (id_liga)
 );
