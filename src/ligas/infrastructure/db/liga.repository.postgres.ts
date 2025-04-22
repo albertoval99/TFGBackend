@@ -24,10 +24,20 @@ export default class LigaRepositoryPostgres implements LigaRepository {
     }
 
     async getLigaById(id_liga: number): Promise<Liga | null> {
-        const query = 'SELECT * FROM ligas WHERE id_liga = $1';
+        const query = "SELECT * FROM ligas WHERE id_liga = $1";
         const values = [id_liga];
         const rows = await executeQuery(query, values);
         if (rows.length === 0) return null;
         return rows[0];
+    }
+
+    async getLigas(): Promise<Liga[]> {
+        const query = "SELECT * FROM ligas";
+        const result = await executeQuery(query);
+
+        if (result.length === 0) {
+            return [];
+        }
+        return result;
     }
 }

@@ -30,4 +30,13 @@ export default class LigaUseCases {
 
         return ligaRegistrada;
     }
+
+    async getLigas(): Promise<Liga[]> {
+        const ligas = await this.ligaRepository.getLigas();
+        if (ligas && ligas.length > 0) {
+            return ligas;
+        } else {
+            throw { message: "No se encontraron ligas" };
+        }
+    }
 }
