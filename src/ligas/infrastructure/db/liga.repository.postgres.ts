@@ -1,0 +1,25 @@
+import Liga from "../../domain/Liga";
+import LigaRepository from "../../domain/liga.repository";
+import { executeQuery } from '../../../context/db/postgres.db';
+
+export default class LigaRepositoryPostgres implements LigaRepository {
+    async registrarLiga(liga: Liga): Promise<Liga> {
+        const query = `
+            INSERT INTO ligas (nombre_liga, categoria, grupo, temporada, descripcion)
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING *
+        `;
+
+        const values = [
+            liga.nombre_liga,
+            liga.categoria,
+            liga.grupo,
+            liga.temporada,
+            liga.descripcion
+        ];
+
+        const rows = await executeQuery(query, values);
+
+        return rows[0];
+    }
+}
