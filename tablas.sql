@@ -2042,3 +2042,749 @@ VALUES (217, 13, 'PT', 1, true), -- NOVO GARCÍA, ERIC
     (230, 13, 'LD', 22, true), -- BASTAROS SANCLEMENTE, MARCOS
     (231, 13, 'DC', 23, true);
 -- DIAZ OTI, DAVID
+
+-- JUGADORES  bujaraloz --
+
+INSERT INTO
+    Usuarios (
+        id_usuario,
+        nombre,
+        apellidos,
+        email,
+        password,
+        rol,
+        telefono
+    )
+VALUES (
+        232,
+        'DIEGO',
+        'MARTINEZ MONTILVA',
+        'dmartinezmontilva2@gmail.com',
+        'dmartinezmontilva2@gmail.com',
+        'jugador',
+        '600000142'
+    ), -- 2
+    (
+        233,
+        'JAVIER',
+        'VILLAGRASA VIVAS',
+        'jvillagrasavivas5@gmail.com',
+        'jvillagrasavivas5@gmail.com',
+        'jugador',
+        '600000143'
+    ), -- 5
+    (
+        234,
+        'MIGUEL',
+        'CLAVER USED',
+        'mclaverused6@gmail.com',
+        'mclaverused6@gmail.com',
+        'jugador',
+        '600000144'
+    ), -- 6
+    (
+        235,
+        'ABEL',
+        'SAMPER VIVAS',
+        'asampervivas7@gmail.com',
+        'asampervivas7@gmail.com',
+        'jugador',
+        '600000145'
+    ), -- 7
+    (
+        236,
+        'DANIEL',
+        'CLAVEL VILLAGRASA',
+        'dclavelvillagrasa8@gmail.com',
+        'dclavelvillagrasa8@gmail.com',
+        'jugador',
+        '600000146'
+    ), -- 8
+    (
+        237,
+        'VICTOR',
+        'PEREZ PERUGA',
+        'vperezperuga11@gmail.com',
+        'vperezperuga11@gmail.com',
+        'jugador',
+        '600000147'
+    ), -- 11
+    (
+        238,
+        'JORGE',
+        'RUIZ ROZAS',
+        'jruizrozas12@gmail.com',
+        'jruizrozas12@gmail.com',
+        'jugador',
+        '600000148'
+    ), -- 12
+    (
+        239,
+        'CESAR',
+        'VILLAGRASA BARRACHINA',
+        'cvillagrasabarrachina13@gmail.com',
+        'cvillagrasabarrachina13@gmail.com',
+        'jugador',
+        '600000149'
+    ), -- 13
+    (
+        240,
+        'MARCO',
+        'USED CONDE',
+        'musedconde15@gmail.com',
+        'musedconde15@gmail.com',
+        'jugador',
+        '600000150'
+    ), -- 15
+    (
+        241,
+        'FELIX JESUS',
+        'LAMENCA ROCAÑIN',
+        'flamencarocanin16@gmail.com',
+        'flamencarocanin16@gmail.com',
+        'jugador',
+        '600000151'
+    ), -- 16
+    (
+        242,
+        'PABLO',
+        'GONZALEZ VILLAGRASA',
+        'pgonzalezvillagrasa17@gmail.com',
+        'pgonzalezvillagrasa17@gmail.com',
+        'jugador',
+        '600000152'
+    ), -- 17
+    (
+        243,
+        'DAVID',
+        'AGUILAR FLORDELIS',
+        'daguilarflordelis18@gmail.com',
+        'daguilarflordelis18@gmail.com',
+        'jugador',
+        '600000153'
+    ), -- 18
+    (
+        244,
+        'MARTIN',
+        'VILLUENDAS DEL RIO',
+        'mvilluendasdelrio22@gmail.com',
+        'mvilluendasdelrio22@gmail.com',
+        'jugador',
+        '600000154'
+    ), -- 22
+    (
+        245,
+        'DANIEL',
+        'VAL BERENGUER',
+        'dvalberenguer26@gmail.com',
+        'dvalberenguer26@gmail.com',
+        'jugador',
+        '600000155'
+    ), -- 26
+    (
+        246,
+        'MIQUEL',
+        'FERNANDEZ RODRIGUEZ',
+        'mfernandezrodriguez27@gmail.com',
+        'mfernandezrodriguez27@gmail.com',
+        'jugador',
+        '600000156'
+    );
+-- 27
+
+INSERT INTO
+    Jugadores (
+        id_usuario,
+        id_equipo,
+        posicion,
+        numero_camiseta,
+        activo
+    )
+VALUES (232, 14, 'LI', 2, true), -- MARTINEZ MONTILVA, DIEGO
+    (233, 14, 'DFC', 5, true), -- VILLAGRASA VIVAS, JAVIER
+    (234, 14, 'MC', 6, true), -- CLAVER USED, MIGUEL
+    (235, 14, 'DC', 7, true), -- SAMPER VIVAS, ABEL
+    (236, 14, 'MC', 8, true), -- CLAVEL VILLAGRASA, DANIEL
+    (237, 14, 'ED', 11, true), -- PEREZ PERUGA, VICTOR
+    (238, 14, 'MI', 12, true), -- RUIZ ROZAS, JORGE
+    (239, 14, 'PT', 13, true), -- VILLAGRASA BARRACHINA, CESAR
+    (240, 14, 'MC', 15, true), -- USED CONDE, MARCO
+    (241, 14, 'LD', 16, true), -- LAMENCA ROCAÑIN, FELIX JESUS
+    (242, 14, 'DFC', 17, true), -- GONZALEZ VILLAGRASA, PABLO
+    (243, 14, 'DFC', 18, true), -- AGUILAR FLORDELIS, DAVID
+    (244, 14, 'LD', 22, true), -- VILLUENDAS DEL RIO, MARTIN
+    (245, 14, 'EI', 26, true), -- VAL BERENGUER, DANIEL
+    (246, 14, 'EI', 27, true);
+-- FERNANDEZ RODRIGUEZ, MIQUEL
+
+-- JUGADORES  cartuja --
+
+INSERT INTO
+    Usuarios (
+        id_usuario,
+        nombre,
+        apellidos,
+        email,
+        password,
+        rol,
+        telefono
+    )
+VALUES (
+        247,
+        'ALVARO',
+        'JIMENEZ MEDRANO',
+        'ajimenezmedrano1@gmail.com',
+        'ajimenezmedrano1@gmail.com',
+        'jugador',
+        '600000157'
+    ), -- 1
+    (
+        248,
+        'DAMIAN',
+        'ABADIAS MORENTE',
+        'dabadiasmorente2@gmail.com',
+        'dabadiasmorente2@gmail.com',
+        'jugador',
+        '600000158'
+    ), -- 2
+    (
+        249,
+        'CRISTIAN ALIN',
+        'COVACI',
+        'ccovaci4@gmail.com',
+        'ccovaci4@gmail.com',
+        'jugador',
+        '600000159'
+    ), -- 4
+    (
+        250,
+        'BOGDAN',
+        'CIONT',
+        'bciont5@gmail.com',
+        'bciont5@gmail.com',
+        'jugador',
+        '600000160'
+    ), -- 5
+    (
+        251,
+        'JAVIER',
+        'SANTAFE PEREZ',
+        'jsantafeperez6@gmail.com',
+        'jsantafeperez6@gmail.com',
+        'jugador',
+        '600000161'
+    ), -- 6
+    (
+        252,
+        'LORIEN',
+        'MONTALBAN GELLA',
+        'lmontalbangella7@gmail.com',
+        'lmontalbangella7@gmail.com',
+        'jugador',
+        '600000162'
+    ), -- 7
+    (
+        253,
+        'AITOR',
+        'ALMERGE PELEGRIN',
+        'aalmergepelegrin8@gmail.com',
+        'aalmergepelegrin8@gmail.com',
+        'jugador',
+        '600000163'
+    ), -- 8
+    (
+        254,
+        'JUAN',
+        'VILLAFRANCA SANCHEZ',
+        'jvillafrancasanchez9@gmail.com',
+        'jvillafrancasanchez9@gmail.com',
+        'jugador',
+        '600000164'
+    ), -- 9
+    (
+        255,
+        'ALBERTO',
+        'GARCIA RIOS',
+        'agarciarios12@gmail.com',
+        'agarciarios12@gmail.com',
+        'jugador',
+        '600000165'
+    ), -- 12
+    (
+        256,
+        'FELIX',
+        'MACAYA VIVED',
+        'fmacayavived14@gmail.com',
+        'fmacayavived14@gmail.com',
+        'jugador',
+        '600000166'
+    ), -- 14
+    (
+        257,
+        'TOBÍAS EMMANUEL',
+        'ESCOBAR SALAS',
+        'tescobarsalas16@gmail.com',
+        'tescobarsalas16@gmail.com',
+        'jugador',
+        '600000167'
+    ), -- 16
+    (
+        258,
+        'DIEGO',
+        'LOPEZ AGUARON',
+        'dlopezaguaron17@gmail.com',
+        'dlopezaguaron17@gmail.com',
+        'jugador',
+        '600000168'
+    ), -- 17
+    (
+        259,
+        'DIEGO ROLANDO',
+        'VARGAS OLIVEIRA',
+        'dvargasoliveira18@gmail.com',
+        'dvargasoliveira18@gmail.com',
+        'jugador',
+        '600000169'
+    ), -- 18
+    (
+        260,
+        'HUGO',
+        'ALASTRUE TROGUET',
+        'halastruetroguet19@gmail.com',
+        'halastruetroguet19@gmail.com',
+        'jugador',
+        '600000170'
+    ), -- 19
+    (
+        261,
+        'JOSE LUIS',
+        'PIÑEYRO SEGARRA',
+        'jpineyrosegara21@gmail.com',
+        'jpineyrosegara21@gmail.com',
+        'jugador',
+        '600000171'
+    ), -- 21
+    (
+        262,
+        'ALEJANDRO',
+        'DELGADO ARESTE',
+        'adelgadoareste22@gmail.com',
+        'adelgadoareste22@gmail.com',
+        'jugador',
+        '600000172'
+    ), -- 22
+    (
+        263,
+        'MARIO',
+        'ABAD BARRIO',
+        'mabadbarrio24@gmail.com',
+        'mabadbarrio24@gmail.com',
+        'jugador',
+        '600000173'
+    );
+-- 24
+
+INSERT INTO
+    Jugadores (
+        id_usuario,
+        id_equipo,
+        posicion,
+        numero_camiseta,
+        activo
+    )
+VALUES (247, 15, 'PT', 1, true), -- JIMENEZ MEDRANO, ALVARO
+    (248, 15, 'LI', 2, true), -- ABADIAS MORENTE, DAMIAN
+    (249, 15, 'DFC', 4, true), -- COVACI, CRISTIAN ALIN
+    (250, 15, 'DFC', 5, true), -- CIONT, BOGDAN
+    (251, 15, 'MC', 6, true), -- SANTAFE PEREZ, JAVIER
+    (252, 15, 'DC', 7, true), -- MONTALBAN GELLA, LORIEN
+    (253, 15, 'MC', 8, true), -- ALMERGE PELEGRIN, AITOR
+    (254, 15, 'DC', 9, true), -- VILLAFRANCA SANCHEZ, JUAN
+    (255, 15, 'MI', 12, true), -- GARCIA RIOS, ALBERTO
+    (256, 15, 'MD', 14, true), -- MACAYA VIVED, FELIX
+    (257, 15, 'LD', 16, true), -- ESCOBAR SALAS, TOBÍAS EMMANUEL
+    (258, 15, 'LD', 17, true), -- LOPEZ AGUARON, DIEGO
+    (259, 15, 'DFC', 18, true), -- VARGAS OLIVEIRA, DIEGO ROLANDO
+    (260, 15, 'DFC', 19, true), -- ALASTRUE TROGUET, HUGO
+    (261, 15, 'EI', 21, true), -- PIÑEYRO SEGARRA, JOSE LUIS
+    (262, 15, 'EI', 22, true), -- DELGADO ARESTE, ALEJANDRO
+    (263, 15, 'ED', 24, true);
+-- ABAD BARRIO, MARIO
+
+-- JUGADORES  temple --
+
+INSERT INTO
+    Usuarios (
+        id_usuario,
+        nombre,
+        apellidos,
+        email,
+        password,
+        rol,
+        telefono
+    )
+VALUES (
+        264,
+        'MIGUEL',
+        'CAMPO ALVAREZ',
+        'mcampoalvarez1@gmail.com',
+        'mcampoalvarez1@gmail.com',
+        'jugador',
+        '600000174'
+    ), -- 1
+    (
+        265,
+        'SANTIAGO',
+        'LAINEZ GRACIA',
+        'slainezgracia3@gmail.com',
+        'slainezgracia3@gmail.com',
+        'jugador',
+        '600000175'
+    ), -- 3
+    (
+        266,
+        'JONATHAN',
+        'PALACIO MARTINEZ',
+        'jpalaciomartinez4@gmail.com',
+        'jpalaciomartinez4@gmail.com',
+        'jugador',
+        '600000176'
+    ), -- 4
+    (
+        267,
+        'JORGE',
+        'SOLSONA EZPELETA',
+        'jsolsonaezpeleta5@gmail.com',
+        'jsolsonaezpeleta5@gmail.com',
+        'jugador',
+        '600000177'
+    ), -- 5
+    (
+        268,
+        'JOSE IGNACIO',
+        'GARCIA RUZETTE',
+        'jgarciaruzette6@gmail.com',
+        'jgarciaruzette6@gmail.com',
+        'jugador',
+        '600000178'
+    ), -- 6
+    (
+        269,
+        'GUILLERMO',
+        'SORIA PUEYO',
+        'gsoriapueyo7@gmail.com',
+        'gsoriapueyo7@gmail.com',
+        'jugador',
+        '600000179'
+    ), -- 7
+    (
+        270,
+        'CARLOS',
+        'ALVAREZ CIPRES',
+        'calvarezcipres8@gmail.com',
+        'calvarezcipres8@gmail.com',
+        'jugador',
+        '600000180'
+    ), -- 8
+    (
+        271,
+        'MAGATTE',
+        'NIANG GAYE',
+        'mnianggaye9@gmail.com',
+        'mnianggaye9@gmail.com',
+        'jugador',
+        '600000181'
+    ), -- 9
+    (
+        272,
+        'BRUNO',
+        'SOLSONA MARQUINA',
+        'bsolsonamarquina10@gmail.com',
+        'bsolsonamarquina10@gmail.com',
+        'jugador',
+        '600000182'
+    ), -- 10
+    (
+        273,
+        'ALEJANDRO',
+        'GRASA GRACIA',
+        'agrasagracia13@gmail.com',
+        'agrasagracia13@gmail.com',
+        'jugador',
+        '600000183'
+    ), -- 13
+    (
+        274,
+        'MARCOS',
+        'SAMBÍA LAINEZ',
+        'msambialainez14@gmail.com',
+        'msambialainez14@gmail.com',
+        'jugador',
+        '600000184'
+    ), -- 14
+    (
+        275,
+        'VICTOR',
+        'SOLANAS MEDRANO',
+        'vsolanasmedrano16@gmail.com',
+        'vsolanasmedrano16@gmail.com',
+        'jugador',
+        '600000185'
+    ), -- 16
+    (
+        276,
+        'IKER ALIN',
+        'FOTACHE MANZANO',
+        'ifotachemanzano17@gmail.com',
+        'ifotachemanzano17@gmail.com',
+        'jugador',
+        '600000186'
+    ), -- 17
+    (
+        277,
+        'SHAMAMMUD',
+        'AHMADI',
+        'sahmadi18@gmail.com',
+        'sahmadi18@gmail.com',
+        'jugador',
+        '600000187'
+    ), -- 18
+    (
+        278,
+        'SIACA',
+        'FATI',
+        'sfati19@gmail.com',
+        'sfati19@gmail.com',
+        'jugador',
+        '600000188'
+    ), -- 19
+    (
+        279,
+        'ALEJANDRO',
+        'BAILO AGUILON',
+        'abailoaguilon23@gmail.com',
+        'abailoaguilon23@gmail.com',
+        'jugador',
+        '600000189'
+    ), -- 23
+    (
+        280,
+        'MUSA',
+        'GEREHOU GEREWU',
+        'mgerehougerewu24@gmail.com',
+        'mgerehougerewu24@gmail.com',
+        'jugador',
+        '600000190'
+    );
+-- 24
+
+INSERT INTO
+    Jugadores (
+        id_usuario,
+        id_equipo,
+        posicion,
+        numero_camiseta,
+        activo
+    )
+VALUES (264, 16, 'PT', 1, true), -- CAMPO ALVAREZ, MIGUEL
+    (265, 16, 'LI', 3, true), -- LAINEZ GRACIA, SANTIAGO
+    (266, 16, 'DFC', 4, true), -- PALACIO MARTINEZ, JONATHAN
+    (267, 16, 'DFC', 5, true), -- SOLSONA EZPELETA, JORGE
+    (268, 16, 'MC', 6, true), -- GARCIA RUZETTE, JOSE IGNACIO
+    (269, 16, 'DC', 7, true), -- SORIA PUEYO, GUILLERMO
+    (270, 16, 'MC', 8, true), -- ALVAREZ CIPRES, CARLOS
+    (271, 16, 'DC', 9, true), -- NIANG GAYE, MAGATTE
+    (272, 16, 'EI', 10, true), -- SOLSONA MARQUINA, BRUNO
+    (273, 16, 'PT', 13, true), -- GRASA GRACIA, ALEJANDRO
+    (274, 16, 'MD', 14, true), -- SAMBÍA LAINEZ, MARCOS
+    (275, 16, 'LD', 16, true), -- SOLANAS MEDRANO, VICTOR
+    (276, 16, 'LD', 17, true), -- FOTACHE MANZANO, IKER ALIN
+    (277, 16, 'DFC', 18, true), -- AHMADI, SHAMAMMUD
+    (278, 16, 'DFC', 19, true), -- FATI, SIACA
+    (279, 16, 'EI', 23, true), -- BAILO AGUILON, ALEJANDRO
+    (280, 16, 'ED', 24, true);
+-- GEREHOU GEREWU, MUSA
+
+-- JUGADORES  ayerbe --
+
+INSERT INTO
+    Usuarios (
+        id_usuario,
+        nombre,
+        apellidos,
+        email,
+        password,
+        rol,
+        telefono
+    )
+VALUES (
+        281,
+        'NARCISO',
+        'SOLANA ANTONI',
+        'nsolanaantoni2@gmail.com',
+        'nsolanaantoni2@gmail.com',
+        'jugador',
+        '600000191'
+    ), -- 2
+    (
+        282,
+        'JAVIER',
+        'FERRO MAINER',
+        'jferromainer3@gmail.com',
+        'jferromainer3@gmail.com',
+        'jugador',
+        '600000192'
+    ), -- 3
+    (
+        283,
+        'MARCOS',
+        'GRACIA RAMS',
+        'mgraciarams4@gmail.com',
+        'mgraciarams4@gmail.com',
+        'jugador',
+        '600000193'
+    ), -- 4
+    (
+        284,
+        'DAVID',
+        'BANDRES MORCATE',
+        'dbandresmorcate5@gmail.com',
+        'dbandresmorcate5@gmail.com',
+        'jugador',
+        '600000194'
+    ), -- 5
+    (
+        285,
+        'ALEJANDRO',
+        'CIOBANU CARCELLER',
+        'aciobanucarcelller7@gmail.com',
+        'aciobanucarcelller7@gmail.com',
+        'jugador',
+        '600000195'
+    ), -- 7
+    (
+        286,
+        'PABLO',
+        'CUARTERO ALEGRE',
+        'pcuarteroalegre9@gmail.com',
+        'pcuarteroalegre9@gmail.com',
+        'jugador',
+        '600000196'
+    ), -- 9
+    (
+        287,
+        'OSCAR',
+        'ABIZANDA ALCACERA',
+        'oabizandaalcacera12@gmail.com',
+        'oabizandaalcacera12@gmail.com',
+        'jugador',
+        '600000197'
+    ), -- 12
+    (
+        288,
+        'HECTOR',
+        'PIEDRAFITA PENA',
+        'hpiedrafitapena13@gmail.com',
+        'hpiedrafitapena13@gmail.com',
+        'jugador',
+        '600000198'
+    ), -- 13
+    (
+        289,
+        'DAVID',
+        'SANZ ROMEO',
+        'dsanzromeo14@gmail.com',
+        'dsanzromeo14@gmail.com',
+        'jugador',
+        '600000199'
+    ), -- 14
+    (
+        290,
+        'MARCOS',
+        'MARTINEZ PEÑA',
+        'mmartinezpena15@gmail.com',
+        'mmartinezpena15@gmail.com',
+        'jugador',
+        '600000200'
+    ), -- 15
+    (
+        291,
+        'LORENZO',
+        'SANZ ROMEO',
+        'lsanzromeo16@gmail.com',
+        'lsanzromeo16@gmail.com',
+        'jugador',
+        '600000201'
+    ), -- 16
+    (
+        292,
+        'ALEJANDRO',
+        'ASCASO PEREZ',
+        'aascasoperez18@gmail.com',
+        'aascasoperez18@gmail.com',
+        'jugador',
+        '600000202'
+    ), -- 18
+    (
+        293,
+        'MIGUEL',
+        'ABIZANDA ALCACERA',
+        'mabizandaalcacera19@gmail.com',
+        'mabizandaalcacera19@gmail.com',
+        'jugador',
+        '600000203'
+    ), -- 19
+    (
+        294,
+        'LUAR',
+        'GANCEDO MAÑAS',
+        'lgancedomanas21@gmail.com',
+        'lgancedomanas21@gmail.com',
+        'jugador',
+        '600000204'
+    ), -- 21
+    (
+        295,
+        'SAIHOU',
+        'CHAM TOURAY',
+        'schamtouray23@gmail.com',
+        'schamtouray23@gmail.com',
+        'jugador',
+        '600000205'
+    ), -- 23
+    (
+        296,
+        'MIGUEL ANGEL',
+        'PUENTE SALCEDO',
+        'mpuentesalcedo25@gmail.com',
+        'mpuentesalcedo25@gmail.com',
+        'jugador',
+        '600000206'
+    );
+-- 25
+
+INSERT INTO
+    Jugadores (
+        id_usuario,
+        id_equipo,
+        posicion,
+        numero_camiseta,
+        activo
+    )
+VALUES (281, 17, 'LI', 2, true), -- SOLANA ANTONI, NARCISO
+    (282, 17, 'LI', 3, true), -- FERRO MAINER, JAVIER
+    (283, 17, 'DFC', 4, true), -- GRACIA RAMS, MARCOS
+    (284, 17, 'DFC', 5, true), -- BANDRES MORCATE, DAVID
+    (285, 17, 'DC', 7, true), -- CIOBANU CARCELLER, ALEJANDRO
+    (286, 17, 'DC', 9, true), -- CUARTERO ALEGRE, PABLO
+    (287, 17, 'MI', 12, true), -- ABIZANDA ALCACERA, OSCAR
+    (288, 17, 'PT', 13, true), -- PIEDRAFITA PENA, HECTOR
+    (289, 17, 'MD', 14, true), -- SANZ ROMEO, DAVID
+    (290, 17, 'MC', 15, true), -- MARTINEZ PEÑA, MARCOS
+    (291, 17, 'LD', 16, true), -- SANZ ROMEO, LORENZO
+    (292, 17, 'DFC', 18, true), -- ASCASO PEREZ, ALEJANDRO
+    (293, 17, 'DFC', 19, true), -- ABIZANDA ALCACERA, MIGUEL
+    (294, 17, 'EI', 21, true), -- GANCEDO MAÑAS, LUAR
+    (295, 17, 'EI', 23, true), -- CHAM TOURAY, SAIHOU
+    (296, 17, 'ED', 25, true);
+-- PUENTE SALCEDO, MIGUEL ANGEL
