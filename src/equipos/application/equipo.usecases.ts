@@ -25,7 +25,6 @@ export default class EquipoUseCases {
             console.log(`❌No se encontró el equipo con id: ${id_equipo}`);
             throw new Error("Equipo no encontrado");
         }
-        console.log("✅ Equipo encontrado:",equipo);
         return equipo;
     }
 

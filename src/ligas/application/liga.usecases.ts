@@ -39,4 +39,13 @@ export default class LigaUseCases {
             throw { message: "No se encontraron ligas" };
         }
     }
+
+    async getLigaById(id_liga: number): Promise<Liga | null> {
+        const liga = await this.ligaRepository.getLigaById(id_liga);
+        if (!liga) {
+            console.log(`❌No se encontró la liga con id: ${id_liga}`);
+            throw new Error("Liga no encontrada");
+        }
+        return liga;
+    }
 }
