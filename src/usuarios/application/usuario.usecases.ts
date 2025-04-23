@@ -101,8 +101,7 @@ export default class UsuarioUseCases {
                 email: entrenador.email,
                 password: entrenador.password,
                 rol: "entrenador",
-                telefono: entrenador.telefono,
-                foto: entrenador.foto
+                telefono: entrenador.telefono
             });
 
             try {
@@ -169,8 +168,7 @@ export default class UsuarioUseCases {
                 email: arbitro.email,
                 password: arbitro.password,
                 rol: "arbitro",
-                telefono: arbitro.telefono,
-                foto: arbitro.foto
+                telefono: arbitro.telefono
             });
 
             try {
@@ -254,8 +252,7 @@ export default class UsuarioUseCases {
                 email: jugador.email,
                 password: jugador.password,
                 rol: "jugador",
-                telefono: jugador.telefono,
-                foto: jugador.foto
+                telefono: jugador.telefono
             });
 
             try {

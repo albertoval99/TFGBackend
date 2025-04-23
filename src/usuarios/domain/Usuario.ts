@@ -6,5 +6,4 @@ export default interface Usuario {
     password?: string;
     rol: 'administrador' | 'entrenador' | 'jugador' | "arbitro";
     telefono?: string;
-    foto?:string;
 }
