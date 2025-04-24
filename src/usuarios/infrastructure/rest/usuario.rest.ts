@@ -215,22 +215,50 @@ router.get("/entrenador/:id_usuario", async (req: Request, res: Response): Promi
         const idUsuarioNum = parseInt(id_usuario); 
 
         if (isNaN(idUsuarioNum)) {
-            res.status(400).json({ message: "El ID de usuario no es válido." });
+            res.status(400).json({ message: "El ID de entrenador no es válido." });
             return;
         }
 
         const usuario = await usuarioUseCases.getEntrenadorById(idUsuarioNum);
 
         if (!usuario) {
-            res.status(404).json({ message: "Usuario no encontrado" });
+            res.status(404).json({ message: "Entrenador no encontrado" });
             return;
         }
 
         res.status(200).json(usuario);
     } catch (error) {
-        console.error("❌ Error al obtener usuario por id:", error);
+        console.error("❌ Error al obtener entrenador por id:", error);
         res.status(500).json({
-            message: error.message || "Error al obtener usuario",
+            message: error.message || "Error al obtener entrenador",
+        });
+    }
+});
+
+
+// GET http://localhost:3000/api/usuarios/jugador/id
+router.get("/jugador/:id_usuario", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_usuario } = req.params;
+        const idUsuarioNum = parseInt(id_usuario);
+
+        if (isNaN(idUsuarioNum)) {
+            res.status(400).json({ message: "El ID de jugador no es válido." });
+            return;
+        }
+
+        const usuario = await usuarioUseCases.getJugadorCompletoById(idUsuarioNum);
+
+        if (!usuario) {
+            res.status(404).json({ message: "Jugador no encontrado" });
+            return;
+        }
+
+        res.status(200).json(usuario);
+    } catch (error) {
+        console.error("❌ Error al obtener jugador por id:", error);
+        res.status(500).json({
+            message: error.message || "Error al obtener jugador",
         });
     }
 });

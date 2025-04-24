@@ -174,13 +174,31 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         const rows = await executeQuery(query, values);
 
         if (rows.length === 0) {
-            console.log("❌ Usuario no encontrado con el ID:", id_usuario);
+            console.log("❌ Entrenador no encontrado con el ID:", id_usuario);
             return null;
         }
 
         return rows[0];
     }
 
+    async getJugadorCompletoById(id_usuario: number): Promise<Usuario | null> {
+        const query = `
+        SELECT u.id_usuario, u.nombre, u.apellidos, u.email, j.posicion, j.numero_camiseta, j.activo, j.id_equipo
+        FROM Usuarios u
+        JOIN Jugadores j ON u.id_usuario = j.id_usuario
+        WHERE u.id_usuario = $1;
+    `;
+        const values = [id_usuario];
+
+        const rows = await executeQuery(query, values);
+
+        if (rows.length === 0) {
+            console.log("❌ Jugador no encontrado con el ID:", id_usuario);
+            return null;
+        }
+
+        return rows[0];
+    }
 
 
 }

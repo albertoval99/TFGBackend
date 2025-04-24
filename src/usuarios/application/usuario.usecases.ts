@@ -26,10 +26,20 @@ export default class UsuarioUseCases {
     async getEntrenadorById(id_usuario: number): Promise<Usuario | null> {
         const user = await this.usuarioRepository.getEntrenadorById(id_usuario);
         if (!user) {
-            console.log(`❌No se encontró el usuario con id: ${id_usuario}`);
-            throw new Error("Usuario no encontrado");
+            console.log(`❌No se encontró el entrenador con id: ${id_usuario}`);
+            throw new Error("Entrenador no encontrado");
         }
-        console.log("✅ Usuario encontrado:", user);
+        console.log("✅ Entrenador encontrado:", user);
+        return user;
+    }
+
+    async getJugadorCompletoById(id_usuario: number): Promise<Usuario | null> {
+        const user = await this.usuarioRepository.getJugadorCompletoById(id_usuario);
+        if (!user) {
+            console.log(`❌ No se encontró el jugador con id: ${id_usuario}`);
+            throw new Error("Jugador no encontrado");
+        }
+        console.log("✅ Jugador encontrado:", user);
         return user;
     }
 

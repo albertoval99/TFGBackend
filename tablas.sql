@@ -2789,9 +2789,85 @@ VALUES (281, 17, 'LI', 2, true), -- SOLANA ANTONI, NARCISO
     (296, 17, 'ED', 25, true);
 -- PUENTE SALCEDO, MIGUEL ANGEL
 
-
-
-
 -- PROBLEMAS CON EL ID AUTOINCREMENTAL AL INSERTAR A MANO --
 SELECT MAX(id_usuario) FROM usuarios;
+
 ALTER SEQUENCE usuarios_id_usuario_seq RESTART WITH 298;
+
+--ARBITROS--
+
+INSERT INTO
+    usuarios (
+        nombre,
+        apellidos,
+        email,
+        password,
+        rol,
+        telefono
+    )
+VALUES (
+        'FRANCISCO',
+        'PARADIS VILLACAMPA',
+        'fparadisvillacampa@gmail.com',
+        '$2a$10$c1R/d.MOX7XAviZeA6WnGufYIN3p2X2puPUr6XEDVl1sqfz.B1sHq',
+        'arbitro',
+        '600000801'
+    ),
+    (
+        'PEDRO',
+        'PARADIS VILLACAMPA',
+        'pparadisvillacampa@gmail.com',
+        '$2a$10$rloo5tCMLLlGeSVJOZORKuCTF0hIqYthuFp6jmB1ED//Jtp1IFV.C',
+        'arbitro',
+        '600000802'
+    ),
+    (
+        'ALEJANDRO',
+        'ESCUER SANAGUSTIN',
+        'aescuersanagustin@gmail.com',
+        '$2a$10$u/pQUt9kHicvrCWK76Hy3OgLTtP8N2khIUZqiWKF9ODPGbMaUblbG',
+        'arbitro',
+        '600000803'
+    ),
+    (
+        'RAUL',
+        'PARDO ARILLA',
+        'rpardoarilla@gmail.com',
+        '$2a$10$WE.Fa4CsxXJYZLFyaELhqu0xhb/izz4LQiwJTfdpUALhNq2UZu0rm',
+        'arbitro',
+        '600000804'
+    ),
+    (
+        'ANTONIO',
+        'LOBATO GUILLEN',
+        'alobatoguillen@gmail.com',
+        '$2a$10$BYJ25XR5ajqlAHab7.805.jUSIPR6SSDV0R34g63ycYRiqlxRwdqm',
+        'arbitro',
+        '600000805'
+    ),
+    (
+        'MARCOS',
+        'RAMOS LARRAZ',
+        'mramoslarraz@gmail.com',
+        '$2a$10$sSVVl24Pf7tmmyzjC.ibCedaMoo/alQf5fwlIqbfr9pPKwQTSOGva',
+        'arbitro',
+        '600000806'
+    ),
+    (
+        'ALEJANDRO',
+        'GABARRE MARCO',
+        'agabarremarco@gmail.com',
+        '$2a$10$tDHJQ.HYXtT6butjiMJaLeDqAz6Vxgkq5YaJCUQvIXKwEWyjglFde',
+        'arbitro',
+        '600000807'
+    );
+
+INSERT INTO
+    arbitros (id_usuario)
+VALUES (316),
+    (317),
+    (318),
+    (319),
+    (320),
+    (321),
+    (322);
