@@ -86,7 +86,7 @@ CREATE TABLE Entrenamientos (
     id_entrenamiento SERIAL PRIMARY KEY,
     fecha_hora_entrenamiento TIMESTAMP NOT NULL,
     id_equipo INTEGER NOT NULL,
-    duracion INTEGER NOT NULL CHECK (duracion > 0),
+    duracion VARCHAR NOT NULL,
     FOREIGN KEY (id_equipo) REFERENCES Equipos (id_equipo)
 );
 

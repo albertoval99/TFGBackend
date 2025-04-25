@@ -26,10 +26,6 @@ export default class EntrenamientoUseCases {
 
         const entrenamientoCreado = await this.entrenamientoRepository.crearEntrenamiento(entrenamiento);
 
-        if (!entrenamientoCreado.id_entrenamiento) {
-            throw new Error("Error al crear el entrenamiento: no se generó un ID");
-        }
-
         await this.entrenamientoRepository.crearAsistenciasJugadores(
             entrenamientoCreado.id_entrenamiento,
             entrenamientoCreado.id_equipo
@@ -49,7 +45,7 @@ export default class EntrenamientoUseCases {
     async getEntrenamientosEquipo(id_equipo: number): Promise<Entrenamiento[]> {
         const entrenamientos = await this.entrenamientoRepository.getEntrenamientosEquipo(id_equipo);
         if (!entrenamientos || entrenamientos.length === 0) {
-            throw new Error("No hay entrenamientos futuros para este equipo");
+            throw new Error("No hay entrenamientos planificados");
         }
         return entrenamientos;
     }

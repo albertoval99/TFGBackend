@@ -14,10 +14,7 @@ router.post(
     esEntrenador,
     async (req: Request, res: Response): Promise<void> => {
         try {
-            const { fecha_hora_entrenamiento, duracion } = req.body;
-
-            const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}');
-            const id_equipo = usuario.equipo?.id_equipo;
+            const { fecha_hora_entrenamiento, duracion, id_equipo } = req.body;
 
             if (!id_equipo) {
                 throw new Error("No se encontró el equipo del entrenador");
@@ -42,17 +39,16 @@ router.post(
     }
 );
 
-// GET http://localhost:3000/api/entrenamientos/equipo
+// GET http://localhost:3000/api/entrenamientos/equipo/:id_equipo
 router.get(
-    "/equipo",
+    "/equipo/:id_equipo",
     esAutorizado,
     async (req: Request, res: Response): Promise<void> => {
         try {
-            const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}');
-            const id_equipo = usuario.equipo?.id_equipo;
+            const id_equipo = parseInt(req.params.id_equipo);
 
             if (!id_equipo) {
-                throw new Error("No se encontró el equipo del usuario");
+                throw new Error("No se encontró el ID del equipo");
             }
 
             const entrenamientos = await entrenamientoUseCases.getEntrenamientosEquipo(id_equipo);
@@ -64,19 +60,18 @@ router.get(
     }
 );
 
-// DELETE http://localhost:3000/api/entrenamientos/:id
+// DELETE http://localhost:3000/api/entrenamientos/:id/:id_equipo
 router.delete(
-    "/:id",
+    "/:id/:id_equipo",
     esAutorizado,
     esEntrenador,
     async (req: Request, res: Response): Promise<void> => {
         try {
             const id_entrenamiento = parseInt(req.params.id);
-            const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}');
-            const id_equipo = usuario.equipo?.id_equipo;
+            const id_equipo = parseInt(req.params.id_equipo);
 
             if (!id_equipo) {
-                throw new Error("No se encontró el equipo del entrenador");
+                throw new Error("No se encontró el ID del equipo");
             }
 
             await entrenamientoUseCases.eliminarEntrenamiento(id_entrenamiento, id_equipo);
@@ -96,10 +91,7 @@ router.put(
     async (req: Request, res: Response): Promise<void> => {
         try {
             const id_entrenamiento = parseInt(req.params.id);
-            const { asistio, justificacion } = req.body;
-
-            const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}');
-            const id_jugador = usuario.id_usuario;
+            const { asistio, justificacion, id_jugador } = req.body;
 
             if (!id_jugador) {
                 throw new Error("No se encontró el ID del jugador");
