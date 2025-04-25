@@ -3,6 +3,7 @@ import cors from 'cors';
 import usuarioRouter from "./usuarios/infrastructure/rest/usuario.rest"
 import equipoRouter from "./equipos/infrastructure/rest/equipo.rest"
 import ligaRouter from "./ligas/infrastructure/rest/liga.rest"
+import entrenamientosRouter from "./entrenamientos/infrastructure/rest/entrenamiento.rest"
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(`${api}/usuarios`, usuarioRouter);
 app.use(`${api}/equipos`, equipoRouter);
 app.use(`${api}/ligas`, ligaRouter);
+app.use(`${api}/entrenamientos`, entrenamientosRouter);
 
 export default app;

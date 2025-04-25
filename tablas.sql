@@ -94,10 +94,10 @@ CREATE TABLE Asistencias (
     id_asistencia SERIAL PRIMARY KEY,
     id_entrenamiento INTEGER NOT NULL,
     id_jugador INTEGER NOT NULL,
-    asistio BOOLEAN NOT NULL DEFAULT false,
+    asistio BOOLEAN,
     justificacion TEXT,
     UNIQUE (id_entrenamiento, id_jugador),
-    FOREIGN KEY (id_entrenamiento) REFERENCES Entrenamientos (id_entrenamiento),
+    FOREIGN KEY (id_entrenamiento) REFERENCES Entrenamientos (id_entrenamiento) ON DELETE CASCADE,
     FOREIGN KEY (id_jugador) REFERENCES Jugadores (id_jugador)
 );
 

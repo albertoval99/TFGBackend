@@ -212,7 +212,7 @@ router.get("/:email", async (req: Request, res: Response): Promise<void> => {
 router.get("/entrenador/:id_usuario", async (req: Request, res: Response): Promise<void> => {
     try {
         const { id_usuario } = req.params;
-        const idUsuarioNum = parseInt(id_usuario); 
+        const idUsuarioNum = parseInt(id_usuario);
 
         if (isNaN(idUsuarioNum)) {
             res.status(400).json({ message: "El ID de entrenador no es válido." });
