@@ -50,16 +50,21 @@ export default class EntrenamientoUseCases {
         return entrenamientos;
     }
 
-    async actualizarAsistencia(id_entrenamiento: number, id_jugador: number, asistio: boolean, justificacion?: string): Promise<Asistencias> {
+    async actualizarAsistencia(
+        id_entrenamiento: number,
+        id_usuario: number,
+        asistio: boolean,
+        justificacion?: string
+    ): Promise<Asistencias> {
         const asistencia = await this.entrenamientoRepository.actualizarAsistencia(
             id_entrenamiento,
-            id_jugador,
+            id_usuario,
             asistio,
             justificacion
         );
 
         if (!asistencia) {
-            throw new Error("No se pudo actualizar la asistencia o el entrenamiento ya no esta disponible");
+            throw new Error("No se pudo actualizar la asistencia");
         }
 
         return asistencia;
@@ -70,6 +75,11 @@ export default class EntrenamientoUseCases {
         if (!asistencias || asistencias.length === 0) {
             throw new Error("No hay asistencias confirmadas para este entrenamiento");
         }
+        return asistencias;
+    }
+
+    async getAsistenciasJugador(id_usuario: number): Promise<Asistencias[]> {
+        const asistencias = await this.entrenamientoRepository.getAsistenciasJugador(id_usuario);
         return asistencias;
     }
 }

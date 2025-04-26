@@ -74,7 +74,7 @@ router.delete(
                 throw new Error("No se encontró el ID del equipo");
             }
 
-            await entrenamientoUseCases.eliminarEntrenamiento(parseInt(id_entrenamiento),parseInt(id_equipo));
+            await entrenamientoUseCases.eliminarEntrenamiento(parseInt(id_entrenamiento), parseInt(id_equipo));
             res.status(200).json({ message: "Entrenamiento eliminado exitosamente" });
         } catch (error: any) {
             console.error("❌ Error al eliminar entrenamiento:", error);
@@ -115,6 +115,7 @@ router.put(
     }
 );
 
+//Ver asistencias de un entrenamiento
 // GET http://localhost:3000/api/entrenamientos/:id/asistencias
 router.get(
     "/:id/asistencias",
@@ -125,6 +126,26 @@ router.get(
             const id_entrenamiento = req.params.id;
             const asistencias = await entrenamientoUseCases.getAsistenciasEntrenamiento(parseInt(id_entrenamiento));
             res.status(200).json(asistencias);
+        } catch (error: any) {
+            console.error("❌ Error al obtener asistencias:", error);
+            res.status(500).json({ message: error.message });
+        }
+    }
+);
+
+//Ver asistencias de un jugador
+// GET http://localhost:3000/api/entrenamientos/asistencias/:id
+router.get(
+    "/asistencias/:id_jugador",
+    esAutorizado,
+    async (req: Request, res: Response): Promise<void> => {
+        try {
+            const id_jugador = req.params.id_jugador;
+            const asistencias = await entrenamientoUseCases.getAsistenciasJugador(parseInt(id_jugador));
+
+            res.status(200).json({
+                asistencias
+            });
         } catch (error: any) {
             console.error("❌ Error al obtener asistencias:", error);
             res.status(500).json({ message: error.message });

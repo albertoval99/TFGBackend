@@ -8,4 +8,5 @@ export default interface EntrenamientoRepository{
     crearAsistenciasJugadores(id_entrenamiento: number, id_equipo: number): Promise<void>;
     actualizarAsistencia(id_entrenamiento: number, id_jugador: number, asistio: boolean, justificacion?: string): Promise<Asistencias>;
     getAsistenciasEntrenamiento(id_entrenamiento: number): Promise<Asistencias[]>;
+    getAsistenciasJugador(id_usuario: number): Promise<Asistencias[]>;
 }
