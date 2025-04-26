@@ -45,13 +45,13 @@ router.get(
     esAutorizado,
     async (req: Request, res: Response): Promise<void> => {
         try {
-            const id_equipo = parseInt(req.params.id_equipo);
+            const id_equipo = req.params.id_equipo;
 
             if (!id_equipo) {
                 throw new Error("No se encontró el ID del equipo");
             }
 
-            const entrenamientos = await entrenamientoUseCases.getEntrenamientosEquipo(id_equipo);
+            const entrenamientos = await entrenamientoUseCases.getEntrenamientosEquipo(parseInt(id_equipo));
             res.status(200).json(entrenamientos);
         } catch (error: any) {
             console.error("❌ Error al obtener entrenamientos:", error);
@@ -67,14 +67,14 @@ router.delete(
     esEntrenador,
     async (req: Request, res: Response): Promise<void> => {
         try {
-            const id_entrenamiento = parseInt(req.params.id);
-            const id_equipo = parseInt(req.params.id_equipo);
+            const id_entrenamiento = req.params.id;
+            const id_equipo = req.params.id_equipo;
 
             if (!id_equipo) {
                 throw new Error("No se encontró el ID del equipo");
             }
 
-            await entrenamientoUseCases.eliminarEntrenamiento(id_entrenamiento, id_equipo);
+            await entrenamientoUseCases.eliminarEntrenamiento(parseInt(id_entrenamiento),parseInt(id_equipo));
             res.status(200).json({ message: "Entrenamiento eliminado exitosamente" });
         } catch (error: any) {
             console.error("❌ Error al eliminar entrenamiento:", error);
@@ -90,7 +90,7 @@ router.put(
     esJugador,
     async (req: Request, res: Response): Promise<void> => {
         try {
-            const id_entrenamiento = parseInt(req.params.id);
+            const id_entrenamiento = req.params.id;
             const { asistio, justificacion, id_jugador } = req.body;
 
             if (!id_jugador) {
@@ -98,7 +98,7 @@ router.put(
             }
 
             const asistencia = await entrenamientoUseCases.actualizarAsistencia(
-                id_entrenamiento,
+                parseInt(id_entrenamiento),
                 id_jugador,
                 asistio,
                 justificacion
@@ -122,8 +122,8 @@ router.get(
     esEntrenador,
     async (req: Request, res: Response): Promise<void> => {
         try {
-            const id_entrenamiento = parseInt(req.params.id);
-            const asistencias = await entrenamientoUseCases.getAsistenciasEntrenamiento(id_entrenamiento);
+            const id_entrenamiento = req.params.id;
+            const asistencias = await entrenamientoUseCases.getAsistenciasEntrenamiento(parseInt(id_entrenamiento));
             res.status(200).json(asistencias);
         } catch (error: any) {
             console.error("❌ Error al obtener asistencias:", error);

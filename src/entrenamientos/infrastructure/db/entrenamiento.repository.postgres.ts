@@ -81,11 +81,12 @@ export default class EntrenamientoRepositoryPostgres implements EntrenamientoRep
 
     async getAsistenciasEntrenamiento(id_entrenamiento: number): Promise<Asistencias[]> {
         const query = `
-            SELECT a.*, j.nombre, j.apellidos
-            FROM Asistencias a
-            JOIN Jugadores j ON a.id_jugador = j.id_jugador
-            WHERE a.id_entrenamiento = $1
-        `;
+        SELECT a.*, u.nombre, u.apellidos
+        FROM Asistencias a
+        JOIN Jugadores j ON a.id_jugador = j.id_jugador
+        JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        WHERE a.id_entrenamiento = $1
+    `;
         const values = [id_entrenamiento];
         const result = await executeQuery(query, values);
         return result;

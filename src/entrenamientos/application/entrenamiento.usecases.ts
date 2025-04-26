@@ -21,7 +21,7 @@ export default class EntrenamientoUseCases {
         }
 
         if (new Date(entrenamiento.fecha_hora_entrenamiento) <= new Date()) {
-            throw new Error("La fecha del entrenamiento debe ser futura");
+            throw new Error("La fecha del entrenamiento tiene que ser proxima a la hora actual");
         }
 
         const entrenamientoCreado = await this.entrenamientoRepository.crearEntrenamiento(entrenamiento);
@@ -68,7 +68,7 @@ export default class EntrenamientoUseCases {
     async getAsistenciasEntrenamiento(id_entrenamiento: number): Promise<Asistencias[]> {
         const asistencias = await this.entrenamientoRepository.getAsistenciasEntrenamiento(id_entrenamiento);
         if (!asistencias || asistencias.length === 0) {
-            throw new Error("No hay asistencias registradas para este entrenamiento");
+            throw new Error("No hay asistencias confirmadas para este entrenamiento");
         }
         return asistencias;
     }
