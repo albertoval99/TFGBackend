@@ -64,41 +64,33 @@ CREATE TABLE Equipos (
     FOREIGN KEY (id_liga) REFERENCES Ligas (id_liga)
 );
 
+ALTER TABLE Equipos
+ADD COLUMN id_estadio INTEGER,
+ADD FOREIGN KEY (id_estadio) REFERENCES Estadios (id_estadio);
+
+CREATE TABLE Estadios (
+    id_estadio SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    ubicacion VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE Partidos (
     id_partido SERIAL PRIMARY KEY,
     fecha_partido DATE NOT NULL,
     hora_partido TIME NOT NULL,
     equipo_local_id INTEGER NOT NULL,
     equipo_visitante_id INTEGER NOT NULL,
-    resultado VARCHAR(10),
-    ubicacion VARCHAR(100) NOT NULL,
+    goles_local INTEGER,
+    goles_visitante INTEGER,
+    id_estadio INTEGER NOT NULL,
     id_arbitro INTEGER,
     id_liga INTEGER,
     jornada INTEGER NOT NULL,
-    FOREIGN KEY (equipo_local_id) REFERENCES Equipos(id_equipo),
-    FOREIGN KEY (equipo_visitante_id) REFERENCES Equipos(id_equipo),
-    FOREIGN KEY (id_liga) REFERENCES Ligas(id_liga)
-    FOREIGN KEY (id_arbitro) REFERENCES Arbitros(id_arbitro);
-
-);
-
-CREATE TABLE Entrenamientos (
-    id_entrenamiento SERIAL PRIMARY KEY,
-    fecha_hora_entrenamiento TIMESTAMP NOT NULL,
-    id_equipo INTEGER NOT NULL,
-    duracion VARCHAR NOT NULL,
-    FOREIGN KEY (id_equipo) REFERENCES Equipos (id_equipo)
-);
-
-CREATE TABLE Asistencias (
-    id_asistencia SERIAL PRIMARY KEY,
-    id_entrenamiento INTEGER NOT NULL,
-    id_jugador INTEGER NOT NULL,
-    asistio BOOLEAN,
-    justificacion TEXT,
-    UNIQUE (id_entrenamiento, id_jugador),
-    FOREIGN KEY (id_entrenamiento) REFERENCES Entrenamientos (id_entrenamiento) ON DELETE CASCADE,
-    FOREIGN KEY (id_jugador) REFERENCES Jugadores (id_jugador)
+    FOREIGN KEY (equipo_local_id) REFERENCES Equipos (id_equipo),
+    FOREIGN KEY (equipo_visitante_id) REFERENCES Equipos (id_equipo),
+    FOREIGN KEY (id_liga) REFERENCES Ligas (id_liga),
+    FOREIGN KEY (id_arbitro) REFERENCES Arbitros (id_arbitro),
+    FOREIGN KEY (id_estadio) REFERENCES Estadios (id_estadio)
 );
 
 CREATE TABLE Estadisticas_Individuales (
@@ -130,6 +122,27 @@ CREATE TABLE Estadisticas_Equipo (
     FOREIGN KEY (id_equipo) REFERENCES Equipos (id_equipo),
     FOREIGN KEY (id_partido) REFERENCES Partidos (id_partido)
 );
+
+CREATE TABLE Entrenamientos (
+    id_entrenamiento SERIAL PRIMARY KEY,
+    fecha_hora_entrenamiento TIMESTAMP NOT NULL,
+    id_equipo INTEGER NOT NULL,
+    duracion VARCHAR NOT NULL,
+    FOREIGN KEY (id_equipo) REFERENCES Equipos (id_equipo)
+);
+
+CREATE TABLE Asistencias (
+    id_asistencia SERIAL PRIMARY KEY,
+    id_entrenamiento INTEGER NOT NULL,
+    id_jugador INTEGER NOT NULL,
+    asistio BOOLEAN,
+    justificacion TEXT,
+    UNIQUE (id_entrenamiento, id_jugador),
+    FOREIGN KEY (id_entrenamiento) REFERENCES Entrenamientos (id_entrenamiento) ON DELETE CASCADE,
+    FOREIGN KEY (id_jugador) REFERENCES Jugadores (id_jugador)
+);
+
+
 
 CREATE TABLE Logros (
     id_logro SERIAL PRIMARY KEY,
@@ -2871,3 +2884,38 @@ VALUES (316),
     (320),
     (321),
     (322);
+
+INSERT INTO
+    Estadios (nombre, ubicacion)
+VALUES ('Municipal', 'GRAÑEN'),
+    (
+        'Virgen de la Corona',
+        'ALMUDEVAR'
+    ),
+    ('FRULA El Pedregal', 'FRULA'),
+    (
+        'El Zafranal',
+        'ALCALA GURREA'
+    ),
+    ('Municipal', 'OTO'),
+    (
+        'Base Aragonesa de Futbol',
+        'HUESCA'
+    ),
+    (
+        'Virgen de la Violada',
+        'SAN JORGE'
+    ),
+    ('La Sarda', 'AYERBE'),
+    (
+        'Las Tejerias',
+        'CASTEJON DE MONEGROS'
+    ),
+    ('Asbalsetas', 'BOLEA'),
+    (
+        'Ntra.Sra.de las Fuentes',
+        'CARTUJA DE MONEGROS'
+    ),
+    ('El Pedregal', 'EL TEMPLE'),
+    ('El Carmen', 'SARIÑENA'),
+    ('Las Lomas', 'BUJARALOZ');

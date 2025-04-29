@@ -4,6 +4,7 @@ import usuarioRouter from "./usuarios/infrastructure/rest/usuario.rest"
 import equipoRouter from "./equipos/infrastructure/rest/equipo.rest"
 import ligaRouter from "./ligas/infrastructure/rest/liga.rest"
 import entrenamientosRouter from "./entrenamientos/infrastructure/rest/entrenamiento.rest"
+import partidosRouter from "./partidos/infrastructure/rest/partido.rest"
 
 const app = express();
 
@@ -25,5 +26,6 @@ app.use(`${api}/usuarios`, usuarioRouter);
 app.use(`${api}/equipos`, equipoRouter);
 app.use(`${api}/ligas`, ligaRouter);
 app.use(`${api}/entrenamientos`, entrenamientosRouter);
+app.use(`${api}/partidos`, partidosRouter);
 
 export default app;
