@@ -98,7 +98,6 @@ CREATE TABLE Estadisticas_Individuales (
     id_jugador INTEGER NOT NULL,
     id_partido INTEGER NOT NULL,
     goles INTEGER DEFAULT 0,
-    asistencias INTEGER DEFAULT 0,
     tarjetas_amarillas INTEGER DEFAULT 0,
     tarjetas_rojas INTEGER DEFAULT 0,
     mejor_jugador BOOLEAN DEFAULT false,

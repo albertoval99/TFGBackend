@@ -27,4 +27,32 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
         if (rows.length === 0) return null;
         return rows[0];
     }
+
+    async getPartidosByJornada(id_liga: number, jornada: number): Promise<Partido[]> {
+        const query = `
+            SELECT 
+                p.*,
+                el.nombre_equipo AS equipo_local,
+                ev.nombre_equipo AS equipo_visitante,
+                e.nombre AS estadio,
+                e.ubicacion AS estadio_ubicacion,
+                u.nombre AS arbitro_nombre,
+                u.apellidos AS arbitro_apellidos
+            FROM Partidos p
+            JOIN Equipos el ON p.equipo_local_id = el.id_equipo
+            JOIN Equipos ev ON p.equipo_visitante_id = ev.id_equipo
+            JOIN Estadios e ON p.id_estadio = e.id_estadio
+            LEFT JOIN Arbitros a ON p.id_arbitro = a.id_arbitro
+            LEFT JOIN Usuarios u ON a.id_usuario = u.id_usuario
+            WHERE p.id_liga = $1 AND p.jornada = $2
+            ORDER BY p.hora_partido ASC
+        `;
+        const values = [id_liga, jornada];
+        const rows = await executeQuery(query, values);
+        return rows;
+    }
+
+    async updatePartido(id_partido: number, fecha_partido: string, hora_partido: string, id_estadio: number): Promise<Partido> {
+        
+    }
 }
