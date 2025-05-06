@@ -61,7 +61,7 @@ router.get("/ligas/:id_liga/jornada/:jornada", async (req: Request, res: Respons
 });
 
 // PUT http://localhost:3000/api/partidos/:id_partido
-router.put("/:id_partido",esAutorizado, esArbitro, async (req: Request, res: Response): Promise<void> => {
+router.put("/:id_partido", esAutorizado, esArbitro, async (req: Request, res: Response): Promise<void> => {
     try {
         const { id_partido } = req.params;
         const { fecha_partido, hora_partido, id_estadio } = req.body;
@@ -103,6 +103,58 @@ router.put("/:id_partido",esAutorizado, esArbitro, async (req: Request, res: Res
         console.error("❌ Error al actualizar el partido:", error);
         res.status(error.status || 400).json({
             message: error.message || "Error al actualizar el partido"
+        });
+    }
+});
+
+// GET http://localhost:3000/api/partidos/ligas/:id_liga
+router.get("/ligas/:id_liga", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_liga } = req.params;
+        const idLigaNum = parseInt(id_liga);
+
+        if (isNaN(idLigaNum)) {
+            res.status(400).json({ message: "El ID de la liga no es válido" });
+            return;
+        }
+
+        const calendario = await partidoUseCases.getPartidosByLiga(idLigaNum);
+
+        res.status(200).json({
+            message: "Calendario obtenido correctamente",
+            data: calendario
+        });
+
+    } catch (error: any) {
+        console.error("❌ Error al obtener el calendario:", error);
+        res.status(404).json({
+            message: error.message || "Error al obtener el calendario de la liga"
+        });
+    }
+});
+
+// GET http://localhost:3000/api/partidos/equipos/:id_equipo
+router.get("/equipos/:id_equipo", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_equipo } = req.params;
+        const idEquipoNum = parseInt(id_equipo);
+
+        if (isNaN(idEquipoNum)) {
+            res.status(400).json({ message: "El ID del equipo no es válido" });
+            return;
+        }
+
+        const partidos = await partidoUseCases.getPartidosByEquipo(idEquipoNum);
+
+        res.status(200).json({
+            message: "Partidos del equipo obtenidos correctamente",
+            data: partidos
+        });
+
+    } catch (error: any) {
+        console.error("❌ Error al obtener los partidos del equipo:", error);
+        res.status(404).json({
+            message: error.message || "Error al obtener los partidos del equipo"
         });
     }
 });

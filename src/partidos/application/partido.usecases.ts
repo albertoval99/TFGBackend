@@ -95,4 +95,43 @@ export default class PartidoUseCases {
             throw { message: error.message || "Error al actualizar el partido" };
         }
     }
+
+
+    async getPartidosByLiga(id_liga: number): Promise<Partido[]> {
+        try {
+            if (!id_liga) {
+                console.log("❌ Falta el id de la liga");
+                throw { message: "Falta el id de la liga" };
+            }
+
+            const partidos = await this.partidoRepository.getPartidosByLiga(id_liga);
+
+            if (!partidos || partidos.length === 0) {
+                console.log(`❌ No se encontraron partidos para la liga ${id_liga}`);
+                throw { message: "No se encontraron partidos para esta liga" };
+            }
+
+            return partidos;
+
+        } catch (error) {
+            console.error(`❌ Error al obtener los partidos de la liga: ${error.message}`);
+            throw error;
+        }
+
+    }
+
+    async getPartidosByEquipo(id_equipo: number): Promise<Partido[]> {
+        if (!id_equipo) {
+            console.log("❌ Falta el id del equipo");
+            throw { message: "Falta el id del equipo" };
+        }
+
+        const partidos = await this.partidoRepository.getPartidosByEquipo(id_equipo);
+        if (!partidos || partidos.length === 0) {
+            console.log(`❌ No se encontraron partidos para el equipo ${id_equipo}`);
+            throw { message: "No se encontraron partidos para este equipo" };
+        }
+
+        return partidos;
+    }
 }
