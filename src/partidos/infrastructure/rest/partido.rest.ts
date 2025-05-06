@@ -60,4 +60,51 @@ router.get("/ligas/:id_liga/jornada/:jornada", async (req: Request, res: Respons
     }
 });
 
+// PUT http://localhost:3000/api/partidos/:id_partido
+router.put("/:id_partido",esAutorizado, esArbitro, async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_partido } = req.params;
+        const { fecha_partido, hora_partido, id_estadio } = req.body;
+        const idPartidoNum = parseInt(id_partido);
+
+        if (isNaN(idPartidoNum)) {
+            res.status(400).json({ message: "El ID del partido no es válido" });
+            return;
+        }
+
+        if (fecha_partido === undefined &&
+            hora_partido === undefined &&
+            id_estadio === undefined) {
+            res.status(400).json({
+                message: "Debe proporcionar al menos un campo para actualizar (fecha_partido, hora_partido, o id_estadio)"
+            });
+            return;
+        }
+
+        const idEstadioNum = id_estadio ? parseInt(id_estadio) : null;
+        if (id_estadio && isNaN(idEstadioNum)) {
+            res.status(400).json({ message: "El ID del estadio no es válido" });
+            return;
+        }
+
+        const partidoActualizado = await partidoUseCases.updatePartido(
+            idPartidoNum,
+            fecha_partido || null,
+            hora_partido || null,
+            idEstadioNum
+        );
+
+        res.status(200).json({
+            message: "Partido actualizado correctamente",
+            data: partidoActualizado
+        });
+
+    } catch (error: any) {
+        console.error("❌ Error al actualizar el partido:", error);
+        res.status(error.status || 400).json({
+            message: error.message || "Error al actualizar el partido"
+        });
+    }
+});
+
 export default router;

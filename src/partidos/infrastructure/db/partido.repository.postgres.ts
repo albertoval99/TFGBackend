@@ -52,7 +52,37 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
         return rows;
     }
 
-    async updatePartido(id_partido: number, fecha_partido: string, hora_partido: string, id_estadio: number): Promise<Partido> {
+    async updatePartido(id_partido: number, fecha_partido: string | null, hora_partido: string | null, id_estadio: number | null): Promise<Partido> {
+        let updateFields: string[] = [];
+        let values: any[] = [id_partido];
+        let paramCount = 1;
+
+        if (fecha_partido !== null) {
+            updateFields.push(`fecha_partido = $${++paramCount}`);
+            values.push(fecha_partido);
+        }
+        if (hora_partido !== null) {
+            updateFields.push(`hora_partido = $${++paramCount}`);
+            values.push(hora_partido);
+        }
+        if (id_estadio !== null) {
+            updateFields.push(`id_estadio = $${++paramCount}`);
+            values.push(id_estadio);
+        }
+
+        const query = `
+            UPDATE Partidos 
+            SET ${updateFields.join(', ')}
+            WHERE id_partido = $1
+            RETURNING *
+        `;
+
+        const result = await executeQuery(query, values);
+        return result[0];
+    }
+
+    async getPartidosByLiga(id_liga: number): Promise<Partido[]> {
         
     }
+
 }
