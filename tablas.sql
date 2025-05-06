@@ -93,6 +93,7 @@ CREATE TABLE Partidos (
     FOREIGN KEY (id_estadio) REFERENCES Estadios (id_estadio)
 );
 
+--Entrenador hace alineacion y pone 11 titulares y 7 suplentes y esto va a las estadisticas
 CREATE TABLE Estadisticas_Individuales (
     id_estadistica SERIAL PRIMARY KEY,
     id_jugador INTEGER NOT NULL,
