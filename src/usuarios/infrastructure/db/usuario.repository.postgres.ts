@@ -208,7 +208,9 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
                 u.apellidos,
                 j.posicion,
                 j.numero_camiseta,
-                j.activo
+                j.activo,
+                j.id_usuario,
+                j.id_jugador
             FROM Jugadores j
             JOIN Usuarios u ON j.id_usuario = u.id_usuario
             WHERE j.id_equipo = $1
@@ -221,8 +223,51 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             console.log("❌ No se encontraron jugadores para el equipo:", id_equipo);
             return [];
         }
-
         return rows;
     }
+
+    async editarJugador(id_jugador: number, posicion?: string, numero_camiseta?: number, activo?: boolean): Promise<void> {
+        try {
+            const actualizaciones = [];
+            const values = [];
+            let parameterIndex = 1;
+    
+            if (posicion !== undefined) {
+                actualizaciones.push(`posicion = $${parameterIndex}`);
+                values.push(posicion);
+                parameterIndex++;
+            }
+    
+            if (numero_camiseta !== undefined) {
+                actualizaciones.push(`numero_camiseta = $${parameterIndex}`);
+                values.push(numero_camiseta);
+                parameterIndex++;
+            }
+    
+            if (activo !== undefined) {
+                actualizaciones.push(`activo = $${parameterIndex}`);
+                values.push(activo);
+                parameterIndex++;
+            }
+    
+            if (actualizaciones.length === 0) {
+                throw new Error("No se proporcionaron datos para actualizar");
+            }
+    
+            values.push(id_jugador);
+    
+            const query = `
+                UPDATE jugadores 
+                SET ${actualizaciones.join(', ')} 
+                WHERE id_jugador = $${parameterIndex}
+            `;
+    
+            await executeQuery(query, values);
+        } catch (error) {
+            console.error("❌ Error en repository al editar jugador:", error);
+            throw { message: `Error en repository al editar jugador: ${error}` };
+        }
+    }
+
 
 }

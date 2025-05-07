@@ -311,4 +311,38 @@ router.delete("/:id_usuario", esAutorizado, esEntrenador, async (req: Request, r
     }
 });
 
+
+// PUT http://localhost:3000/api/usuarios/jugador/:id_jugador
+router.put("/jugador/:id_jugador",esAutorizado,esEntrenador, async (req: Request, res: Response) => {
+    try {
+        const { id_jugador } = req.params;
+        const { posicion, numero_camiseta, activo } = req.body;
+        const idJugadorNum = parseInt(id_jugador);
+
+        if (posicion === undefined &&
+            numero_camiseta === undefined &&
+            activo === undefined
+        ) {
+            res.status(400).json({ message: "Debe proporcionar al menos un campo para actualizar" });
+            return;
+        }
+
+        const numeroCamisetaNum = numero_camiseta !== undefined ? parseInt(numero_camiseta) : undefined;
+        const activoBool = activo !== undefined ? Boolean(activo) : undefined;
+
+        await usuarioUseCases.editarJugador(
+            idJugadorNum,
+            posicion,
+            numeroCamisetaNum,
+            activoBool
+        );
+
+        res.status(200).json({ message: "Jugador actualizado correctamente" });
+
+    } catch (error) {
+        console.error("❌ Error en el servidor:", error);
+        res.status(400).json({ message: error.message || "Error al actualizar el jugador" });
+    }
+});
+
 export default router;

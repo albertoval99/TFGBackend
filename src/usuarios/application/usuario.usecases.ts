@@ -427,16 +427,49 @@ export default class UsuarioUseCases {
     }
 
     async eliminarUsuario(id_usuario: number): Promise<void> {
-        const usuario = await this.usuarioRepository.getJugadorCompletoById(id_usuario);
-        if (!usuario) {
-            console.log("❌ Usuario no encontrado:", id_usuario);
-            throw new Error("Usuario no encontrado");
-        }
+        try {
+            const usuario = await this.usuarioRepository.getJugadorCompletoById(id_usuario);
+            if (!usuario) {
+                console.log("❌ Usuario no encontrado:", id_usuario);
+                throw { message: "Usuario no encontrado" };
+            }
 
-        await this.usuarioRepository.eliminarUsuario(id_usuario);
-        console.log("✅ Usuario eliminado con éxito:", id_usuario);
-    } catch(error) {
-        console.error("❌ Error al eliminar usuario:", error);
-        throw new Error(error.message || "Error al eliminar el usuario");
+            await this.usuarioRepository.eliminarUsuario(id_usuario);
+            console.log("✅ Usuario eliminado con éxito:", id_usuario);
+        } catch (error) {
+            console.error("❌ Error al eliminar usuario:", error);
+            throw { message: error.message || "Error al eliminar el usuario" };
+        }
+    }
+
+    async editarJugador(id_jugador: number, posicion?: string, numero_camiseta?: number, activo?: boolean): Promise<void> {
+        try {
+            if (numero_camiseta !== undefined) {
+                if (numero_camiseta < 1 || numero_camiseta > 99) {
+                    console.log("❌ Número de camiseta no válido:", numero_camiseta);
+                    throw { message: "El número de camiseta debe estar entre 1 y 99" };
+                }
+    
+                const query = `
+                    SELECT * FROM jugadores 
+                    WHERE id_equipo = (SELECT id_equipo FROM jugadores WHERE id_jugador = $1)
+                    AND numero_camiseta = $2 
+                    AND id_jugador != $1
+                `;
+                const values = [id_jugador, numero_camiseta];
+                const result = await executeQuery(query, values);
+    
+                if (result.length > 0) {
+                    console.log("❌ El número de camiseta ya está en uso en este equipo");
+                    throw { message: "El número de camiseta ya está en uso en este equipo" };
+                }
+            }
+    
+            await this.usuarioRepository.editarJugador(id_jugador, posicion, numero_camiseta, activo);
+            console.log("✅ Jugador editado correctamente:", { id_jugador, posicion, numero_camiseta, activo });
+        } catch (error) {
+            console.error("❌ Error al editar jugador:", error);
+            throw { message: error.message || "Error al editar el jugador" };
+        }
     }
 }

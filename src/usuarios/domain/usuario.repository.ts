@@ -4,12 +4,12 @@ import Arbitro from './Arbitro';
 import Jugador from './Jugador';
 import Administrador from './Adminisitrador';
 
-export default interface UsuarioRepository{
-    getUserByEmail(email: string): Promise<Usuario|null>;
-    getEntrenadorById(id_usuario: number): Promise<Usuario|null>;
+export default interface UsuarioRepository {
+    getUserByEmail(email: string): Promise<Usuario | null>;
+    getEntrenadorById(id_usuario: number): Promise<Usuario | null>;
     getJugadorCompletoById(id_usuario: number): Promise<Usuario | null>;
-    registrarUsuario(usuario:Usuario):Promise<Usuario>;
-    registrarEntrenador(entrenador:Entrenador):Promise<Entrenador>;
+    registrarUsuario(usuario: Usuario): Promise<Usuario>;
+    registrarEntrenador(entrenador: Entrenador): Promise<Entrenador>;
     registrarArbitro(arbitro: Arbitro): Promise<Arbitro>;
     registrarJugador(jugador: Jugador): Promise<Jugador>;
     eliminarUsuario(id_usuario: number): Promise<void>;
@@ -18,5 +18,6 @@ export default interface UsuarioRepository{
     loginArbitro(arbitro: Arbitro): Promise<Arbitro>;
     loginJugador(jugador: Jugador): Promise<Jugador>;
     getAllUsuarios(): Promise<Usuario[]>;
-    getJugadoresByEquipo(id_equipo):Promise<Jugador[]>;
+    getJugadoresByEquipo(id_equipo): Promise<Jugador[]>;
+    editarJugador(id_jugador: number, posicion?: string, numero_camiseta?: number, activo?: boolean): Promise<void>;
 }
