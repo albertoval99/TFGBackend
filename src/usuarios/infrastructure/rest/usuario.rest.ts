@@ -263,4 +263,52 @@ router.get("/jugador/:id_usuario", async (req: Request, res: Response): Promise<
     }
 });
 
+// GET http://localhost:3000/api/usuarios/equipo/:id_equipo
+router.get("/equipo/:id_equipo", esAutorizado, esEntrenador, async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_equipo } = req.params;
+        const idEquipoNum = parseInt(id_equipo);
+
+        if (isNaN(idEquipoNum)) {
+            res.status(400).json({ message: "El ID del equipo no es válido." });
+            return;
+        }
+
+        const jugadores = await usuarioUseCases.getJugadoresByEquipo(idEquipoNum);
+        res.status(200).json(jugadores);
+    } catch (error) {
+        console.error("❌ Error al obtener jugadores por equipo:", error);
+        res.status(500).json({
+            message: error.message || "Error al obtener jugadores del equipo",
+        });
+    }
+});
+
+// DELETE http://localhost:3000/api/usuarios/:id_usuario
+router.delete("/:id_usuario", esAutorizado, esEntrenador, async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_usuario } = req.params;
+        const idUsuarioNum = parseInt(id_usuario);
+
+        if (isNaN(idUsuarioNum)) {
+            res.status(400).json({ message: "El ID de usuario no es válido" });
+            return;
+        }
+
+        await usuarioUseCases.eliminarUsuario(idUsuarioNum);
+        res.status(200).json({ message: "Usuario eliminado correctamente" });
+    } catch (error) {
+        console.error("❌ Error al eliminar usuario:", error);
+
+        if (error.message === "Usuario no encontrado") {
+            res.status(404).json({ message: error.message });
+            return;
+        }
+
+        res.status(500).json({
+            message: error.message || "Error al eliminar el usuario"
+        });
+    }
+});
+
 export default router;

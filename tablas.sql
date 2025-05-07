@@ -15,6 +15,7 @@ CREATE TABLE Usuarios (
     telefono VARCHAR(20)
 );
 
+
 CREATE TABLE Administradores (
     id_administrador SERIAL PRIMARY KEY,
     id_usuario INTEGER NOT NULL,
@@ -39,6 +40,14 @@ CREATE TABLE Jugadores (
     FOREIGN KEY (id_usuario) REFERENCES Usuarios (id_usuario),
     FOREIGN KEY (id_equipo) REFERENCES Equipos (id_equipo)
 );
+
+ALTER TABLE Jugadores 
+DROP CONSTRAINT jugadores_id_usuario_fkey;
+
+-- Luego añadimos la nueva constraint con CASCADE
+ALTER TABLE Jugadores
+ADD CONSTRAINT jugadores_id_usuario_fkey 
+FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE;
 
 CREATE TABLE Arbitros (
     id_arbitro SERIAL PRIMARY KEY,

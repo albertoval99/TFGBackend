@@ -386,33 +386,57 @@ export default class UsuarioUseCases {
             console.log("❌ Falta la contraseña del jugador");
             throw { message: "Falta la contraseña del jugador" };
         }
-    
+
         const jugadorEncontrado = await this.usuarioRepository.loginJugador(jugador);
-    
+
         if (!jugadorEncontrado) {
             console.log("❌ Jugador no encontrado");
             throw { message: "El email es incorrecto" };
         }
-    
+
         const passwordValida = compare(jugador.password, jugadorEncontrado.password);
-    
+
         if (!passwordValida) {
             console.log("❌ Contraseña incorrecta");
             throw { message: "Contraseña incorrecta" };
         }
-    
+
         return jugadorEncontrado;
     }
 
 
     async getAllUsuarios(): Promise<Usuario[]> {
         const usuarios = await this.usuarioRepository.getAllUsuarios();
-        if(usuarios && usuarios.length > 0){
+        if (usuarios && usuarios.length > 0) {
             return usuarios;
-        }else{
+        } else {
             console.log("❌ No se encontraron usuarios");
             throw { message: "No se encontraron usuarios" };
         }
-        
+
+    }
+
+    async getJugadoresByEquipo(id_equipo: number): Promise<Jugador[]> {
+        const jugadores = await this.usuarioRepository.getJugadoresByEquipo(id_equipo);
+        if (!jugadores || jugadores.length === 0) {
+            console.log(`❌ No se encontraron jugadores para el equipo con id: ${id_equipo}`);
+            throw new Error("No se encontraron jugadores para este equipo");
+        }
+        console.log("✅ Jugadores encontrados:", jugadores);
+        return jugadores;
+    }
+
+    async eliminarUsuario(id_usuario: number): Promise<void> {
+        const usuario = await this.usuarioRepository.getJugadorCompletoById(id_usuario);
+        if (!usuario) {
+            console.log("❌ Usuario no encontrado:", id_usuario);
+            throw new Error("Usuario no encontrado");
+        }
+
+        await this.usuarioRepository.eliminarUsuario(id_usuario);
+        console.log("✅ Usuario eliminado con éxito:", id_usuario);
+    } catch(error) {
+        console.error("❌ Error al eliminar usuario:", error);
+        throw new Error(error.message || "Error al eliminar el usuario");
     }
 }

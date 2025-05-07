@@ -201,4 +201,28 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
     }
 
 
+    async getJugadoresByEquipo(id_equipo: any): Promise<Jugador[]> {
+        const query = `
+            SELECT 
+                u.nombre,
+                u.apellidos,
+                j.posicion,
+                j.numero_camiseta,
+                j.activo
+            FROM Jugadores j
+            JOIN Usuarios u ON j.id_usuario = u.id_usuario
+            WHERE j.id_equipo = $1
+        `;
+        const values = [id_equipo];
+
+        const rows = await executeQuery(query, values);
+
+        if (rows.length === 0) {
+            console.log("❌ No se encontraron jugadores para el equipo:", id_equipo);
+            return [];
+        }
+
+        return rows;
+    }
+
 }
