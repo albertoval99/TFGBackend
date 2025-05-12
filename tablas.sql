@@ -102,6 +102,17 @@ CREATE TABLE Partidos (
     FOREIGN KEY (id_estadio) REFERENCES Estadios (id_estadio)
 );
 
+CREATE TABLE Alineaciones (
+    id_alineacion SERIAL PRIMARY KEY,
+    id_partido INTEGER NOT NULL,
+    id_jugador INTEGER NOT NULL,
+    es_titular BOOLEAN NOT NULL,
+    FOREIGN KEY (id_partido) REFERENCES Partidos (id_partido),
+    FOREIGN KEY (id_jugador) REFERENCES Jugadores (id_jugador)
+);
+
+ALTER TABLE Alineaciones
+ADD COLUMN id_equipo INTEGER NOT NULL REFERENCES Equipos (id_equipo);
 --Entrenador hace alineacion y pone 11 titulares y 7 suplentes y esto va a las estadisticas
 CREATE TABLE Estadisticas_Individuales (
     id_estadistica SERIAL PRIMARY KEY,
@@ -111,10 +122,7 @@ CREATE TABLE Estadisticas_Individuales (
     tarjetas_amarillas INTEGER DEFAULT 0,
     tarjetas_rojas INTEGER DEFAULT 0,
     mejor_jugador BOOLEAN DEFAULT false,
-    minutos_jugados INTEGER CHECK (
-        minutos_jugados >= 0
-        AND minutos_jugados <= 90
-    ),
+    titularidades INTEGER DEFAULT 0,
     UNIQUE (id_jugador, id_partido),
     FOREIGN KEY (id_jugador) REFERENCES Jugadores (id_jugador),
     FOREIGN KEY (id_partido) REFERENCES Partidos (id_partido)

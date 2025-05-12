@@ -1,4 +1,5 @@
 import { executeQuery } from "../../../context/db/postgres.db";
+import AlineacionesPartido from "../../domain/AlineacionesPartido";
 import Partido from "../../domain/Partido";
 import PartidoRepository from "../../domain/partido.repository";
 
@@ -142,6 +143,48 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
         const values = [id_equipo];
         const rows = await executeQuery(query, values);
         return rows;
+    }
+
+    async registrarAlineacion(alineacion: AlineacionesPartido): Promise<AlineacionesPartido> {
+        const query = `
+          INSERT INTO Alineaciones
+            (id_partido, id_jugador, id_equipo, es_titular)
+          VALUES ($1, $2, $3, $4)
+          RETURNING *;
+        `;
+
+        const values = [
+            alineacion.id_partido,
+            alineacion.id_jugador,
+            alineacion.id_equipo,
+            alineacion.es_titular,
+        ];
+        const rows = await executeQuery(query, values);
+        return rows[0];
+    }
+
+    async getAlineacionesByPartido(id_partido: number): Promise<AlineacionesPartido[]> {
+        const sql = `
+          SELECT
+            a.id_alineacion,
+            a.id_partido,
+            a.id_jugador,
+            a.id_equipo,
+            a.es_titular,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta AS dorsal,
+            j.posicion
+          FROM Alineaciones a
+          JOIN Jugadores j ON a.id_jugador = j.id_jugador
+          JOIN Usuarios u ON j.id_usuario = u.id_usuario
+          WHERE a.id_partido = $1
+          ORDER BY a.id_equipo, a.es_titular DESC, a.id_alineacion ASC;
+        `;
+
+        const values = [id_partido];
+        const result = await executeQuery(sql, values);
+        return result;
     }
 
 }

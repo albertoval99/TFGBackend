@@ -48,4 +48,6 @@ export default class LigaUseCases {
         }
         return liga;
     }
+
+    
 }

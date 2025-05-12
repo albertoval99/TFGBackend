@@ -1,3 +1,4 @@
+import AlineacionesPartido from "../domain/AlineacionesPartido";
 import Partido from "../domain/Partido";
 import PartidoRepository from "../domain/partido.repository";
 
@@ -133,5 +134,43 @@ export default class PartidoUseCases {
         }
 
         return partidos;
+    }
+
+    async getAlineacionesByPartido(id_partido: number): Promise<AlineacionesPartido[]> {
+        if (!id_partido || isNaN(id_partido)) {
+            console.log("❌ Falta o es inválido el id del partido");
+            throw { message: "Falta o es inválido el id del partido" };
+        }
+
+        const alineaciones = await this.partidoRepository.getAlineacionesByPartido(id_partido);
+
+        if (!alineaciones || alineaciones.length === 0) {
+            console.log(`❌ No se encontraron alineaciones para el partido ${id_partido}`);
+            throw { message: "No se encontraron alineaciones para este partido" };
+        }
+
+        return alineaciones;
+    }
+
+    async registrarAlineacion(alineacion: AlineacionesPartido): Promise<AlineacionesPartido> {
+        if (!alineacion.id_partido) {
+            console.log("❌ Falta el id del partido");
+            throw { message: "Falta el id del partido" };
+        }
+        if (!alineacion.id_jugador) {
+            console.log("❌ Falta el id del jugador");
+            throw { message: "Falta id del jugador" };
+        }
+        if (alineacion.es_titular === undefined) {
+            console.log("❌ Falta 'es_titular'");
+            throw { message: "Falta 'es_titular'" };
+        }
+        if (!alineacion.id_equipo) {
+            console.log("❌ Falta el id del equipo");
+            throw { message: "Falta el id del equipo" };
+        }
+
+        const alineacionRegistrada = await this.partidoRepository.registrarAlineacion(alineacion);
+        return alineacionRegistrada;
     }
 }

@@ -159,4 +159,80 @@ router.get("/equipos/:id_equipo", async (req: Request, res: Response): Promise<v
     }
 });
 
+// GET http://localhost:3000/api/partidos/:id_partido/alineaciones
+router.get("/:id_partido/alineaciones", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_partido } = req.params;
+        const idPartidoNum = parseInt(id_partido, 10);
+
+        if (isNaN(idPartidoNum)) {
+            res.status(400).json({ message: "El ID del partido no es válido" });
+            return;
+        }
+
+        const alineaciones = await partidoUseCases.getAlineacionesByPartido(idPartidoNum);
+
+        res.status(200).json({
+            message: "Alineaciones obtenidas correctamente",
+            data: alineaciones,
+        });
+    } catch (error: any) {
+        console.error("❌ Error al obtener alineaciones:", error);
+        res.status(404).json({
+            message: error.message || "Error al obtener alineaciones del partido",
+        });
+    }
+}
+);
+
+// GET http://localhost:3000/api/alineaciones/partido/:id_partido
+router.get("/partido/:id_partido", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_partido } = req.params;
+        const idPartidoNum = parseInt(id_partido);
+
+        if (isNaN(idPartidoNum)) {
+            res.status(400).json({ message: "El ID del partido no es válido" });
+            return;
+        }
+
+        const alineaciones = await partidoUseCases.getAlineacionesByPartido(idPartidoNum);
+
+        res.status(200).json({
+            message: "Alineaciones del partido obtenidas correctamente",
+            data: alineaciones
+        });
+
+    } catch (error: any) {
+        console.error("❌ Error al obtener las alineaciones del partido:", error);
+        res.status(404).json({
+            message: error.message || "Error al obtener las alineaciones del partido"
+        });
+    }
+});
+
+// POST http://localhost:3000/api/alineaciones/registro
+router.post("/registro", esAutorizado, esEntrenador, async (req: Request, res: Response): Promise<void> => {
+    try {
+        const alineacion = req.body;
+
+        if (!alineacion.id_partido || !alineacion.id_jugador || alineacion.es_titular === undefined || !alineacion.id_equipo) {
+            res.status(400).json({ message: "Faltan campos obligatorios: id_partido, id_jugador, es_titular, id_equipo" });
+            return;
+        }
+
+        const alineacionRegistrada = await partidoUseCases.registrarAlineacion(alineacion);
+
+        res.status(201).json({
+            message: "Alineación registrada correctamente",
+            data: alineacionRegistrada
+        });
+
+    } catch (error: any) {
+        console.error("❌ Error al registrar la alineación:", error);
+        res.status(500).json({
+            message: error.message || "Error al registrar la alineación"
+        });
+    }
+});
 export default router;
