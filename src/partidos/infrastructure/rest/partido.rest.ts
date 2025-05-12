@@ -159,34 +159,8 @@ router.get("/equipos/:id_equipo", async (req: Request, res: Response): Promise<v
     }
 });
 
-// GET http://localhost:3000/api/partidos/:id_partido/alineaciones
-router.get("/:id_partido/alineaciones", async (req: Request, res: Response): Promise<void> => {
-    try {
-        const { id_partido } = req.params;
-        const idPartidoNum = parseInt(id_partido, 10);
-
-        if (isNaN(idPartidoNum)) {
-            res.status(400).json({ message: "El ID del partido no es válido" });
-            return;
-        }
-
-        const alineaciones = await partidoUseCases.getAlineacionesByPartido(idPartidoNum);
-
-        res.status(200).json({
-            message: "Alineaciones obtenidas correctamente",
-            data: alineaciones,
-        });
-    } catch (error: any) {
-        console.error("❌ Error al obtener alineaciones:", error);
-        res.status(404).json({
-            message: error.message || "Error al obtener alineaciones del partido",
-        });
-    }
-}
-);
-
-// GET http://localhost:3000/api/alineaciones/partido/:id_partido
-router.get("/partido/:id_partido", async (req: Request, res: Response): Promise<void> => {
+// GET http://localhost:3000/api/partidos/alineaciones/partido/:id_partido
+router.get("/alineaciones/partido/:id_partido", async (req: Request, res: Response): Promise<void> => {
     try {
         const { id_partido } = req.params;
         const idPartidoNum = parseInt(id_partido);
@@ -211,8 +185,8 @@ router.get("/partido/:id_partido", async (req: Request, res: Response): Promise<
     }
 });
 
-// POST http://localhost:3000/api/alineaciones/registro
-router.post("/registro", esAutorizado, esEntrenador, async (req: Request, res: Response): Promise<void> => {
+// POST http://localhost:3000/api/partidos/alineaciones/registro
+router.post("/alineaciones/registro", esAutorizado, esEntrenador, async (req: Request, res: Response): Promise<void> => {
     try {
         const alineacion = req.body;
 
