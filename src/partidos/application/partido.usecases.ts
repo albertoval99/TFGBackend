@@ -151,26 +151,24 @@ export default class PartidoUseCases {
 
         return alineaciones;
     }
-
     async registrarAlineacion(alineacion: AlineacionesPartido): Promise<AlineacionesPartido> {
-        if (!alineacion.id_partido) {
-            console.log("❌ Falta el id del partido");
-            throw { message: "Falta el id del partido" };
-        }
-        if (!alineacion.id_jugador) {
-            console.log("❌ Falta el id del jugador");
-            throw { message: "Falta id del jugador" };
-        }
-        if (alineacion.es_titular === undefined) {
-            console.log("❌ Falta 'es_titular'");
-            throw { message: "Falta 'es_titular'" };
-        }
-        if (!alineacion.id_equipo) {
-            console.log("❌ Falta el id del equipo");
-            throw { message: "Falta el id del equipo" };
-        }
+        if (!alineacion.id_partido) throw { message: "Falta el id del partido" };
+        if (!alineacion.id_jugador) throw { message: "Falta el id del jugador" };
+        if (alineacion.es_titular === undefined) throw { message: "Falta 'es_titular'" };
+        if (!alineacion.id_equipo) throw { message: "Falta el id del equipo" };
 
-        const alineacionRegistrada = await this.partidoRepository.registrarAlineacion(alineacion);
-        return alineacionRegistrada;
+        // Borra alineación previa para evitar duplicados y poder reescribir
+        await this.partidoRepository.borrarAlineacion(alineacion.id_partido, alineacion.id_jugador, alineacion.id_equipo);
+
+        const countTitulares = await this.partidoRepository.contarTitulares(alineacion.id_partido, alineacion.id_equipo);
+        const countSuplentes = await this.partidoRepository.contarSuplentes(alineacion.id_partido, alineacion.id_equipo);
+
+        if (alineacion.es_titular && countTitulares >= 11) {
+            throw { message: "Ya hay 11 titulares registrados" };
+        }
+        if (!alineacion.es_titular && countSuplentes >= 7) {
+            throw { message: "Ya hay 7 suplentes registrados" };
+        }
+        return await this.partidoRepository.registrarAlineacion(alineacion);
     }
 }

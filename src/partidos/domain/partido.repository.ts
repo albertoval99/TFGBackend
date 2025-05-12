@@ -9,4 +9,8 @@ export default interface PartidoRepository {
     getPartidosByEquipo(id_equipo: number): Promise<Partido[]>
     registrarAlineacion(alineaciones: AlineacionPartido): Promise<AlineacionPartido>;
     getAlineacionesByPartido(id_partido: number): Promise<AlineacionPartido[]>;
+    contarTitulares(id_partido: number, id_equipo: number): Promise<number>;
+    contarSuplentes(id_partido: number, id_equipo: number): Promise<number>;
+    borrarAlineacion(id_partido: number, id_jugador: number, id_equipo: number): Promise<void>;
+
 }

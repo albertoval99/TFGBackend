@@ -117,7 +117,8 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
     async getPartidosByEquipo(id_equipo: number): Promise<Partido[]> {
 
         const query = `
-            SELECT 
+            SELECT
+                p.id_partido, 
                 p.jornada,
                 TO_CHAR(p.fecha_partido, 'DD/MM/YYYY') as fecha_partido,
                 p.hora_partido,
@@ -147,7 +148,7 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
 
     async registrarAlineacion(alineacion: AlineacionesPartido): Promise<AlineacionesPartido> {
         const query = `
-          INSERT INTO Alineaciones
+          INSERT INTO alineaciones
             (id_partido, id_jugador, id_equipo, es_titular)
           VALUES ($1, $2, $3, $4)
           RETURNING *;
@@ -186,5 +187,38 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
         const result = await executeQuery(sql, values);
         return result;
     }
+
+    async contarTitulares(id_partido: number, id_equipo: number): Promise<number> {
+        const query = `
+          SELECT COUNT(*) AS count
+          FROM alineaciones
+          WHERE id_partido = $1 AND id_equipo = $2 AND es_titular = true
+        `;
+        const values = [id_partido, id_equipo];
+        const result = await executeQuery(query, values);
+        return Number(result[0]?.count || 0);
+    }
+
+    // Cuenta suplentes para un partido y equipo
+    async contarSuplentes(id_partido: number, id_equipo: number): Promise<number> {
+        const query = `
+          SELECT COUNT(*) AS count
+          FROM alineaciones
+          WHERE id_partido = $1 AND id_equipo = $2 AND es_titular = false
+        `;
+        const values = [id_partido, id_equipo];
+        const result = await executeQuery(query, values);
+        return Number(result[0]?.count || 0);
+    }
+
+    // Borra alineación previa de un jugador en un partido y equipo
+    async borrarAlineacion(id_partido: number, id_jugador: number, id_equipo: number): Promise<void> {
+        const query = `
+          DELETE FROM alineaciones
+          WHERE id_partido = $1 AND id_jugador = $2 AND id_equipo = $3
+        `;
+        const values = [id_partido, id_jugador, id_equipo];
+        await executeQuery(query, values);
+      }
 
 }
