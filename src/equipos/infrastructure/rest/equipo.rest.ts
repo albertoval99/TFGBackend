@@ -6,7 +6,7 @@ import { esAutorizado, esAdministrador } from "../../../context/security/auth";
 
 
 const router = express.Router();
-const equipoUseCases = new EquipoUseCases(new EquipoRepositoryPostgres,new LigaRepositoryPostgres());
+const equipoUseCases = new EquipoUseCases(new EquipoRepositoryPostgres, new LigaRepositoryPostgres());
 
 
 // GET  http://localhost:3000/api/equipos/getEquipos
@@ -83,5 +83,17 @@ router.post(
         }
     }
 );
+
+
+// GET http://localhost:3000/api/equipos/estadios
+router.get("/estadios", async (req: Request, res: Response) => {
+    try {
+        const estadios = await equipoUseCases.getAllEstadios();
+        res.status(200).json(estadios);
+    } catch (error: any) {
+        console.error("❌ Error al obtener estadios:", error);
+        res.status(error.status || 500).json({ message: error.message || "Error al obtener estadios" });
+    }
+});
 
 export default router

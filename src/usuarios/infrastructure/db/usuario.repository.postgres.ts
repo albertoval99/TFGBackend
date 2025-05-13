@@ -200,6 +200,25 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         return rows[0];
     }
 
+    async getArbitroCompletoById(id_usuario: number): Promise<Usuario | null> {
+        const query = `
+        SELECT u.id_usuario, u.nombre, u.apellidos, u.email, a.id_arbitro
+        FROM Usuarios u
+        JOIN Arbitros a ON u.id_usuario = a.id_usuario
+        WHERE u.id_usuario = $1;
+    `;
+        const values = [id_usuario];
+
+        const rows = await executeQuery(query, values);
+
+        if (rows.length === 0) {
+            console.log("❌ Arbitro no encontrado con el ID:", id_usuario);
+            return null;
+        }
+
+        return rows[0];
+    }
+
 
     async getJugadoresByEquipo(id_equipo: any): Promise<Jugador[]> {
         const query = `
@@ -231,37 +250,37 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             const actualizaciones = [];
             const values = [];
             let parameterIndex = 1;
-    
+
             if (posicion !== undefined) {
                 actualizaciones.push(`posicion = $${parameterIndex}`);
                 values.push(posicion);
                 parameterIndex++;
             }
-    
+
             if (numero_camiseta !== undefined) {
                 actualizaciones.push(`numero_camiseta = $${parameterIndex}`);
                 values.push(numero_camiseta);
                 parameterIndex++;
             }
-    
+
             if (activo !== undefined) {
                 actualizaciones.push(`activo = $${parameterIndex}`);
                 values.push(activo);
                 parameterIndex++;
             }
-    
+
             if (actualizaciones.length === 0) {
                 throw new Error("No se proporcionaron datos para actualizar");
             }
-    
+
             values.push(id_jugador);
-    
+
             const query = `
                 UPDATE jugadores 
                 SET ${actualizaciones.join(', ')} 
                 WHERE id_jugador = $${parameterIndex}
             `;
-    
+
             await executeQuery(query, values);
         } catch (error) {
             console.error("❌ Error en repository al editar jugador:", error);

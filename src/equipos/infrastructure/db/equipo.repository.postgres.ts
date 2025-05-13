@@ -1,6 +1,7 @@
 import Equipo from '../../domain/Equipo';
 import EquipoRepository from '../../domain/equipo.repository';
 import { executeQuery } from '../../../context/db/postgres.db';
+import Estadio from '../../domain/Estadio';
 export default class EquipoRepositoryPostgres implements EquipoRepository {
 
     async getEquipos(): Promise<Equipo[]> {
@@ -58,5 +59,11 @@ export default class EquipoRepositoryPostgres implements EquipoRepository {
 
         const rows = await executeQuery(query, values);
         return rows[0];
+    }
+
+    async getAllEstadios(): Promise<Estadio[]> {
+        const query = "SELECT * FROM Estadios";
+        const result = await executeQuery(query);
+        return result;
     }
 }

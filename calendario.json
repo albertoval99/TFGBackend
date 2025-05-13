@@ -20,7 +20,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 30,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -32,7 +32,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 30,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -44,7 +44,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 30,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -56,7 +56,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 30,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -68,7 +68,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 30,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -80,24 +80,24 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 7,
+    "id_arbitro": 36,
+    "id_liga": 3
+  },
+  {
+    "jornada": 2,
+    "fecha_partido": "2024-09-29",
+    "hora_partido": "16:00",
+    "equipo_local_id": 16,
+    "equipo_visitante_id": 4,
+    "goles_local": null,
+    "goles_visitante": null,
+    "id_estadio": 12,
     "id_arbitro": 30,
     "id_liga": 3
   },
   {
     "jornada": 2,
     "fecha_partido": "2024-09-29",
-    "hora_partido": "16:00",
-    "equipo_local_id": 16,
-    "equipo_visitante_id": 4,
-    "goles_local": null,
-    "goles_visitante": null,
-    "id_estadio": 12,
-    "id_arbitro": 31,
-    "id_liga": 3
-  },
-  {
-    "jornada": 2,
-    "fecha_partido": "2024-09-29",
     "hora_partido": "18:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 17,
@@ -116,7 +116,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 31,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -128,7 +128,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 31,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -140,7 +140,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 31,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -152,7 +152,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 31,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -164,7 +164,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 7,
-    "id_arbitro": 31,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -176,7 +176,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 2,
-    "id_arbitro": 32,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -188,7 +188,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 12,
-    "id_arbitro": 32,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -212,7 +212,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 32,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -224,7 +224,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 32,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -236,7 +236,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 32,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -248,7 +248,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 32,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -260,7 +260,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 33,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -272,7 +272,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 33,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -284,7 +284,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 33,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -308,7 +308,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 7,
-    "id_arbitro": 33,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -320,7 +320,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 33,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -332,7 +332,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 33,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -344,7 +344,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 2,
-    "id_arbitro": 34,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -356,7 +356,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 34,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -368,7 +368,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 34,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -380,7 +380,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 12,
-    "id_arbitro": 34,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -404,7 +404,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 34,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -416,7 +416,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 34,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -428,7 +428,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 35,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -440,7 +440,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 35,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -452,7 +452,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 7,
-    "id_arbitro": 35,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -464,7 +464,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 35,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -476,7 +476,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 35,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -500,7 +500,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 35,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -512,7 +512,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 2,
-    "id_arbitro": 36,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -524,7 +524,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 36,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -536,7 +536,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 36,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -548,7 +548,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 36,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -560,7 +560,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 36,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -572,7 +572,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 12,
-    "id_arbitro": 36,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -608,7 +608,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 30,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -620,7 +620,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 30,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -632,7 +632,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 30,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -644,7 +644,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 30,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -656,7 +656,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 30,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -668,24 +668,24 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
+    "id_arbitro": 36,
+    "id_liga": 3
+  },
+  {
+    "jornada": 9,
+    "fecha_partido": "2024-12-01",
+    "hora_partido": "16:00",
+    "equipo_local_id": 4,
+    "equipo_visitante_id": 9,
+    "goles_local": null,
+    "goles_visitante": null,
+    "id_estadio": 2,
     "id_arbitro": 30,
     "id_liga": 3
   },
   {
     "jornada": 9,
     "fecha_partido": "2024-12-01",
-    "hora_partido": "16:00",
-    "equipo_local_id": 4,
-    "equipo_visitante_id": 9,
-    "goles_local": null,
-    "goles_visitante": null,
-    "id_estadio": 2,
-    "id_arbitro": 31,
-    "id_liga": 3
-  },
-  {
-    "jornada": 9,
-    "fecha_partido": "2024-12-01",
     "hora_partido": "18:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 8,
@@ -704,7 +704,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 31,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -716,7 +716,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 31,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -728,7 +728,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 31,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -740,7 +740,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 31,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -752,7 +752,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 31,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -764,7 +764,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 32,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -776,7 +776,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 32,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -800,7 +800,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 32,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -812,7 +812,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
-    "id_arbitro": 32,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -824,7 +824,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 12,
-    "id_arbitro": 32,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -836,7 +836,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 32,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -848,7 +848,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 2,
-    "id_arbitro": 33,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -860,7 +860,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 33,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -872,7 +872,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 33,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -896,7 +896,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 33,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -908,7 +908,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 33,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -920,7 +920,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 33,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -932,7 +932,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 34,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -944,7 +944,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 34,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -956,7 +956,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
-    "id_arbitro": 34,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -968,7 +968,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 12,
-    "id_arbitro": 34,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -992,7 +992,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 34,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -1004,7 +1004,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 34,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -1016,7 +1016,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 2,
-    "id_arbitro": 35,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -1028,7 +1028,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 35,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -1040,7 +1040,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 35,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -1052,7 +1052,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 35,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1064,7 +1064,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 35,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -1088,7 +1088,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 35,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -1100,7 +1100,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
-    "id_arbitro": 36,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -1112,7 +1112,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 12,
-    "id_arbitro": 36,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -1124,7 +1124,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 36,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -1136,7 +1136,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 36,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1148,7 +1148,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 36,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -1160,7 +1160,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 36,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -1196,7 +1196,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
-    "id_arbitro": 30,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -1208,7 +1208,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 30,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -1220,7 +1220,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 30,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1232,7 +1232,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 30,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -1244,7 +1244,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 30,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -1256,7 +1256,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 30,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -1268,7 +1268,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 31,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -1292,7 +1292,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 31,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -1304,7 +1304,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 31,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1316,7 +1316,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 31,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -1328,7 +1328,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 7,
-    "id_arbitro": 31,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -1340,7 +1340,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 31,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -1352,7 +1352,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 2,
-    "id_arbitro": 32,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -1364,7 +1364,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 32,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -1388,7 +1388,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
-    "id_arbitro": 32,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1400,7 +1400,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 32,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -1412,7 +1412,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 32,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -1424,7 +1424,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 32,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -1436,7 +1436,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 33,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -1448,7 +1448,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 33,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -1460,7 +1460,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 33,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -1484,7 +1484,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 33,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -1496,7 +1496,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 33,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -1508,7 +1508,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 33,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -1520,7 +1520,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 2,
-    "id_arbitro": 34,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -1532,7 +1532,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 34,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -1544,7 +1544,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 34,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -1556,7 +1556,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 34,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1580,7 +1580,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
-    "id_arbitro": 34,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -1592,7 +1592,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 34,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -1604,7 +1604,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 35,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -1616,7 +1616,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 7,
-    "id_arbitro": 35,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -1628,7 +1628,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 6,
-    "id_arbitro": 35,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -1640,7 +1640,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 35,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1652,7 +1652,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 35,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -1676,84 +1676,84 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
+    "id_arbitro": 36,
+    "id_liga": 3
+  },
+  {
+    "jornada": 21,
+    "fecha_partido": "2025-03-23",
+    "hora_partido": "16:00",
+    "equipo_local_id": 4,
+    "equipo_visitante_id": 10,
+    "goles_local": null,
+    "goles_visitante": null,
+    "id_estadio": 2,
+    "id_arbitro": 30,
+    "id_liga": 3
+  },
+  {
+    "jornada": 21,
+    "fecha_partido": "2025-03-23",
+    "hora_partido": "18:00",
+    "equipo_local_id": 11,
+    "equipo_visitante_id": 9,
+    "goles_local": null,
+    "goles_visitante": null,
+    "id_estadio": 9,
+    "id_arbitro": 31,
+    "id_liga": 3
+  },
+  {
+    "jornada": 21,
+    "fecha_partido": "2025-03-23",
+    "hora_partido": "20:00",
+    "equipo_local_id": 12,
+    "equipo_visitante_id": 8,
+    "goles_local": null,
+    "goles_visitante": null,
+    "id_estadio": 13,
+    "id_arbitro": 32,
+    "id_liga": 3
+  },
+  {
+    "jornada": 21,
+    "fecha_partido": "2025-03-23",
+    "hora_partido": "12:00",
+    "equipo_local_id": 13,
+    "equipo_visitante_id": 7,
+    "goles_local": null,
+    "goles_visitante": null,
+    "id_estadio": 10,
+    "id_arbitro": 33,
+    "id_liga": 3
+  },
+  {
+    "jornada": 21,
+    "fecha_partido": "2025-03-23",
+    "hora_partido": "17:00",
+    "equipo_local_id": 14,
+    "equipo_visitante_id": 6,
+    "goles_local": null,
+    "goles_visitante": null,
+    "id_estadio": 14,
+    "id_arbitro": 34,
+    "id_liga": 3
+  },
+  {
+    "jornada": 21,
+    "fecha_partido": "2025-03-23",
+    "hora_partido": "19:00",
+    "equipo_local_id": 15,
+    "equipo_visitante_id": 5,
+    "goles_local": null,
+    "goles_visitante": null,
+    "id_estadio": 11,
     "id_arbitro": 35,
     "id_liga": 3
   },
   {
     "jornada": 21,
     "fecha_partido": "2025-03-23",
-    "hora_partido": "16:00",
-    "equipo_local_id": 4,
-    "equipo_visitante_id": 10,
-    "goles_local": null,
-    "goles_visitante": null,
-    "id_estadio": 2,
-    "id_arbitro": 36,
-    "id_liga": 3
-  },
-  {
-    "jornada": 21,
-    "fecha_partido": "2025-03-23",
-    "hora_partido": "18:00",
-    "equipo_local_id": 11,
-    "equipo_visitante_id": 9,
-    "goles_local": null,
-    "goles_visitante": null,
-    "id_estadio": 9,
-    "id_arbitro": 36,
-    "id_liga": 3
-  },
-  {
-    "jornada": 21,
-    "fecha_partido": "2025-03-23",
-    "hora_partido": "20:00",
-    "equipo_local_id": 12,
-    "equipo_visitante_id": 8,
-    "goles_local": null,
-    "goles_visitante": null,
-    "id_estadio": 13,
-    "id_arbitro": 36,
-    "id_liga": 3
-  },
-  {
-    "jornada": 21,
-    "fecha_partido": "2025-03-23",
-    "hora_partido": "12:00",
-    "equipo_local_id": 13,
-    "equipo_visitante_id": 7,
-    "goles_local": null,
-    "goles_visitante": null,
-    "id_estadio": 10,
-    "id_arbitro": 36,
-    "id_liga": 3
-  },
-  {
-    "jornada": 21,
-    "fecha_partido": "2025-03-23",
-    "hora_partido": "17:00",
-    "equipo_local_id": 14,
-    "equipo_visitante_id": 6,
-    "goles_local": null,
-    "goles_visitante": null,
-    "id_estadio": 14,
-    "id_arbitro": 36,
-    "id_liga": 3
-  },
-  {
-    "jornada": 21,
-    "fecha_partido": "2025-03-23",
-    "hora_partido": "19:00",
-    "equipo_local_id": 15,
-    "equipo_visitante_id": 5,
-    "goles_local": null,
-    "goles_visitante": null,
-    "id_estadio": 11,
-    "id_arbitro": 36,
-    "id_liga": 3
-  },
-  {
-    "jornada": 21,
-    "fecha_partido": "2025-03-23",
     "hora_partido": "21:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 17,
@@ -1784,7 +1784,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 30,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -1796,7 +1796,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 30,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -1808,7 +1808,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 30,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1820,7 +1820,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 30,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -1832,7 +1832,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
-    "id_arbitro": 30,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -1844,7 +1844,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 12,
-    "id_arbitro": 30,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -1856,7 +1856,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 2,
-    "id_arbitro": 31,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -1880,7 +1880,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 7,
-    "id_arbitro": 31,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -1892,7 +1892,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 31,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1904,7 +1904,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 31,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -1916,7 +1916,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 31,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -1928,7 +1928,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 31,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -1940,7 +1940,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 32,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -1952,7 +1952,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 3,
-    "id_arbitro": 32,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -1976,7 +1976,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
-    "id_arbitro": 32,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -1988,7 +1988,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 12,
-    "id_arbitro": 32,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -2000,7 +2000,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 32,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -2012,7 +2012,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 14,
-    "id_arbitro": 32,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -2024,7 +2024,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 2,
-    "id_arbitro": 33,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -2036,7 +2036,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 4,
-    "id_arbitro": 33,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -2048,7 +2048,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 5,
-    "id_arbitro": 33,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -2072,7 +2072,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 7,
-    "id_arbitro": 33,
+    "id_arbitro": 34,
     "id_liga": 3
   },
   {
@@ -2084,7 +2084,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 9,
-    "id_arbitro": 33,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -2096,7 +2096,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 33,
+    "id_arbitro": 36,
     "id_liga": 3
   },
   {
@@ -2108,7 +2108,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 1,
-    "id_arbitro": 34,
+    "id_arbitro": 30,
     "id_liga": 3
   },
   {
@@ -2120,7 +2120,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 8,
-    "id_arbitro": 34,
+    "id_arbitro": 31,
     "id_liga": 3
   },
   {
@@ -2132,7 +2132,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 12,
-    "id_arbitro": 34,
+    "id_arbitro": 32,
     "id_liga": 3
   },
   {
@@ -2144,7 +2144,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 11,
-    "id_arbitro": 34,
+    "id_arbitro": 33,
     "id_liga": 3
   },
   {
@@ -2168,7 +2168,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 10,
-    "id_arbitro": 34,
+    "id_arbitro": 35,
     "id_liga": 3
   },
   {
@@ -2180,7 +2180,7 @@
     "goles_local": null,
     "goles_visitante": null,
     "id_estadio": 13,
-    "id_arbitro": 34,
+    "id_arbitro": 36,
     "id_liga": 3
   }
 ]

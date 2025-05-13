@@ -219,6 +219,30 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
         `;
         const values = [id_partido, id_jugador, id_equipo];
         await executeQuery(query, values);
-      }
+    }
+
+    async getPartidosByArbitro(id_arbitro: number): Promise<Partido[]> {
+        const query = `
+            SELECT
+                p.id_arbitro,
+                p.fecha_partido,
+                p.hora_partido,
+                el.nombre_equipo AS equipo_local,
+                el.escudo AS escudo_local,
+                ev.nombre_equipo AS equipo_visitante,
+                ev.escudo AS escudo_visitante,
+                e.ubicacion AS ubicacion_estadio,
+                p.jornada
+            FROM Partidos p
+            JOIN Equipos el ON p.equipo_local_id = el.id_equipo
+            JOIN Equipos ev ON p.equipo_visitante_id = ev.id_equipo
+            JOIN Estadios e ON p.id_estadio = e.id_estadio
+            WHERE p.id_arbitro = $1
+            ORDER BY p.jornada ASC;
+        `
+        const values = [id_arbitro];
+        const result = await executeQuery(query, values);
+        return result;
+    }
 
 }

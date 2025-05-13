@@ -263,6 +263,35 @@ router.get("/jugador/:id_usuario", async (req: Request, res: Response): Promise<
     }
 });
 
+
+// GET http://localhost:3000/api/usuarios/arbitro/id
+router.get("/arbitro/:id_usuario", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_usuario } = req.params;
+        const idUsuarioNum = parseInt(id_usuario);
+
+        if (isNaN(idUsuarioNum)) {
+            res.status(400).json({ message: "El ID de arbitro no es válido." });
+            return;
+        }
+
+        const usuario = await usuarioUseCases.getArbitroCompletoById(idUsuarioNum);
+
+        if (!usuario) {
+            res.status(404).json({ message: "Arbitro no encontrado" });
+            return;
+        }
+
+        res.status(200).json(usuario);
+    } catch (error) {
+        console.error("❌ Error al obtener arbitro por id:", error);
+        res.status(500).json({
+            message: error.message || "Error al obtener arbitro",
+        });
+    }
+});
+
+
 // GET http://localhost:3000/api/usuarios/equipo/:id_equipo
 router.get("/equipo/:id_equipo", esAutorizado, esEntrenador, async (req: Request, res: Response): Promise<void> => {
     try {
@@ -313,7 +342,7 @@ router.delete("/:id_usuario", esAutorizado, esEntrenador, async (req: Request, r
 
 
 // PUT http://localhost:3000/api/usuarios/jugador/:id_jugador
-router.put("/jugador/:id_jugador",esAutorizado,esEntrenador, async (req: Request, res: Response) => {
+router.put("/jugador/:id_jugador", esAutorizado, esEntrenador, async (req: Request, res: Response) => {
     try {
         const { id_jugador } = req.params;
         const { posicion, numero_camiseta, activo } = req.body;

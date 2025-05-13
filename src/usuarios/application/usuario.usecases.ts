@@ -43,6 +43,16 @@ export default class UsuarioUseCases {
         return user;
     }
 
+    async getArbitroCompletoById(id_usuario: number): Promise<Usuario | null> {
+        const user = await this.usuarioRepository.getArbitroCompletoById(id_usuario);
+        if (!user) {
+            console.log(`❌ No se encontró el arbitro con id: ${id_usuario}`);
+            throw new Error("Arbitro no encontrado");
+        }
+        console.log("✅ Arbitro encontrado:", user);
+        return user;
+    }
+
     async registroUsuario(usuario: Usuario): Promise<Usuario> {
         if (!usuario.nombre) {
             console.log("❌ Falta el nombre del usuario");
@@ -449,7 +459,7 @@ export default class UsuarioUseCases {
                     console.log("❌ Número de camiseta no válido:", numero_camiseta);
                     throw { message: "El número de camiseta debe estar entre 1 y 99" };
                 }
-    
+
                 const query = `
                     SELECT * FROM jugadores 
                     WHERE id_equipo = (SELECT id_equipo FROM jugadores WHERE id_jugador = $1)
@@ -458,13 +468,13 @@ export default class UsuarioUseCases {
                 `;
                 const values = [id_jugador, numero_camiseta];
                 const result = await executeQuery(query, values);
-    
+
                 if (result.length > 0) {
                     console.log("❌ El número de camiseta ya está en uso en este equipo");
                     throw { message: "El número de camiseta ya está en uso en este equipo" };
                 }
             }
-    
+
             await this.usuarioRepository.editarJugador(id_jugador, posicion, numero_camiseta, activo);
             console.log("✅ Jugador editado correctamente:", { id_jugador, posicion, numero_camiseta, activo });
         } catch (error) {

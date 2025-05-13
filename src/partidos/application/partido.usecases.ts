@@ -137,9 +137,9 @@ export default class PartidoUseCases {
     }
 
     async getAlineacionesByPartido(id_partido: number): Promise<AlineacionesPartido[]> {
-        if (!id_partido || isNaN(id_partido)) {
-            console.log("❌ Falta o es inválido el id del partido");
-            throw { message: "Falta o es inválido el id del partido" };
+        if (!id_partido) {
+            console.log("❌ Falta el id del partido");
+            throw { message: "Falta id del partido" };
         }
 
         const alineaciones = await this.partidoRepository.getAlineacionesByPartido(id_partido);
@@ -170,5 +170,21 @@ export default class PartidoUseCases {
             throw { message: "Ya hay 7 suplentes registrados" };
         }
         return await this.partidoRepository.registrarAlineacion(alineacion);
+    }
+
+    async getPartidosByArbitro(id_arbitro: number): Promise<Partido[]> {
+        if (!id_arbitro) {
+            console.log("❌ Falta el id del árbitro");
+            throw { message: "Falta id del árbitro" };
+        }
+
+        const partidos = await this.partidoRepository.getPartidosByArbitro(id_arbitro);
+
+        if (!partidos || partidos.length === 0) {
+            console.log(`❌ No se encontraron partidos para el árbitro ${id_arbitro}`);
+            throw { message: "No se encontraron partidos para este árbitro" };
+        }
+
+        return partidos;
     }
 }

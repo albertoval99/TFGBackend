@@ -76,7 +76,7 @@ router.put("/:id_partido", esAutorizado, esArbitro, async (req: Request, res: Re
             hora_partido === undefined &&
             id_estadio === undefined) {
             res.status(400).json({
-                message: "Debe proporcionar al menos un campo para actualizar (fecha_partido, hora_partido, o id_estadio)"
+                message: "Debe proporcionar al menos un campo para actualizar"
             });
             return;
         }
@@ -209,4 +209,32 @@ router.post("/alineaciones/registro", esAutorizado, esEntrenador, async (req: Re
         });
     }
 });
+
+
+// GET http://localhost:3000/api/partidos/arbitro/:id_arbitro
+router.get("/arbitro/:id_arbitro",esAutorizado,esArbitro, async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_arbitro } = req.params;
+        const idArbitroNum = parseInt(id_arbitro);
+
+        if (isNaN(idArbitroNum)) {
+            res.status(400).json({ message: "El ID del árbitro no es válido" });
+            return;
+        }
+
+        const partidos = await partidoUseCases.getPartidosByArbitro(idArbitroNum);
+
+        res.status(200).json({
+            message: "Partidos del árbitro obtenidos correctamente",
+            data: partidos
+        });
+
+    } catch (error: any) {
+        console.error("❌ Error al obtener los partidos del árbitro:", error);
+        res.status(404).json({
+            message: error.message || "Error al obtener los partidos del árbitro"
+        });
+    }
+});
+
 export default router;

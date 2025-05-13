@@ -8,6 +8,7 @@ export default interface UsuarioRepository {
     getUserByEmail(email: string): Promise<Usuario | null>;
     getEntrenadorById(id_usuario: number): Promise<Usuario | null>;
     getJugadorCompletoById(id_usuario: number): Promise<Usuario | null>;
+    getArbitroCompletoById(id_usuario: number): Promise<Usuario | null>;
     registrarUsuario(usuario: Usuario): Promise<Usuario>;
     registrarEntrenador(entrenador: Entrenador): Promise<Entrenador>;
     registrarArbitro(arbitro: Arbitro): Promise<Arbitro>;
