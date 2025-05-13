@@ -62,7 +62,7 @@ export default class EquipoRepositoryPostgres implements EquipoRepository {
     }
 
     async getAllEstadios(): Promise<Estadio[]> {
-        const query = "SELECT * FROM Estadios";
+        const query = 'SELECT * FROM Estadios';
         const result = await executeQuery(query);
         return result;
     }

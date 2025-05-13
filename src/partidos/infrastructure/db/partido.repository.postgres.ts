@@ -224,6 +224,7 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
     async getPartidosByArbitro(id_arbitro: number): Promise<Partido[]> {
         const query = `
             SELECT
+                p.id_partido,
                 p.id_arbitro,
                 p.fecha_partido,
                 p.hora_partido,

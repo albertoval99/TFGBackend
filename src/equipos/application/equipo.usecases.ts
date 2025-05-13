@@ -23,6 +23,7 @@ export default class EquipoUseCases {
 
     async getAllEstadios(): Promise<Estadio[]> {
         const estadios = await this.equipoRepository.getAllEstadios();
+        console.log("Estadios obtenidos en useCase:", estadios);
         if (estadios && estadios.length > 0) {
             return estadios;
         } else {

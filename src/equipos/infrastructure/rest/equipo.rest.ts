@@ -85,8 +85,8 @@ router.post(
 );
 
 
-// GET http://localhost:3000/api/equipos/estadios
-router.get("/estadios", async (req: Request, res: Response) => {
+// GET http://localhost:3000/api/equipos/estadios/getEstadios
+router.get("/estadios/getEstadios", async (req: Request, res: Response) => {
     try {
         const estadios = await equipoUseCases.getAllEstadios();
         res.status(200).json(estadios);
