@@ -2,6 +2,7 @@ import Equipo from '../../domain/Equipo';
 import EquipoRepository from '../../domain/equipo.repository';
 import { executeQuery } from '../../../context/db/postgres.db';
 import Estadio from '../../domain/Estadio';
+import Jugador from '../../../usuarios/domain/Jugador';
 export default class EquipoRepositoryPostgres implements EquipoRepository {
 
     async getEquipos(): Promise<Equipo[]> {
@@ -64,6 +65,25 @@ export default class EquipoRepositoryPostgres implements EquipoRepository {
     async getAllEstadios(): Promise<Estadio[]> {
         const query = 'SELECT * FROM Estadios';
         const result = await executeQuery(query);
+        return result;
+    }
+
+    async getJugadoresByEquipo(id_equipo: number): Promise<Jugador[]> {
+        const query = `
+            SELECT 
+                j.id_jugador,
+                u.nombre,
+                u.apellidos,
+                j.posicion,
+                j.numero_camiseta,
+                j.id_equipo
+            FROM Jugadores j
+            JOIN Usuarios u ON j.id_usuario = u.id_usuario
+            WHERE j.id_equipo = $1
+            ORDER BY numero_camiseta
+        `;
+        const values = [id_equipo];
+        const result = await executeQuery(query, values);
         return result;
     }
 }

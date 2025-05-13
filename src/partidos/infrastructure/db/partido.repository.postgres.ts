@@ -229,6 +229,8 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
                 p.id_arbitro,
                 p.fecha_partido,
                 p.hora_partido,
+                p.equipo_local_id,  
+                p.equipo_visitante_id,
                 el.nombre_equipo AS equipo_local,
                 el.escudo AS escudo_local,
                 ev.nombre_equipo AS equipo_visitante,

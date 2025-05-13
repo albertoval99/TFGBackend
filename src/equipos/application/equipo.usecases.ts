@@ -1,4 +1,5 @@
 import LigaRepository from "../../ligas/domain/liga.repository";
+import Jugador from "../../usuarios/domain/Jugador";
 import Equipo from "../domain/Equipo";
 import EquipoRepository from "../domain/equipo.repository";
 import Estadio from "../domain/Estadio";
@@ -68,5 +69,27 @@ export default class EquipoUseCases {
         const equipoRegistrado = await this.equipoRepository.registrarEquipo(equipo);
 
         return equipoRegistrado;
+    }
+
+    async getJugadoresByEquipo(id_equipo: number): Promise<Jugador[]> {
+        if (!id_equipo || isNaN(id_equipo)) {
+            console.log("❌ ID de equipo inválido:", id_equipo);
+            throw { message: "ID de equipo inválido" };
+        }
+
+        const equipo = await this.equipoRepository.getEquipoById(id_equipo);
+        if (!equipo) {
+            console.log(`❌ No se encontró el equipo con id: ${id_equipo}`);
+            throw { message: "Equipo no encontrado" };
+        }
+
+        const jugadores = await this.equipoRepository.getJugadoresByEquipo(id_equipo);
+
+        if (jugadores && jugadores.length > 0) {
+            return jugadores;
+        } else {
+            console.log(`ℹ️ No se encontraron jugadores para el equipo con id: ${id_equipo}`);
+            return []; // Devuelve array vacío en lugar de error si no hay jugadores
+        }
     }
 }

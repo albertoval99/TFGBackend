@@ -96,4 +96,27 @@ router.get("/estadios/getEstadios", async (req: Request, res: Response) => {
     }
 });
 
+// GET  http://localhost:3000/api/equipos/:id_equipo/jugadores
+router.get("/:id_equipo/jugadores", async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { id_equipo } = req.params;
+            const idEquipoNum = parseInt(id_equipo);
+
+            if (isNaN(idEquipoNum)) {
+                res.status(400).json({ message: "El ID del equipo no es válido." });
+                return;
+            }
+
+            const jugadores = await equipoUseCases.getJugadoresByEquipo(idEquipoNum);
+
+            res.status(200).json(jugadores);
+        } catch (error) {
+            console.error("❌ Error al obtener jugadores del equipo:", error);
+            res.status(error.status || 500).json({
+                message: error.message || "Error al obtener jugadores del equipo"
+            });
+        }
+    }
+);
+
 export default router
