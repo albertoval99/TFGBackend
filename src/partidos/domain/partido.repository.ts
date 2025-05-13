@@ -1,5 +1,6 @@
-import Partido from "./Partido";
+import Partido from './Partido';
 import AlineacionPartido from './AlineacionesPartido';
+import EstadisticasPartido from './EstadisticasPartido';
 
 export default interface PartidoRepository {
     getPartidoById(id_partido: number): Promise<Partido | null>;
@@ -13,5 +14,6 @@ export default interface PartidoRepository {
     contarSuplentes(id_partido: number, id_equipo: number): Promise<number>;
     borrarAlineacion(id_partido: number, id_jugador: number, id_equipo: number): Promise<void>;
     getPartidosByArbitro(id_arbitro: number): Promise<Partido[]>;
+    registrarEstadisticas(partido:Partido,estadisticas:EstadisticasPartido[]):Promise<void>;
 
 }

@@ -43,3 +43,8 @@ export const executeQuery = async (sql: string, data?: any[]) => {
   }
 };
 
+export const getClient = async () => {
+  const client = await pool.connect();
+  return client;
+};
+

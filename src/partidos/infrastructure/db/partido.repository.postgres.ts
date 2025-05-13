@@ -1,5 +1,6 @@
-import { executeQuery } from "../../../context/db/postgres.db";
+import { executeQuery, getClient } from "../../../context/db/postgres.db";
 import AlineacionesPartido from "../../domain/AlineacionesPartido";
+import EstadisticasPartido from "../../domain/EstadisticasPartido";
 import Partido from "../../domain/Partido";
 import PartidoRepository from "../../domain/partido.repository";
 
@@ -246,4 +247,50 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
         return result;
     }
 
+    //Tengo que hacer el getClient para poder hacer la transaccion
+    async registrarEstadisticas(partido: Partido, estadisticas: EstadisticasPartido[]): Promise<void> {
+        const client = await getClient(); // Obtener cliente para transacción
+        try {
+            await client.query('BEGIN'); // Iniciar transacción
+
+            // Actualizar goles totales del partido
+            await client.query(
+                `UPDATE Partidos 
+             SET goles_local = $1, goles_visitante = $2 
+             WHERE id_partido = $3`,
+                [partido.goles_local, partido.goles_visitante, partido.id_partido]
+            );
+
+            // Insertar o actualizar estadísticas individuales de cada jugador
+            for (const est of estadisticas) {
+                await client.query(
+                    `INSERT INTO Estadisticas_Individuales
+                (id_jugador, id_partido, goles, tarjetas_amarillas, tarjetas_rojas, mejor_jugador, titularidades)
+               VALUES ($1, $2, $3, $4, $5, $6, $7)
+               ON CONFLICT (id_jugador, id_partido) DO UPDATE SET
+                 goles = EXCLUDED.goles,
+                 tarjetas_amarillas = EXCLUDED.tarjetas_amarillas,
+                 tarjetas_rojas = EXCLUDED.tarjetas_rojas,
+                 mejor_jugador = EXCLUDED.mejor_jugador,
+                 titularidades = EXCLUDED.titularidades`,
+                    [
+                        est.id_jugador,
+                        partido.id_partido,
+                        est.goles,
+                        est.tarjetas_amarillas,
+                        est.tarjetas_rojas,
+                        est.mejor_jugador,
+                        est.titularidades,
+                    ]
+                );
+            }
+
+            await client.query('COMMIT'); // Confirmar transacción
+        } catch (error) {
+            await client.query('ROLLBACK'); // Revertir cambios si hay error
+            throw error; // Propagar error para manejo externo
+        } finally {
+            client.release(); // Liberar cliente para que vuelva al pool
+        }
+    }
 }

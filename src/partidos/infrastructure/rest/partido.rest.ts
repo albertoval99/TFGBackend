@@ -3,6 +3,7 @@ import express, { Router, Request, Response } from "express";
 import { esAutorizado, esAdministrador, esEntrenador, createToken, esArbitro, esJugador } from "../../../context/security/auth";
 import PartidoUseCases from "../../application/partido.usecases";
 import PartidoRepositoryPostgres from "../db/partido.repository.postgres";
+import Partido from "../../domain/Partido";
 
 
 const router = express.Router();
@@ -212,7 +213,7 @@ router.post("/alineaciones/registro", esAutorizado, esEntrenador, async (req: Re
 
 
 // GET http://localhost:3000/api/partidos/arbitro/:id_arbitro
-router.get("/arbitro/:id_arbitro",esAutorizado,esArbitro, async (req: Request, res: Response): Promise<void> => {
+router.get("/arbitro/:id_arbitro", esAutorizado, esArbitro, async (req: Request, res: Response): Promise<void> => {
     try {
         const { id_arbitro } = req.params;
         const idArbitroNum = parseInt(id_arbitro);
@@ -237,4 +238,30 @@ router.get("/arbitro/:id_arbitro",esAutorizado,esArbitro, async (req: Request, r
     }
 });
 
+// PUT http://localhost:3000/api/partidos/:id_partido/registrarEstadisticas
+router.put("/:id_partido/registrarEstadisticas", esAutorizado, esArbitro, async (req: Request, res: Response): Promise<void> => {
+    try {
+        const id_partido = parseInt(req.params.id_partido);
+        const { goles_local, goles_visitante, estadisticas_individuales } = req.body;
+
+        if (isNaN(id_partido)) {
+            res.status(400).json({ message: "El ID del partido no es válido" });
+            return;
+        }
+
+        if (goles_local == null || goles_visitante == null || !Array.isArray(estadisticas_individuales) || estadisticas_individuales.length === 0) {
+            res.status(400).json({ message: "Datos incompletos para registrar estadísticas" });
+            return;
+        }
+
+        const partido = { id_partido, goles_local, goles_visitante };
+
+        await partidoUseCases.registrarEstadisticas(partido, estadisticas_individuales);
+
+        res.status(200).json({ message: "Estadísticas registradas correctamente" });
+    } catch (error: any) {
+        console.error("❌ Error al registrar estadísticas:", error);
+        res.status(500).json({ message: error.message || "Error al registrar estadísticas" });
+    }
+});
 export default router;

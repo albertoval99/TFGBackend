@@ -1,4 +1,5 @@
 import AlineacionesPartido from "../domain/AlineacionesPartido";
+import EstadisticasPartido from "../domain/EstadisticasPartido";
 import Partido from "../domain/Partido";
 import PartidoRepository from "../domain/partido.repository";
 
@@ -186,5 +187,29 @@ export default class PartidoUseCases {
         }
 
         return partidos;
+    }
+
+    async registrarEstadisticas(partido: Partido, estadisticas: EstadisticasPartido[]): Promise<void> {
+        if (!partido || !partido.id_partido) {
+            console.log("❌ Falta el partido o su id");
+            throw { message: "Falta el partido o su id" };
+        }
+        if (partido.goles_local == null || partido.goles_visitante == null) {
+            console.log("❌ Faltan goles del partido");
+            throw { message: "Faltan goles del partido" };
+        }
+        if (!Array.isArray(estadisticas) || estadisticas.length === 0) {
+            console.log("❌ Faltan estadísticas individuales");
+            throw { message: "Faltan estadísticas individuales" };
+        }
+
+        for (const est of estadisticas) {
+            if (est.goles < 0 || est.tarjetas_amarillas < 0 || est.tarjetas_rojas < 0) {
+                console.log("❌ Valores negativos en estadísticas");
+                throw { message: "Los valores de goles y tarjetas no pueden ser negativos" };
+            }
+        }
+
+        await this.partidoRepository.registrarEstadisticas(partido, estadisticas);
     }
 }
