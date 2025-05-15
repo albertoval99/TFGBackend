@@ -1,5 +1,7 @@
-import AlineacionesPartido from "../domain/AlineacionesPartido";
-import EstadisticasPartido from "../domain/EstadisticasPartido";
+
+import { AlineacionPartido } from "../domain/AlineacionPartido";
+import { EstadisticasJugador } from "../domain/EstadisticasJugador";
+import { EstadisticasPartidoCompleto } from "../domain/EstadisticasPartidoCompleto";
 import Partido from "../domain/Partido";
 import PartidoRepository from "../domain/partido.repository";
 
@@ -137,7 +139,7 @@ export default class PartidoUseCases {
         return partidos;
     }
 
-    async getAlineacionesByPartido(id_partido: number): Promise<AlineacionesPartido[]> {
+    async getAlineacionesByPartido(id_partido: number): Promise<AlineacionPartido[]> {
         if (!id_partido) {
             console.log("❌ Falta el id del partido");
             throw { message: "Falta id del partido" };
@@ -152,7 +154,7 @@ export default class PartidoUseCases {
 
         return alineaciones;
     }
-    async registrarAlineacion(alineacion: AlineacionesPartido): Promise<AlineacionesPartido> {
+    async registrarAlineacion(alineacion: AlineacionPartido): Promise<AlineacionPartido> {
         if (!alineacion.id_partido) throw { message: "Falta el id del partido" };
         if (!alineacion.id_jugador) throw { message: "Falta el id del jugador" };
         if (alineacion.es_titular === undefined) throw { message: "Falta 'es_titular'" };
@@ -189,7 +191,7 @@ export default class PartidoUseCases {
         return partidos;
     }
 
-    async registrarEstadisticas(partido: Partido, estadisticas: EstadisticasPartido[]): Promise<void> {
+    async registrarEstadisticas(partido: Partido, estadisticas: EstadisticasJugador[]): Promise<void> {
         if (!partido || !partido.id_partido) {
             console.log("❌ Falta el partido o su id");
             throw { message: "Falta el partido o su id" };
@@ -211,5 +213,17 @@ export default class PartidoUseCases {
         }
 
         await this.partidoRepository.registrarEstadisticas(partido, estadisticas);
+    }
+
+    async getEstadisticasByPartido(id_partido: number): Promise<EstadisticasPartidoCompleto> {
+        if (!id_partido) {
+            console.log("❌ Falta id del partido");
+            throw { message: "Falta id del partido" };
+        }
+
+        const partidoCompleto = await this.partidoRepository.getEstadisticasPartido(id_partido);
+
+        return partidoCompleto;
+
     }
 }

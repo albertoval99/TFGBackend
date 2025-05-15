@@ -1,6 +1,7 @@
-import { executeQuery, getClient } from "../../../context/db/postgres.db";
-import AlineacionesPartido from "../../domain/AlineacionesPartido";
-import EstadisticasPartido from "../../domain/EstadisticasPartido";
+import { executeQuery } from "../../../context/db/postgres.db";
+import { AlineacionPartido } from "../../domain/AlineacionPartido";
+import { EstadisticasJugador } from "../../domain/EstadisticasJugador";
+import { EstadisticasPartidoCompleto } from "../../domain/EstadisticasPartidoCompleto";
 import Partido from "../../domain/Partido";
 import PartidoRepository from "../../domain/partido.repository";
 
@@ -147,7 +148,7 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
         return rows;
     }
 
-    async registrarAlineacion(alineacion: AlineacionesPartido): Promise<AlineacionesPartido> {
+    async registrarAlineacion(alineacion: AlineacionPartido): Promise<AlineacionPartido> {
         const query = `
           INSERT INTO alineaciones
             (id_partido, id_jugador, id_equipo, es_titular)
@@ -165,7 +166,7 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
         return rows[0];
     }
 
-    async getAlineacionesByPartido(id_partido: number): Promise<AlineacionesPartido[]> {
+    async getAlineacionesByPartido(id_partido: number): Promise<AlineacionPartido[]> {
         const sql = `
           SELECT
             a.id_alineacion,
@@ -249,50 +250,136 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
         return result;
     }
 
-    //Tengo que hacer el getClient para poder hacer la transaccion
-    async registrarEstadisticas(partido: Partido, estadisticas: EstadisticasPartido[]): Promise<void> {
-        const client = await getClient(); // Obtener cliente para transacción
-        try {
-            await client.query('BEGIN'); // Iniciar transacción
 
-            // Actualizar goles totales del partido
-            await client.query(
-                `UPDATE Partidos 
-             SET goles_local = $1, goles_visitante = $2 
-             WHERE id_partido = $3`,
-                [partido.goles_local, partido.goles_visitante, partido.id_partido]
-            );
+    async registrarEstadisticas(partido: Partido, estadisticas: EstadisticasJugador[]): Promise<void> {
+        // 1) Actualizar goles del partido
+        const queryUpdate = `
+          UPDATE Partidos
+             SET goles_local     = $1,
+                 goles_visitante = $2
+           WHERE id_partido = $3
+        `;
+        const valuesUpdate = [
+            partido.goles_local,
+            partido.goles_visitante,
+            partido.id_partido
+        ];
+        await executeQuery(queryUpdate, valuesUpdate);
 
-            // Insertar o actualizar estadísticas individuales de cada jugador
-            for (const est of estadisticas) {
-                await client.query(
-                    `INSERT INTO Estadisticas_Individuales
-                (id_jugador, id_partido, goles, tarjetas_amarillas, tarjetas_rojas, mejor_jugador, titularidades)
-               VALUES ($1, $2, $3, $4, $5, $6, $7)
-               ON CONFLICT (id_jugador, id_partido) DO UPDATE SET
-                 goles = EXCLUDED.goles,
-                 tarjetas_amarillas = EXCLUDED.tarjetas_amarillas,
-                 tarjetas_rojas = EXCLUDED.tarjetas_rojas,
-                 mejor_jugador = EXCLUDED.mejor_jugador,
-                 titularidades = EXCLUDED.titularidades`,
-                    [
-                        est.id_jugador,
-                        partido.id_partido,
-                        est.goles,
-                        est.tarjetas_amarillas,
-                        est.tarjetas_rojas,
-                        est.mejor_jugador,
-                        est.titularidades,
-                    ]
-                );
-            }
+        // 2) Borrar las estadísticas antiguas de ese partido
+        const queryDelete = `
+          DELETE FROM Estadisticas_Individuales
+           WHERE id_partido = $1
+        `;
+        const valuesDelete = [partido.id_partido];
+        await executeQuery(queryDelete, valuesDelete);
 
-            await client.query('COMMIT'); // Confirmar transacción
-        } catch (error) {
-            await client.query('ROLLBACK'); // Revertir cambios si hay error
-            throw error; // Propagar error para manejo externo
-        } finally {
-            client.release(); // Liberar cliente para que vuelva al pool
+        // 3) Insertar todas las nuevas estadísticas
+        for (const est of estadisticas) {
+            const queryInsert = `
+            INSERT INTO Estadisticas_Individuales
+              (id_jugador, id_partido, goles, tarjetas_amarillas, tarjetas_rojas, mejor_jugador, titularidades)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+          `;
+            const valuesInsert = [
+                est.id_jugador,
+                partido.id_partido,
+                est.goles,
+                est.tarjetas_amarillas,
+                est.tarjetas_rojas,
+                est.mejor_jugador,
+                est.titularidades
+            ];
+            await executeQuery(queryInsert, valuesInsert);
         }
+    }
+
+
+
+    async getEstadisticasPartido(id_partido: number): Promise<EstadisticasPartidoCompleto | null> {
+        // 1) Datos básicos del partido
+        const queryPartido = `
+          SELECT
+            p.id_partido,
+            p.fecha_partido,
+            p.hora_partido,
+            p.goles_local,
+            p.goles_visitante,
+            p.jornada,
+            el.id_equipo            AS equipo_local_id,
+            el.nombre_equipo        AS equipo_local_nombre,
+            el.escudo               AS equipo_local_escudo,
+            ev.id_equipo            AS equipo_visitante_id,
+            ev.nombre_equipo        AS equipo_visitante_nombre,
+            ev.escudo               AS equipo_visitante_escudo,
+            es.id_estadio,
+            es.nombre               AS estadio_nombre,
+            es.ubicacion            AS estadio_ubicacion,
+            ua.id_usuario           AS arbitro_usuario_id,
+            ua.nombre               AS arbitro_nombre,
+            ua.apellidos            AS arbitro_apellidos
+          FROM Partidos p
+          JOIN Equipos el ON el.id_equipo       = p.equipo_local_id
+          JOIN Equipos ev ON ev.id_equipo       = p.equipo_visitante_id
+          JOIN Estadios es ON es.id_estadio     = p.id_estadio
+          LEFT JOIN Arbitros a ON a.id_arbitro   = p.id_arbitro
+          LEFT JOIN Usuarios ua ON ua.id_usuario = a.id_usuario
+          WHERE p.id_partido = $1
+        `;
+        const valuesPartido = [id_partido];
+        const rowsPartido = await executeQuery(queryPartido, valuesPartido);
+        if (rowsPartido.length === 0) return null;
+        const partido = rowsPartido[0] as Partido;
+
+        // 2) Alineaciones Locales
+        const queryAlineacion = `
+          SELECT
+            a.id_jugador,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta AS dorsal,
+            j.posicion,
+            a.es_titular
+          FROM Alineaciones a
+          JOIN Jugadores j ON j.id_jugador = a.id_jugador
+          JOIN Usuarios u  ON u.id_usuario  = j.id_usuario
+          WHERE a.id_partido = $1
+            AND a.id_equipo  = $2
+          ORDER BY a.es_titular DESC, j.numero_camiseta
+        `;
+        const valuesAlineLocal = [id_partido, partido.equipo_local_id];
+      const alineacionesLocal = await executeQuery(queryAlineacion, valuesAlineLocal) as AlineacionPartido[];
+
+        // 3) Alineaciones Visitantes
+        const valuesAlineVisi = [id_partido, partido.equipo_visitante_id];
+      const alineacionesVisitante = await executeQuery(queryAlineacion, valuesAlineVisi) as AlineacionPartido[];
+
+        // 4) Estadísticas individuales
+        const queryStats = `
+          SELECT
+            ei.id_jugador,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta AS dorsal,
+            ei.goles,
+            ei.tarjetas_amarillas,
+            ei.tarjetas_rojas,
+            ei.mejor_jugador
+          FROM Estadisticas_Individuales ei
+          JOIN Jugadores j ON j.id_jugador = ei.id_jugador
+          JOIN Usuarios u  ON u.id_usuario  = j.id_usuario
+          WHERE ei.id_partido = $1
+            AND (ei.goles > 0 OR ei.tarjetas_amarillas > 0 OR ei.tarjetas_rojas > 0 OR ei.mejor_jugador)
+          ORDER BY ei.mejor_jugador DESC, ei.goles DESC
+        `;
+        const valuesStats = [id_partido];
+        const estadisticas = await executeQuery(queryStats, valuesStats) as EstadisticasPartidoCompleto["estadisticas"];
+
+        return {
+            partido,
+            alineacionesLocal,
+            alineacionesVisitante,
+            estadisticas
+        };
     }
 }

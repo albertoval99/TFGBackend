@@ -264,4 +264,32 @@ router.put("/:id_partido/registrarEstadisticas", esAutorizado, esArbitro, async 
         res.status(500).json({ message: error.message || "Error al registrar estadísticas" });
     }
 });
+
+
+// GET http://localhost:3000/api/partidos/:id_partido/estadisticas
+router.get("/:id_partido/estadisticas", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id_partido } = req.params;
+        const idPartidoNum = parseInt(id_partido);
+
+        if (isNaN(idPartidoNum)) {
+            console.log("❌ ID de partido no válido");
+            res.status(400).json({ message: "El ID del partido no es válido." });
+        }
+
+        const estadisticas = await partidoUseCases.getEstadisticasByPartido(idPartidoNum);
+
+        res.status(200).json({
+            message: "Estadísticas del partido obtenidas correctamente",
+            data: estadisticas
+        });
+    } catch (error: any) {
+        console.error("❌ Error al obtener las estadísticas del partido:", error);
+
+        const statusCode = error.statusCode || 500;
+        const message = error.message || "Error al obtener las estadísticas del partido";
+
+        res.status(statusCode).json({ message });
+    }
+});
 export default router;
