@@ -7,8 +7,8 @@ import PartidoRepository from "../../domain/partido.repository";
 
 export default class PartidoRepositoryPostgres implements PartidoRepository {
 
-    async getPartidoById(id_partido: number): Promise<Partido | null> {
-        const query = `
+  async getPartidoById(id_partido: number): Promise<Partido | null> {
+    const query = `
                 SELECT 
                     p.*,
                     el.nombre_equipo AS equipo_local,
@@ -25,14 +25,14 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
                 LEFT JOIN Usuarios u ON a.id_usuario = u.id_usuario
                 WHERE p.id_partido = $1
             `;
-        const values = [id_partido];
-        const rows = await executeQuery(query, values);
-        if (rows.length === 0) return null;
-        return rows[0];
-    }
+    const values = [id_partido];
+    const rows = await executeQuery(query, values);
+    if (rows.length === 0) return null;
+    return rows[0];
+  }
 
-    async getPartidosByJornada(id_liga: number, jornada: number): Promise<Partido[]> {
-        const query = `
+  async getPartidosByJornada(id_liga: number, jornada: number): Promise<Partido[]> {
+    const query = `
             SELECT 
                 p.jornada,
                 p.goles_local,
@@ -54,43 +54,43 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
             WHERE p.id_liga = $1 AND p.jornada = $2
             ORDER BY p.hora_partido ASC
         `;
-        const values = [id_liga, jornada];
-        const rows = await executeQuery(query, values);
-        return rows;
+    const values = [id_liga, jornada];
+    const rows = await executeQuery(query, values);
+    return rows;
+  }
+
+  async updatePartido(id_partido: number, fecha_partido: string | null, hora_partido: string | null, id_estadio: number | null): Promise<Partido> {
+    let updateFields: string[] = [];
+    let values: any[] = [id_partido];
+    let paramCount = 1;
+
+    if (fecha_partido !== null) {
+      updateFields.push(`fecha_partido = $${++paramCount}`);
+      values.push(fecha_partido);
+    }
+    if (hora_partido !== null) {
+      updateFields.push(`hora_partido = $${++paramCount}`);
+      values.push(hora_partido);
+    }
+    if (id_estadio !== null) {
+      updateFields.push(`id_estadio = $${++paramCount}`);
+      values.push(id_estadio);
     }
 
-    async updatePartido(id_partido: number, fecha_partido: string | null, hora_partido: string | null, id_estadio: number | null): Promise<Partido> {
-        let updateFields: string[] = [];
-        let values: any[] = [id_partido];
-        let paramCount = 1;
-
-        if (fecha_partido !== null) {
-            updateFields.push(`fecha_partido = $${++paramCount}`);
-            values.push(fecha_partido);
-        }
-        if (hora_partido !== null) {
-            updateFields.push(`hora_partido = $${++paramCount}`);
-            values.push(hora_partido);
-        }
-        if (id_estadio !== null) {
-            updateFields.push(`id_estadio = $${++paramCount}`);
-            values.push(id_estadio);
-        }
-
-        const query = `
+    const query = `
             UPDATE Partidos 
             SET ${updateFields.join(', ')}
             WHERE id_partido = $1
             RETURNING *
         `;
 
-        const result = await executeQuery(query, values);
-        return result[0];
-    }
+    const result = await executeQuery(query, values);
+    return result[0];
+  }
 
-    async getPartidosByLiga(id_liga: number): Promise<Partido[]> {
+  async getPartidosByLiga(id_liga: number): Promise<Partido[]> {
 
-        const query = `
+    const query = `
             SELECT 
                 p.jornada,
                 p.goles_local,
@@ -111,14 +111,14 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
             WHERE p.id_liga = $1
             ORDER BY p.jornada ASC
         `;
-        const values = [id_liga];
-        const rows = await executeQuery(query, values);
-        return rows;
-    }
+    const values = [id_liga];
+    const rows = await executeQuery(query, values);
+    return rows;
+  }
 
-    async getPartidosByEquipo(id_equipo: number): Promise<Partido[]> {
+  async getPartidosByEquipo(id_equipo: number): Promise<Partido[]> {
 
-        const query = `
+    const query = `
             SELECT
                 p.id_partido, 
                 p.jornada,
@@ -143,31 +143,31 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
             WHERE p.equipo_local_id = $1 OR p.equipo_visitante_id = $1
             ORDER BY p.fecha_partido
         `;
-        const values = [id_equipo];
-        const rows = await executeQuery(query, values);
-        return rows;
-    }
+    const values = [id_equipo];
+    const rows = await executeQuery(query, values);
+    return rows;
+  }
 
-    async registrarAlineacion(alineacion: AlineacionPartido): Promise<AlineacionPartido> {
-        const query = `
+  async registrarAlineacion(alineacion: AlineacionPartido): Promise<AlineacionPartido> {
+    const query = `
           INSERT INTO alineaciones
             (id_partido, id_jugador, id_equipo, es_titular)
           VALUES ($1, $2, $3, $4)
           RETURNING *;
         `;
 
-        const values = [
-            alineacion.id_partido,
-            alineacion.id_jugador,
-            alineacion.id_equipo,
-            alineacion.es_titular,
-        ];
-        const rows = await executeQuery(query, values);
-        return rows[0];
-    }
+    const values = [
+      alineacion.id_partido,
+      alineacion.id_jugador,
+      alineacion.id_equipo,
+      alineacion.es_titular,
+    ];
+    const rows = await executeQuery(query, values);
+    return rows[0];
+  }
 
-    async getAlineacionesByPartido(id_partido: number): Promise<AlineacionPartido[]> {
-        const sql = `
+  async getAlineacionesByPartido(id_partido: number): Promise<AlineacionPartido[]> {
+    const sql = `
           SELECT
             a.id_alineacion,
             a.id_partido,
@@ -185,46 +185,46 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
           ORDER BY a.id_equipo, a.es_titular DESC, a.id_alineacion ASC;
         `;
 
-        const values = [id_partido];
-        const result = await executeQuery(sql, values);
-        return result;
-    }
+    const values = [id_partido];
+    const result = await executeQuery(sql, values);
+    return result;
+  }
 
-    async contarTitulares(id_partido: number, id_equipo: number): Promise<number> {
-        const query = `
+  async contarTitulares(id_partido: number, id_equipo: number): Promise<number> {
+    const query = `
           SELECT COUNT(*) AS count
           FROM alineaciones
           WHERE id_partido = $1 AND id_equipo = $2 AND es_titular = true
         `;
-        const values = [id_partido, id_equipo];
-        const result = await executeQuery(query, values);
-        return Number(result[0]?.count || 0);
-    }
+    const values = [id_partido, id_equipo];
+    const result = await executeQuery(query, values);
+    return Number(result[0]?.count || 0);
+  }
 
-    // Cuenta suplentes para un partido y equipo
-    async contarSuplentes(id_partido: number, id_equipo: number): Promise<number> {
-        const query = `
+  // Cuenta suplentes para un partido y equipo
+  async contarSuplentes(id_partido: number, id_equipo: number): Promise<number> {
+    const query = `
           SELECT COUNT(*) AS count
           FROM alineaciones
           WHERE id_partido = $1 AND id_equipo = $2 AND es_titular = false
         `;
-        const values = [id_partido, id_equipo];
-        const result = await executeQuery(query, values);
-        return Number(result[0]?.count || 0);
-    }
+    const values = [id_partido, id_equipo];
+    const result = await executeQuery(query, values);
+    return Number(result[0]?.count || 0);
+  }
 
-    // Borra alineación previa de un jugador en un partido y equipo
-    async borrarAlineacion(id_partido: number, id_jugador: number, id_equipo: number): Promise<void> {
-        const query = `
+  // Borra alineación previa de un jugador en un partido y equipo
+  async borrarAlineacion(id_partido: number, id_jugador: number, id_equipo: number): Promise<void> {
+    const query = `
           DELETE FROM alineaciones
           WHERE id_partido = $1 AND id_jugador = $2 AND id_equipo = $3
         `;
-        const values = [id_partido, id_jugador, id_equipo];
-        await executeQuery(query, values);
-    }
+    const values = [id_partido, id_jugador, id_equipo];
+    await executeQuery(query, values);
+  }
 
-    async getPartidosByArbitro(id_arbitro: number): Promise<Partido[]> {
-        const query = `
+  async getPartidosByArbitro(id_arbitro: number): Promise<Partido[]> {
+    const query = `
             SELECT
                 p.id_partido,
                 p.id_arbitro,
@@ -245,60 +245,59 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
             WHERE p.id_arbitro = $1
             ORDER BY p.jornada ASC;
         `
-        const values = [id_arbitro];
-        const result = await executeQuery(query, values);
-        return result;
-    }
+    const values = [id_arbitro];
+    const result = await executeQuery(query, values);
+    return result;
+  }
 
 
-    async registrarEstadisticas(partido: Partido, estadisticas: EstadisticasJugador[]): Promise<void> {
-        // 1) Actualizar goles del partido
-        const queryUpdate = `
+  async registrarEstadisticas(partido: Partido, estadisticas: EstadisticasJugador[]): Promise<void> {
+    // 1) Actualizar goles del partido
+    const queryUpdate = `
           UPDATE Partidos
              SET goles_local     = $1,
                  goles_visitante = $2
            WHERE id_partido = $3
         `;
-        const valuesUpdate = [
-            partido.goles_local,
-            partido.goles_visitante,
-            partido.id_partido
-        ];
-        await executeQuery(queryUpdate, valuesUpdate);
+    const valuesUpdate = [
+      partido.goles_local,
+      partido.goles_visitante,
+      partido.id_partido
+    ];
+    await executeQuery(queryUpdate, valuesUpdate);
 
-        // 2) Borrar las estadísticas antiguas de ese partido
-        const queryDelete = `
+    // 2) Borrar las estadísticas antiguas de ese partido
+    const queryDelete = `
           DELETE FROM Estadisticas_Individuales
            WHERE id_partido = $1
         `;
-        const valuesDelete = [partido.id_partido];
-        await executeQuery(queryDelete, valuesDelete);
+    const valuesDelete = [partido.id_partido];
+    await executeQuery(queryDelete, valuesDelete);
 
-        // 3) Insertar todas las nuevas estadísticas
-        for (const est of estadisticas) {
-            const queryInsert = `
+    // 3) Insertar todas las nuevas estadísticas
+    for (const est of estadisticas) {
+      const queryInsert = `
             INSERT INTO Estadisticas_Individuales
               (id_jugador, id_partido, goles, tarjetas_amarillas, tarjetas_rojas, mejor_jugador, titularidades)
             VALUES ($1, $2, $3, $4, $5, $6, $7)
           `;
-            const valuesInsert = [
-                est.id_jugador,
-                partido.id_partido,
-                est.goles,
-                est.tarjetas_amarillas,
-                est.tarjetas_rojas,
-                est.mejor_jugador,
-                est.titularidades
-            ];
-            await executeQuery(queryInsert, valuesInsert);
-        }
+      const valuesInsert = [
+        est.id_jugador,
+        partido.id_partido,
+        est.goles,
+        est.tarjetas_amarillas,
+        est.tarjetas_rojas,
+        est.mejor_jugador,
+        est.titularidades
+      ];
+      await executeQuery(queryInsert, valuesInsert);
     }
+  }
 
 
 
-    async getEstadisticasPartido(id_partido: number): Promise<EstadisticasPartidoCompleto | null> {
-        // 1) Datos básicos del partido
-        const queryPartido = `
+  async getEstadisticasPartido(id_partido: number): Promise<EstadisticasPartidoCompleto | null> {
+    const queryPartido = `
           SELECT
             p.id_partido,
             p.fecha_partido,
@@ -326,13 +325,13 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
           LEFT JOIN Usuarios ua ON ua.id_usuario = a.id_usuario
           WHERE p.id_partido = $1
         `;
-        const valuesPartido = [id_partido];
-        const rowsPartido = await executeQuery(queryPartido, valuesPartido);
-        if (rowsPartido.length === 0) return null;
-        const partido = rowsPartido[0] as Partido;
+    const valuesPartido = [id_partido];
+    const rowsPartido = await executeQuery(queryPartido, valuesPartido);
+    if (rowsPartido.length === 0) return null;
+    const partido = rowsPartido[0] as Partido;
 
-        // 2) Alineaciones Locales
-        const queryAlineacion = `
+    // 2) Alineaciones Locales
+    const queryAlineacion = `
           SELECT
             a.id_jugador,
             u.nombre,
@@ -347,15 +346,15 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
             AND a.id_equipo  = $2
           ORDER BY a.es_titular DESC, j.numero_camiseta
         `;
-        const valuesAlineLocal = [id_partido, partido.equipo_local_id];
-      const alineacionesLocal = await executeQuery(queryAlineacion, valuesAlineLocal) as AlineacionPartido[];
+    const valuesAlineLocal = [id_partido, partido.equipo_local_id];
+    const alineacionesLocal = await executeQuery(queryAlineacion, valuesAlineLocal) as AlineacionPartido[];
 
-        // 3) Alineaciones Visitantes
-        const valuesAlineVisi = [id_partido, partido.equipo_visitante_id];
-      const alineacionesVisitante = await executeQuery(queryAlineacion, valuesAlineVisi) as AlineacionPartido[];
+    // 3) Alineaciones Visitantes
+    const valuesAlineVisi = [id_partido, partido.equipo_visitante_id];
+    const alineacionesVisitante = await executeQuery(queryAlineacion, valuesAlineVisi) as AlineacionPartido[];
 
-        // 4) Estadísticas individuales
-        const queryStats = `
+    // 4) Estadísticas individuales
+    const queryStats = `
           SELECT
             ei.id_jugador,
             u.nombre,
@@ -372,14 +371,14 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
             AND (ei.goles > 0 OR ei.tarjetas_amarillas > 0 OR ei.tarjetas_rojas > 0 OR ei.mejor_jugador)
           ORDER BY ei.mejor_jugador DESC, ei.goles DESC
         `;
-        const valuesStats = [id_partido];
-        const estadisticas = await executeQuery(queryStats, valuesStats) as EstadisticasPartidoCompleto["estadisticas"];
+    const valuesStats = [id_partido];
+    const estadisticas = await executeQuery(queryStats, valuesStats) as EstadisticasPartidoCompleto["estadisticas"];
 
-        return {
-            partido,
-            alineacionesLocal,
-            alineacionesVisitante,
-            estadisticas
-        };
-    }
+    return {
+      partido,
+      alineacionesLocal,
+      alineacionesVisitante,
+      estadisticas
+    };
+  }
 }
