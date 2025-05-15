@@ -1,4 +1,5 @@
 import { executeQuery } from "../../../context/db/postgres.db";
+import Entrenador from "../../../usuarios/domain/Entrenador";
 import { AlineacionPartido } from "../../domain/AlineacionPartido";
 import { EstadisticasJugador } from "../../domain/EstadisticasJugador";
 import { EstadisticasPartidoCompleto } from "../../domain/EstadisticasPartidoCompleto";
@@ -34,6 +35,7 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
   async getPartidosByJornada(id_liga: number, jornada: number): Promise<Partido[]> {
     const query = `
             SELECT 
+                p.id_partido,
                 p.jornada,
                 p.goles_local,
                 p.goles_visitante,
@@ -353,6 +355,19 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
     const valuesAlineVisi = [id_partido, partido.equipo_visitante_id];
     const alineacionesVisitante = await executeQuery(queryAlineacion, valuesAlineVisi) as AlineacionPartido[];
 
+    const queryEntrLocal = `
+    SELECT
+      u.id_usuario,
+      u.nombre,
+      u.apellidos
+    FROM Entrenadores e
+    JOIN Usuarios u ON u.id_usuario = e.id_usuario
+    WHERE e.id_equipo = $1
+  `;
+    const entrenadoresLocal = await executeQuery(queryEntrLocal, [partido.equipo_local_id]) as Entrenador[];
+
+    // 3) Entrenadores Visitantes
+    const entrenadoresVisitante = await executeQuery(queryEntrLocal, [partido.equipo_visitante_id]) as Entrenador[];
     // 4) Estadísticas individuales
     const queryStats = `
           SELECT
@@ -376,6 +391,8 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
 
     return {
       partido,
+      entrenadoresLocal,
+      entrenadoresVisitante,
       alineacionesLocal,
       alineacionesVisitante,
       estadisticas
