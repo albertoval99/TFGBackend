@@ -129,6 +129,17 @@ CREATE TABLE Estadisticas_Individuales (
     FOREIGN KEY (id_partido) REFERENCES Partidos (id_partido)
 );
 
+CREATE TABLE Estadisticas_Totales (
+    id_estadistica_total SERIAL PRIMARY KEY,
+    id_jugador INTEGER NOT NULL,
+    total_goles INTEGER DEFAULT 0,
+    total_tarjetas_amarillas INTEGER DEFAULT 0,
+    total_tarjetas_rojas INTEGER DEFAULT 0,
+    total_mejor_jugador INTEGER DEFAULT 0,
+    total_titularidades INTEGER DEFAULT 0,
+    FOREIGN KEY (id_jugador) REFERENCES Jugadores (id_jugador)
+);
+
 CREATE TABLE Estadisticas_Equipo (
     id_estadistica_equipo SERIAL PRIMARY KEY,
     id_equipo INTEGER NOT NULL,

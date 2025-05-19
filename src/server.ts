@@ -5,6 +5,7 @@ import equipoRouter from "./equipos/infrastructure/rest/equipo.rest"
 import ligaRouter from "./ligas/infrastructure/rest/liga.rest"
 import entrenamientosRouter from "./entrenamientos/infrastructure/rest/entrenamiento.rest"
 import partidosRouter from "./partidos/infrastructure/rest/partido.rest"
+import estadisticasRouter from "./estadisticas/infrastructure/rest/estadisticas.rest"
 
 const app = express();
 
@@ -27,5 +28,6 @@ app.use(`${api}/equipos`, equipoRouter);
 app.use(`${api}/ligas`, ligaRouter);
 app.use(`${api}/entrenamientos`, entrenamientosRouter);
 app.use(`${api}/partidos`, partidosRouter);
+app.use(`${api}/estadisticas`, estadisticasRouter);
 
 export default app;

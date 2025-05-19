@@ -292,4 +292,6 @@ router.get("/:id_partido/estadisticas", async (req: Request, res: Response): Pro
         res.status(statusCode).json({ message });
     }
 });
+
+
 export default router;

@@ -3,6 +3,7 @@ import Entrenador from "../../../usuarios/domain/Entrenador";
 import { AlineacionPartido } from "../../domain/AlineacionPartido";
 import { EstadisticasJugador } from "../../domain/EstadisticasJugador";
 import { EstadisticasPartidoCompleto } from "../../domain/EstadisticasPartidoCompleto";
+import { EstadisticasTotales } from "../../../estadisticas/domain/EstadisticasTotales";
 import Partido from "../../domain/Partido";
 import PartidoRepository from "../../domain/partido.repository";
 
@@ -398,4 +399,5 @@ export default class PartidoRepositoryPostgres implements PartidoRepository {
       estadisticas
     };
   }
+
 }
