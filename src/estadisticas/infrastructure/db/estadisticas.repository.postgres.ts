@@ -8,7 +8,8 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
         SELECT 
             j.id_jugador,
             u.nombre,
-            u.apellidos
+            u.apellidos,
+            j.numero_camiseta 
         FROM Jugadores j
         JOIN Usuarios u ON j.id_usuario = u.id_usuario
         WHERE j.id_jugador = $1
@@ -44,6 +45,7 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             id_jugador: jugador.id_jugador,
             nombre: jugador.nombre,
             apellidos: jugador.apellidos,
+            numero_camiseta: jugador.numero_camiseta,
             goles: estadisticas.total_goles || 0,
             tarjetas_amarillas: estadisticas.total_tarjetas_amarillas || 0,
             tarjetas_rojas: estadisticas.total_tarjetas_rojas || 0,
