@@ -21,4 +21,58 @@ export default class EstadisticasUseCases {
         }
         return estadisticas;
     }
+
+    async getMaximoGoleador(): Promise<EstadisticasTotales> {
+        const maximoGoleador = await this.estadisticasRepository.getMaximoGoleador();
+        if (!maximoGoleador) {
+            console.log("❌ No se encontró ningún máximo goleador");
+            throw { message: "No se encontró ningún máximo goleador" };
+        }
+        return maximoGoleador;
+    }
+
+    async getMaximosGoleadores(): Promise<EstadisticasTotales[]> {
+        const maximosGoleadores = await this.estadisticasRepository.getMaximosGoleadores();
+        if (!maximosGoleadores || maximosGoleadores.length === 0) {
+            console.log("❌ No se encontraron máximos goleadores");
+            throw { message: "No se encontraron máximos goleadores" };
+        }
+        return maximosGoleadores;
+    }
+
+    async getMejorJugador(): Promise<EstadisticasTotales> {
+        const mejorJugador = await this.estadisticasRepository.getMejorJugador();
+        if (!mejorJugador) {
+            console.log("❌ No se encontró ningún mejor jugador");
+            throw { message: "No se encontró ningún mejor jugador" };
+        }
+        return mejorJugador;
+    }
+
+    async getMejoresJugadores(): Promise<EstadisticasTotales[]> {
+        const mejoresJugadores = await this.estadisticasRepository.getMejoresJugadores();
+        if (!mejoresJugadores || mejoresJugadores.length === 0) {
+            console.log("❌ No se encontraron mejores jugadores");
+            throw { message: "No se encontraron mejores jugadores" };
+        }
+        return mejoresJugadores;
+    }
+
+    async getJugadorConMasAmarillas(): Promise<EstadisticasTotales> {
+        const jugadorConMasAmarillas = await this.estadisticasRepository.getJugadorConMasAmarillas();
+        if (!jugadorConMasAmarillas) {
+            console.log("❌ No se encontró ningún jugador con tarjetas amarillas");
+            throw { message: "No se encontró ningún jugador con tarjetas amarillas" };
+        }
+        return jugadorConMasAmarillas;
+    }
+
+    async getJugadoresConMasAmarillas(): Promise<EstadisticasTotales[]> {
+        const jugadoresConMasAmarillas = await this.estadisticasRepository.getJugadoresConMasAmarillas();
+        if (!jugadoresConMasAmarillas || jugadoresConMasAmarillas.length === 0) {
+            console.log("❌ No se encontraron jugadores con tarjetas amarillas");
+            throw { message: "No se encontraron jugadores con tarjetas amarillas" };
+        }
+        return jugadoresConMasAmarillas;
+    }
 }

@@ -53,4 +53,142 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             titularidades: titularidades.total_titularidades || 0
         };
     }
+
+    async getMaximosGoleadores(): Promise<EstadisticasTotales[]> {
+        const query = `
+        SELECT
+            j.id_jugador,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta as dorsal,
+            SUM(ei.goles) as goles
+        FROM Jugadores j
+        JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        ORDER BY goles DESC
+        `;
+
+        const resultado = await executeQuery(query, []);
+        // solo los que han metido al menos un gol:
+        const goleadores = resultado.filter(j => j.goles > 0);
+
+        return goleadores.map(jugador => ({
+            id_jugador: jugador.id_jugador,
+            nombre: jugador.nombre,
+            apellidos: jugador.apellidos,
+            dorsal: jugador.dorsal,
+            goles: jugador.goles
+        }));
+    }
+
+    async getMaximoGoleador(): Promise<EstadisticasTotales> {
+        const query = `
+        SELECT
+            j.id_jugador,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta as dorsal,
+            SUM(ei.goles) as goles
+        FROM Jugadores j
+        JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        ORDER BY goles DESC
+        LIMIT 1
+        `;
+
+        const result = await executeQuery(query);
+        return result[0];
+    }
+
+    async getMejorJugador(): Promise<EstadisticasTotales> {
+        const query = `
+        SELECT
+            j.id_jugador,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta as dorsal,
+            SUM(CASE WHEN ei.mejor_jugador THEN 1 ELSE 0 END) as mejor_jugador
+        FROM Jugadores j
+        JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        ORDER BY mejor_jugador DESC
+        LIMIT 1
+    `;
+        const result = await executeQuery(query);
+        return result[0];
+    }
+
+    async getMejoresJugadores(): Promise<EstadisticasTotales[]> {
+        const query = `
+        SELECT
+            j.id_jugador,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta as dorsal,
+            SUM(CASE WHEN ei.mejor_jugador THEN 1 ELSE 0 END) as mejor_jugador
+        FROM Jugadores j
+        JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        HAVING SUM(CASE WHEN ei.mejor_jugador THEN 1 ELSE 0 END) > 0
+        ORDER BY mejor_jugador DESC
+    `;
+        const result = await executeQuery(query);
+        return result.map(jugador => ({
+            id_jugador: jugador.id_jugador,
+            nombre: jugador.nombre,
+            apellidos: jugador.apellidos,
+            dorsal: jugador.dorsal,
+            mejor_jugador: jugador.mejor_jugador
+        }));
+
+    }
+
+    async getJugadorConMasAmarillas(): Promise<EstadisticasTotales> {
+        const query = `
+        SELECT
+            j.id_jugador,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta as dorsal,
+            SUM(ei.tarjetas_amarillas) as tarjetas_amarillas
+        FROM Jugadores j
+        JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        ORDER BY tarjetas_amarillas DESC
+        LIMIT 1
+    `;
+        const result = await executeQuery(query);
+        return result[0];
+    }
+
+    async getJugadoresConMasAmarillas(): Promise<EstadisticasTotales[]> {
+        const query = `
+            SELECT
+                j.id_jugador,
+                u.nombre,
+                u.apellidos,
+                j.numero_camiseta as dorsal,
+                SUM(ei.tarjetas_amarillas) as tarjetas_amarillas
+            FROM Jugadores j
+            JOIN Usuarios u ON j.id_usuario = u.id_usuario
+            JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
+            GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+            HAVING SUM(ei.tarjetas_amarillas) > 0
+            ORDER BY tarjetas_amarillas DESC
+        `;
+        const result = await executeQuery(query);
+        return result.map(jugador => ({
+            id_jugador: jugador.id_jugador,
+            nombre: jugador.nombre,
+            apellidos: jugador.apellidos,
+            dorsal: jugador.dorsal,
+            tarjetas_amarillas: jugador.tarjetas_amarillas
+        }));
+
+    }
 }
