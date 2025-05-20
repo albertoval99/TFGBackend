@@ -289,4 +289,42 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
     }
 
 
+    async actualizarUsuario(usuario: Usuario): Promise<Usuario> {
+        let query = "UPDATE usuarios SET ";
+        let indiceValor = 1;
+        const values = [];
+        let camposActualizados = false;
+
+        if (usuario.email !== undefined && usuario.email !== "") {
+            query += `email = $${indiceValor}`;
+            values.push(usuario.email);
+            indiceValor++;
+            camposActualizados = true;
+        }
+
+        if (usuario.telefono !== undefined && usuario.telefono !== "") {
+            if (camposActualizados) {
+                query += ", ";
+            }
+            query += `telefono = $${indiceValor}`;
+            values.push(usuario.telefono);
+            indiceValor++;
+            camposActualizados = true;
+        }
+
+        if (!camposActualizados) {
+            throw new Error('No hay campos para actualizar');
+        }
+
+        query += ` WHERE id_usuario = $${indiceValor}`;
+        values.push(usuario.id_usuario);
+
+        query += " RETURNING *";
+
+        const result = await executeQuery(query, values);
+
+        return result[0];
+    }
+
+
 }

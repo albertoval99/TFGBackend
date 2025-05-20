@@ -374,4 +374,36 @@ router.put("/jugador/:id_jugador", esAutorizado, esEntrenador, async (req: Reque
     }
 });
 
+
+// PATCH http://localhost:3000/api/usuarios/actualizar
+router.patch("/actualizar", esAutorizado, async (req: Request, res: Response) => {
+    try {
+        const { id_usuario, email, telefono } = req.body;
+        const userIdToken = req.body.user.id_usuario;
+
+        if (!id_usuario) {
+             res.status(400).json({ mensaje: "id_usuario es obligatorio" });
+        }
+
+        if (id_usuario !== userIdToken) {
+             res.status(403).json({ mensaje: "No tiene permiso para actualizar este usuario" });
+        }
+
+        if ((email === undefined || email === "") && (telefono === undefined || telefono === "")) {
+             res.status(400).json({ mensaje: "Debe enviar al menos email o teléfono para actualizar" });
+        }
+
+        const usuario = await usuarioUseCases.actualizarUsuario({
+            id_usuario,
+            email,
+            telefono
+        });
+
+        res.status(200).json({ usuario });
+    } catch (error) {
+        console.error("Error en la actualización:", error);
+        res.status(500).json({ mensaje: `Error actualizando usuario: ${error.message}` });
+    }
+});
+
 export default router;

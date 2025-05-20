@@ -482,4 +482,16 @@ export default class UsuarioUseCases {
             throw { message: error.message || "Error al editar el jugador" };
         }
     }
+
+    async actualizarUsuario(usuario: Usuario): Promise<Usuario> {
+        if (!usuario.id_usuario) {
+            throw new Error("El id_usuario es obligatorio para actualizar");
+        }
+
+        if ((usuario.email === undefined || usuario.email === "") && (usuario.telefono === undefined || usuario.telefono === "")) {
+            throw new Error("Debe enviar al menos email o teléfono para actualizar");
+        }
+        const usuarioActualizado = await this.usuarioRepository.actualizarUsuario(usuario);
+        return usuarioActualizado;
+    }
 }
