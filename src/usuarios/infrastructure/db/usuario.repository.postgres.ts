@@ -183,7 +183,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
 
     async getJugadorCompletoById(id_usuario: number): Promise<Usuario | null> {
         const query = `
-        SELECT u.id_usuario, u.nombre, u.apellidos, u.email, j.posicion, j.numero_camiseta, j.activo, j.id_equipo
+        SELECT u.id_usuario, u.nombre, u.apellidos, u.email, j.posicion, j.numero_camiseta, j.activo, j.id_equipo, j.id_jugador
         FROM Usuarios u
         JOIN Jugadores j ON u.id_usuario = j.id_usuario
         WHERE u.id_usuario = $1;
