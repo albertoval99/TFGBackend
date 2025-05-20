@@ -8,4 +8,6 @@ export interface EstadisticasTotales {
     tarjetas_rojas: number;
     mejor_jugador: number;
     titularidades: number;
+    nombre_equipo: string;
+    escudo: string;
 }

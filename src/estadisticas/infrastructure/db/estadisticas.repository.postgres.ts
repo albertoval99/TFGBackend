@@ -9,9 +9,12 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             j.id_jugador,
             u.nombre,
             u.apellidos,
-            j.numero_camiseta as dorsal
+            j.numero_camiseta as dorsal,
+            e.nombre_equipo,
+            e.escudo
         FROM Jugadores j
         JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Equipos e ON j.id_equipo = e.id_equipo
         WHERE j.id_jugador = $1
     `;
         const jugador = (await executeQuery(queryJugador, [id_jugador]))[0];
@@ -46,6 +49,8 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             nombre: jugador.nombre,
             apellidos: jugador.apellidos,
             dorsal: jugador.dorsal,
+            nombre_equipo: jugador.nombre_equipo,
+            escudo: jugador.escudo,
             goles: estadisticas.total_goles || 0,
             tarjetas_amarillas: estadisticas.total_tarjetas_amarillas || 0,
             tarjetas_rojas: estadisticas.total_tarjetas_rojas || 0,
@@ -61,11 +66,14 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             u.nombre,
             u.apellidos,
             j.numero_camiseta as dorsal,
+            e.nombre_equipo,
+            e.escudo,
             SUM(ei.goles) as goles
         FROM Jugadores j
         JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Equipos e ON j.id_equipo = e.id_equipo
         JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
-        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
         ORDER BY goles DESC
         `;
 
@@ -78,6 +86,8 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             nombre: jugador.nombre,
             apellidos: jugador.apellidos,
             dorsal: jugador.dorsal,
+            nombre_equipo: jugador.nombre_equipo,
+            escudo: jugador.escudo,
             goles: jugador.goles
         }));
     }
@@ -89,11 +99,14 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             u.nombre,
             u.apellidos,
             j.numero_camiseta as dorsal,
+            e.nombre_equipo,
+            e.escudo,
             SUM(ei.goles) as goles
         FROM Jugadores j
         JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Equipos e ON j.id_equipo = e.id_equipo
         JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
-        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
         ORDER BY goles DESC
         LIMIT 1
         `;
@@ -109,11 +122,14 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             u.nombre,
             u.apellidos,
             j.numero_camiseta as dorsal,
+            e.nombre_equipo,
+            e.escudo,
             SUM(CASE WHEN ei.mejor_jugador THEN 1 ELSE 0 END) as mejor_jugador
         FROM Jugadores j
         JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Equipos e ON j.id_equipo = e.id_equipo
         JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
-        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
         ORDER BY mejor_jugador DESC
         LIMIT 1
     `;
@@ -128,11 +144,14 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             u.nombre,
             u.apellidos,
             j.numero_camiseta as dorsal,
+            e.nombre_equipo,
+            e.escudo,
             SUM(CASE WHEN ei.mejor_jugador THEN 1 ELSE 0 END) as mejor_jugador
         FROM Jugadores j
         JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Equipos e ON j.id_equipo = e.id_equipo
         JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
-        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
         HAVING SUM(CASE WHEN ei.mejor_jugador THEN 1 ELSE 0 END) > 0
         ORDER BY mejor_jugador DESC
     `;
@@ -142,9 +161,10 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             nombre: jugador.nombre,
             apellidos: jugador.apellidos,
             dorsal: jugador.dorsal,
+            nombre_equipo: jugador.nombre_equipo,
+            escudo: jugador.escudo,
             mejor_jugador: jugador.mejor_jugador
         }));
-
     }
 
     async getJugadorConMasAmarillas(): Promise<EstadisticasTotales> {
@@ -154,11 +174,14 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             u.nombre,
             u.apellidos,
             j.numero_camiseta as dorsal,
+            e.nombre_equipo,
+            e.escudo,
             SUM(ei.tarjetas_amarillas) as tarjetas_amarillas
         FROM Jugadores j
         JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Equipos e ON j.id_equipo = e.id_equipo
         JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
-        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
         ORDER BY tarjetas_amarillas DESC
         LIMIT 1
     `;
@@ -173,11 +196,14 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
                 u.nombre,
                 u.apellidos,
                 j.numero_camiseta as dorsal,
+                e.nombre_equipo,
+                e.escudo,
                 SUM(ei.tarjetas_amarillas) as tarjetas_amarillas
             FROM Jugadores j
             JOIN Usuarios u ON j.id_usuario = u.id_usuario
+            JOIN Equipos e ON j.id_equipo = e.id_equipo
             JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
-            GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+            GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
             HAVING SUM(ei.tarjetas_amarillas) > 0
             ORDER BY tarjetas_amarillas DESC
         `;
@@ -187,10 +213,12 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             nombre: jugador.nombre,
             apellidos: jugador.apellidos,
             dorsal: jugador.dorsal,
+            nombre_equipo: jugador.nombre_equipo,
+            escudo: jugador.escudo,
             tarjetas_amarillas: jugador.tarjetas_amarillas
         }));
-
     }
+
     async getJugadorConMasRojas(): Promise<EstadisticasTotales> {
         const query = `
         SELECT
@@ -198,11 +226,14 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             u.nombre,
             u.apellidos,
             j.numero_camiseta as dorsal,
+            e.nombre_equipo,
+            e.escudo,
             SUM(ei.tarjetas_rojas) as tarjetas_rojas
         FROM Jugadores j
         JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Equipos e ON j.id_equipo = e.id_equipo
         JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
-        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
         ORDER BY tarjetas_rojas DESC
         LIMIT 1
     `;
@@ -217,11 +248,14 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
                 u.nombre,
                 u.apellidos,
                 j.numero_camiseta as dorsal,
+                e.nombre_equipo,
+                e.escudo,
                 SUM(ei.tarjetas_rojas) as tarjetas_rojas
             FROM Jugadores j
             JOIN Usuarios u ON j.id_usuario = u.id_usuario
+            JOIN Equipos e ON j.id_equipo = e.id_equipo
             JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
-            GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+            GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
             HAVING SUM(ei.tarjetas_rojas) > 0
             ORDER BY tarjetas_rojas DESC
         `;
@@ -231,6 +265,8 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             nombre: jugador.nombre,
             apellidos: jugador.apellidos,
             dorsal: jugador.dorsal,
+            nombre_equipo: jugador.nombre_equipo,
+            escudo: jugador.escudo,
             tarjetas_rojas: jugador.tarjetas_rojas
         }));
     }
@@ -242,12 +278,15 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
                 u.nombre,
                 u.apellidos,
                 j.numero_camiseta as dorsal,
+                e.nombre_equipo,
+                e.escudo,
                 COUNT(*) as titularidades
             FROM Jugadores j
             JOIN Usuarios u ON j.id_usuario = u.id_usuario
+            JOIN Equipos e ON j.id_equipo = e.id_equipo
             JOIN Alineaciones a ON j.id_jugador = a.id_jugador
             WHERE a.es_titular = true
-            GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+            GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
             ORDER BY titularidades DESC
             LIMIT 1
         `;
@@ -262,12 +301,15 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             u.nombre,
             u.apellidos,
             j.numero_camiseta as dorsal,
+            e.nombre_equipo,
+            e.escudo,
             COUNT(*) as titularidades
         FROM Jugadores j
         JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Equipos e ON j.id_equipo = e.id_equipo
         JOIN Alineaciones a ON j.id_jugador = a.id_jugador
         WHERE a.es_titular = true
-        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta, e.nombre_equipo, e.escudo
         ORDER BY titularidades DESC
     `;
         const result = await executeQuery(query);
@@ -276,8 +318,9 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
             nombre: jugador.nombre,
             apellidos: jugador.apellidos,
             dorsal: jugador.dorsal,
+            nombre_equipo: jugador.nombre_equipo,
+            escudo: jugador.escudo,
             titularidades: jugador.titularidades
         }));
     }
-
 }
