@@ -7,4 +7,8 @@ export default interface EstadisticasRepository {
     getMejoresJugadores(): Promise<EstadisticasTotales[]>
     getJugadorConMasAmarillas(): Promise<EstadisticasTotales>
     getJugadoresConMasAmarillas(): Promise<EstadisticasTotales[]>
+    getJugadorConMasRojas(): Promise<EstadisticasTotales>
+    getJugadoresConMasRojas(): Promise<EstadisticasTotales[]>
+    getJugadorConMasTitularidades(): Promise<EstadisticasTotales>
+    getJugadoresConMasTitularidades(): Promise<EstadisticasTotales[]>
 }

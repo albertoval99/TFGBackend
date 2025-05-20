@@ -191,4 +191,93 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
         }));
 
     }
+    async getJugadorConMasRojas(): Promise<EstadisticasTotales> {
+        const query = `
+        SELECT
+            j.id_jugador,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta as dorsal,
+            SUM(ei.tarjetas_rojas) as tarjetas_rojas
+        FROM Jugadores j
+        JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        ORDER BY tarjetas_rojas DESC
+        LIMIT 1
+    `;
+        const result = await executeQuery(query);
+        return result[0];
+    }
+
+    async getJugadoresConMasRojas(): Promise<EstadisticasTotales[]> {
+        const query = `
+            SELECT
+                j.id_jugador,
+                u.nombre,
+                u.apellidos,
+                j.numero_camiseta as dorsal,
+                SUM(ei.tarjetas_rojas) as tarjetas_rojas
+            FROM Jugadores j
+            JOIN Usuarios u ON j.id_usuario = u.id_usuario
+            JOIN Estadisticas_Individuales ei ON j.id_jugador = ei.id_jugador
+            GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+            HAVING SUM(ei.tarjetas_rojas) > 0
+            ORDER BY tarjetas_rojas DESC
+        `;
+        const result = await executeQuery(query);
+        return result.map(jugador => ({
+            id_jugador: jugador.id_jugador,
+            nombre: jugador.nombre,
+            apellidos: jugador.apellidos,
+            dorsal: jugador.dorsal,
+            tarjetas_rojas: jugador.tarjetas_rojas
+        }));
+    }
+
+    async getJugadorConMasTitularidades(): Promise<EstadisticasTotales> {
+        const query = `
+            SELECT
+                j.id_jugador,
+                u.nombre,
+                u.apellidos,
+                j.numero_camiseta as dorsal,
+                COUNT(*) as titularidades
+            FROM Jugadores j
+            JOIN Usuarios u ON j.id_usuario = u.id_usuario
+            JOIN Alineaciones a ON j.id_jugador = a.id_jugador
+            WHERE a.es_titular = true
+            GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+            ORDER BY titularidades DESC
+            LIMIT 1
+        `;
+        const result = await executeQuery(query);
+        return result[0];
+    }
+
+    async getJugadoresConMasTitularidades(): Promise<EstadisticasTotales[]> {
+        const query = `
+        SELECT
+            j.id_jugador,
+            u.nombre,
+            u.apellidos,
+            j.numero_camiseta as dorsal,
+            COUNT(*) as titularidades
+        FROM Jugadores j
+        JOIN Usuarios u ON j.id_usuario = u.id_usuario
+        JOIN Alineaciones a ON j.id_jugador = a.id_jugador
+        WHERE a.es_titular = true
+        GROUP BY j.id_jugador, u.nombre, u.apellidos, j.numero_camiseta
+        ORDER BY titularidades DESC
+    `;
+        const result = await executeQuery(query);
+        return result.map(jugador => ({
+            id_jugador: jugador.id_jugador,
+            nombre: jugador.nombre,
+            apellidos: jugador.apellidos,
+            dorsal: jugador.dorsal,
+            titularidades: jugador.titularidades
+        }));
+    }
+
 }

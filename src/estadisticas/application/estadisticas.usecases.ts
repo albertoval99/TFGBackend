@@ -75,4 +75,40 @@ export default class EstadisticasUseCases {
         }
         return jugadoresConMasAmarillas;
     }
+
+    async getJugadorConMasRojas(): Promise<EstadisticasTotales> {
+        const jugadorConMasRojas = await this.estadisticasRepository.getJugadorConMasRojas();
+        if (!jugadorConMasRojas) {
+            console.log("❌ No se encontró ningú jugador con tarjetas rojas");
+            throw { message: "No se encontró ningú jugador con tarjetas rojas" };
+        }
+        return jugadorConMasRojas;
+    }
+
+    async getJugadoresConMasRojas(): Promise<EstadisticasTotales[]> {
+        const jugadoresConMasRojas = await this.estadisticasRepository.getJugadoresConMasRojas();
+        if (!jugadoresConMasRojas || jugadoresConMasRojas.length === 0) {
+            console.log("❌ No se encontraron jugadores con tarjetas rojas");
+            throw { message: "No se encontraron jugadores con tarjetas rojas" };
+        }
+        return jugadoresConMasRojas;
+    }
+
+    async getJugadorConMasTitularidades(): Promise<EstadisticasTotales> {
+        const jugadorConMasTitularidades = await this.estadisticasRepository.getJugadorConMasTitularidades();
+        if (!jugadorConMasTitularidades) {
+            console.log("❌ No se encontró ningún jugador con titularidades");
+            throw { message: "No se encontró ningún jugador con titularidades" };
+        }
+        return jugadorConMasTitularidades;
+    }
+
+    async getJugadoresConMasTitularidades(): Promise<EstadisticasTotales[]> {
+        const jugadoresConMasTitularidades = await this.estadisticasRepository.getJugadoresConMasTitularidades();
+        if (!jugadoresConMasTitularidades || jugadoresConMasTitularidades.length === 0) {
+            console.log("❌ No se encontraron jugadores con titularidades");
+            throw { message: "No se encontraron jugadores con titularidades" };
+        }
+        return jugadoresConMasTitularidades;
+    }
 }
