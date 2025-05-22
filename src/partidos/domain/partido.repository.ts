@@ -3,7 +3,6 @@ import { AlineacionPartido } from './AlineacionPartido';
 import { EstadisticasJugador } from './EstadisticasJugador';
 import { EstadisticasPartidoCompleto } from './EstadisticasPartidoCompleto';
 import Partido from './Partido';
-import { EstadisticasTotales } from '../../estadisticas/domain/EstadisticasTotales';
 
 
 export default interface PartidoRepository {
