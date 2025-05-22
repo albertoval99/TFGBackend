@@ -3,8 +3,6 @@ import ClasificacionUseCase from "../../application/clasificacion.usecases";
 import ClasificacionRepositoryPostgres from "../db/clasificacion.repository.postgres";
 import EquipoRepositoryPostgres from "../../../equipos/infrastructure/db/equipo.repository.postgres";
 
-
-
 const router = express.Router();
 const clasificacionUseCases = new ClasificacionUseCase(new ClasificacionRepositoryPostgres, new EquipoRepositoryPostgres);
 

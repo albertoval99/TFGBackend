@@ -42,7 +42,10 @@ export default class ClasificacionRepositoryPostgres implements ClasificacionRep
         `;
         const values = [id_liga];
         const rows = await executeQuery(query, values);
-        return rows;
+        return rows.map(row => ({
+            id_equipo: Number(row.id_equipo),
+            victorias: Number(row.victorias)     
+        }));
     }
 
     async getEmpatesPorEquipo(id_liga: number): Promise<EmpatesPorEquipo[]> {
@@ -63,7 +66,10 @@ export default class ClasificacionRepositoryPostgres implements ClasificacionRep
         `;
         const values = [id_liga];
         const rows = await executeQuery(query, values);
-        return rows;
+        return rows.map(row => ({
+            id_equipo: Number(row.id_equipo),
+            empates: Number(row.empates)     
+        }));
     }
 
     /**
