@@ -3,6 +3,9 @@ services:
     build: .
     ports:
       - "3000:3000"
-    env_file:
-      - .env
+    environment:
+      - POSTGRES_HOST=rds-tfg.ca65ncx5w8vw.us-east-1.rds.amazonaws.com
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Malladeta99Alberto
+      - POSTGRES_DB=FootballZone
     restart: always
