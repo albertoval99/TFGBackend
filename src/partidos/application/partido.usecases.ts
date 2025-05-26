@@ -1,8 +1,6 @@
-
-import { AlineacionPartido } from "../domain/AlineacionPartido";
-import { EstadisticasJugador } from "../domain/EstadisticasJugador";
-import { EstadisticasPartidoCompleto } from "../domain/EstadisticasPartidoCompleto";
-import { EstadisticasTotales } from "../../estadisticas/domain/EstadisticasTotales";
+import AlineacionPartido from "../domain/AlineacionPartido";
+import EstadisticasJugador from "../domain/EstadisticasJugador";
+import EstadisticasPartidoCompleto from "../domain/EstadisticasPartidoCompleto";
 import Partido from "../domain/Partido";
 import PartidoRepository from "../domain/partido.repository";
 
@@ -45,7 +43,6 @@ export default class PartidoUseCases {
     }
 
     async updatePartido(id_partido: number, fecha_partido: string, hora_partido: string, id_estadio: number): Promise<Partido> {
-
         try {
             if (!id_partido) {
                 console.log("❌ Falta el id del partido");
@@ -87,17 +84,14 @@ export default class PartidoUseCases {
                 hora_partido,
                 id_estadio
             );
-
             if (!partidoActualizado) {
                 throw { message: "Error al actualizar el partido" };
             }
-
-            console.log(`✅ Partido ${id_partido} actualizado correctamente`);
             return partidoActualizado;
 
         } catch (error) {
             console.error(`❌ Error al actualizar el partido: ${error.message}`);
-            throw { message: error.message || "Error al actualizar el partido" };
+            throw { message: "Error al actualizar el partido" };
         }
     }
 
@@ -108,14 +102,11 @@ export default class PartidoUseCases {
                 console.log("❌ Falta el id de la liga");
                 throw { message: "Falta el id de la liga" };
             }
-
             const partidos = await this.partidoRepository.getPartidosByLiga(id_liga);
-
             if (!partidos || partidos.length === 0) {
                 console.log(`❌ No se encontraron partidos para la liga ${id_liga}`);
                 throw { message: "No se encontraron partidos para esta liga" };
             }
-
             return partidos;
 
         } catch (error) {
@@ -130,13 +121,11 @@ export default class PartidoUseCases {
             console.log("❌ Falta el id del equipo");
             throw { message: "Falta el id del equipo" };
         }
-
         const partidos = await this.partidoRepository.getPartidosByEquipo(id_equipo);
         if (!partidos || partidos.length === 0) {
             console.log(`❌ No se encontraron partidos para el equipo ${id_equipo}`);
             throw { message: "No se encontraron partidos para este equipo" };
         }
-
         return partidos;
     }
 
@@ -145,9 +134,7 @@ export default class PartidoUseCases {
             console.log("❌ Falta el id del partido");
             throw { message: "Falta id del partido" };
         }
-
         const alineaciones = await this.partidoRepository.getAlineacionesByPartido(id_partido);
-
         if (!alineaciones || alineaciones.length === 0) {
             console.log(`❌ No se encontraron alineaciones para el partido ${id_partido}`);
             throw { message: "No se encontraron alineaciones para este partido" };
@@ -161,7 +148,7 @@ export default class PartidoUseCases {
         if (alineacion.es_titular === undefined) throw { message: "Falta 'es_titular'" };
         if (!alineacion.id_equipo) throw { message: "Falta el id del equipo" };
 
-        // Borra alineación previa para evitar duplicados y poder reescribir
+        // Borro la alineación previa para poder reescribir
         await this.partidoRepository.borrarAlineacion(alineacion.id_partido, alineacion.id_jugador, alineacion.id_equipo);
 
         const countTitulares = await this.partidoRepository.contarTitulares(alineacion.id_partido, alineacion.id_equipo);
@@ -181,14 +168,11 @@ export default class PartidoUseCases {
             console.log("❌ Falta el id del árbitro");
             throw { message: "Falta id del árbitro" };
         }
-
         const partidos = await this.partidoRepository.getPartidosByArbitro(id_arbitro);
-
         if (!partidos || partidos.length === 0) {
             console.log(`❌ No se encontraron partidos para el árbitro ${id_arbitro}`);
             throw { message: "No se encontraron partidos para este árbitro" };
         }
-
         return partidos;
     }
 
@@ -205,14 +189,12 @@ export default class PartidoUseCases {
             console.log("❌ Faltan estadísticas individuales");
             throw { message: "Faltan estadísticas individuales" };
         }
-
         for (const est of estadisticas) {
             if (est.goles < 0 || est.tarjetas_amarillas < 0 || est.tarjetas_rojas < 0) {
                 console.log("❌ Valores negativos en estadísticas");
                 throw { message: "Los valores de goles y tarjetas no pueden ser negativos" };
             }
         }
-
         await this.partidoRepository.registrarEstadisticas(partido, estadisticas);
     }
 
@@ -221,10 +203,7 @@ export default class PartidoUseCases {
             console.log("❌ Falta id del partido");
             throw { message: "Falta id del partido" };
         }
-
         const partidoCompleto = await this.partidoRepository.getEstadisticasPartido(id_partido);
-
         return partidoCompleto;
-
     }
 }

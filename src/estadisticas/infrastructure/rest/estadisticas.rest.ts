@@ -1,4 +1,4 @@
-import express, { Router, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import EstadisticasUseCases from "../../application/estadisticas.usecases";
 import EstadisticasRepositoryPostgres from "../db/estadisticas.repository.postgres";
 
@@ -10,23 +10,15 @@ router.get("/jugador/:id_jugador", async (req: Request, res: Response): Promise<
     try {
         const { id_jugador } = req.params;
         const idJugadorNum = parseInt(id_jugador);
-
         if (isNaN(idJugadorNum)) {
             res.status(400).json({ message: "El ID del jugador no es válido." });
             return;
         }
-
         const estadisticas = await estadisticasUseCases.getEstadisticasJugador(idJugadorNum);
-
-        res.status(200).json({
-            message: "Estadísticas del jugador obtenidas correctamente",
-            data: estadisticas
-        });
+        res.status(200).json({data: estadisticas});
     } catch (error) {
         console.error("❌ Error al obtener las estadísticas del jugador:", error);
-        res.status(500).json({
-            message: error.message || "Error al obtener las estadísticas del jugador"
-        });
+        res.status(500).json({message: "Error al obtener las estadísticas del jugador"});
     }
 });
 
@@ -34,16 +26,10 @@ router.get("/jugador/:id_jugador", async (req: Request, res: Response): Promise<
 router.get("/maximo-goleador", async (req: Request, res: Response): Promise<void> => {
     try {
         const maximoGoleador = await estadisticasUseCases.getMaximoGoleador();
-
-        res.status(200).json({
-            message: "Máximo goleador obtenido correctamente",
-            data: maximoGoleador
-        });
+        res.status(200).json({data: maximoGoleador});
     } catch (error) {
         console.error("❌ Error al obtener el máximo goleador:", error);
-        res.status(500).json({
-            message: error.message || "Error al obtener el máximo goleador"
-        });
+        res.status(500).json({message: "Error al obtener el máximo goleador"});
     }
 });
 
@@ -51,16 +37,10 @@ router.get("/maximo-goleador", async (req: Request, res: Response): Promise<void
 router.get("/maximos-goleadores", async (req: Request, res: Response): Promise<void> => {
     try {
         const maximosGoleadores = await estadisticasUseCases.getMaximosGoleadores();
-
-        res.status(200).json({
-            message: "Lista de máximos goleadores obtenida correctamente",
-            data: maximosGoleadores
-        });
+        res.status(200).json({data: maximosGoleadores});
     } catch (error) {
         console.error("❌ Error al obtener los máximos goleadores:", error);
-        res.status(500).json({
-            message: error.message || "Error al obtener los máximos goleadores"
-        });
+        res.status(500).json({message: "Error al obtener los máximos goleadores"});
     }
 });
 
@@ -68,15 +48,10 @@ router.get("/maximos-goleadores", async (req: Request, res: Response): Promise<v
 router.get("/mejor-jugador", async (req: Request, res: Response): Promise<void> => {
     try {
         const mejorJugador = await estadisticasUseCases.getMejorJugador();
-        res.status(200).json({
-            message: "Mejor jugador obtenido correctamente",
-            data: mejorJugador
-        });
+        res.status(200).json({data: mejorJugador});
     } catch (error) {
         console.error("❌ Error al obtener el mejor jugador:", error);
-        res.status(500).json({
-            message: error.message || "Error al obtener el mejor jugador"
-        });
+        res.status(500).json({message: "Error al obtener el mejor jugador"});
     }
 });
 
@@ -84,15 +59,10 @@ router.get("/mejor-jugador", async (req: Request, res: Response): Promise<void> 
 router.get("/mejores-jugadores", async (req: Request, res: Response): Promise<void> => {
     try {
         const mejoresJugadores = await estadisticasUseCases.getMejoresJugadores();
-        res.status(200).json({
-            message: "Lista de mejores jugadores obtenida correctamente",
-            data: mejoresJugadores
-        });
+        res.status(200).json({data: mejoresJugadores});
     } catch (error) {
         console.error("❌ Error al obtener los mejores jugadores:", error);
-        res.status(500).json({
-            message: error.message || "Error al obtener los mejores jugadores"
-        });
+        res.status(500).json({message: "Error al obtener los mejores jugadores"});
     }
 });
 
@@ -100,15 +70,10 @@ router.get("/mejores-jugadores", async (req: Request, res: Response): Promise<vo
 router.get("/jugador-mas-amarillas", async (req: Request, res: Response): Promise<void> => {
     try {
         const jugadorConMasAmarillas = await estadisticasUseCases.getJugadorConMasAmarillas();
-        res.status(200).json({
-            message: "Jugador con más amarillas obtenido correctamente",
-            data: jugadorConMasAmarillas
-        });
+        res.status(200).json({data: jugadorConMasAmarillas});
     } catch (error) {
         console.error("❌ Error al obtener el jugador con más amarillas:", error);
-        res.status(500).json({
-            message: error.message || "Error al obtener el jugador con más amarillas"
-        });
+        res.status(500).json({message: "Error al obtener el jugador con más amarillas"});
     }
 });
 
@@ -116,15 +81,10 @@ router.get("/jugador-mas-amarillas", async (req: Request, res: Response): Promis
 router.get("/jugadores-mas-amarillas", async (req: Request, res: Response): Promise<void> => {
     try {
         const jugadoresConMasAmarillas = await estadisticasUseCases.getJugadoresConMasAmarillas();
-        res.status(200).json({
-            message: "Lista de jugadores con más amarillas obtenida correctamente",
-            data: jugadoresConMasAmarillas
-        });
+        res.status(200).json({data: jugadoresConMasAmarillas});
     } catch (error) {
         console.error("❌ Error al obtener los jugadores con más amarillas:", error);
-        res.status(500).json({
-            message: error.message || "Error al obtener los jugadores con más amarillas"
-        });
+        res.status(500).json({message: "Error al obtener los jugadores con más amarillas"});
     }
 });
 
@@ -132,15 +92,10 @@ router.get("/jugadores-mas-amarillas", async (req: Request, res: Response): Prom
 router.get("/jugador-mas-rojas", async (req: Request, res: Response): Promise<void> => {
     try {
         const jugadorConMasRojas = await estadisticasUseCases.getJugadorConMasRojas();
-        res.status(200).json({
-            message: "Jugador con más rojas obtenido correctamente",
-            data: jugadorConMasRojas
-        });
+        res.status(200).json({data: jugadorConMasRojas});
     } catch (error) {
         console.error("❌ Error al obtener el jugador con más rojas:", error);
-        res.status(500).json({
-            message: error.message || "Error al obtener el jugador con más rojas"
-        });
+        res.status(500).json({message: "Error al obtener el jugador con más rojas"});
     }
 });
 
@@ -148,15 +103,10 @@ router.get("/jugador-mas-rojas", async (req: Request, res: Response): Promise<vo
 router.get("/jugadores-mas-rojas", async (req: Request, res: Response): Promise<void> => {
     try {
         const jugadoresConMasRojas = await estadisticasUseCases.getJugadoresConMasRojas();
-        res.status(200).json({
-            message: "Lista de jugadores con más rojas obtenida correctamente",
-            data: jugadoresConMasRojas
-        });
+        res.status(200).json({data: jugadoresConMasRojas});
     } catch (error) {
         console.error("❌ Error al obtener los jugadores con más rojas:", error);
-        res.status(500).json({
-            message: error.message || "Error al obtener los jugadores con más rojas"
-        });
+        res.status(500).json({message: "Error al obtener los jugadores con más rojas"});
     }
 });
 
@@ -164,15 +114,10 @@ router.get("/jugadores-mas-rojas", async (req: Request, res: Response): Promise<
 router.get("/jugador-mas-titularidades", async (req: Request, res: Response): Promise<void> => {
     try {
         const jugadorConMasTitularidades = await estadisticasUseCases.getJugadorConMasTitularidades();
-        res.status(200).json({
-            message: "Jugador con más titularidades obtenido correctamente",
-            data: jugadorConMasTitularidades
-        });
-    } catch (error: any) {
+        res.status(200).json({data: jugadorConMasTitularidades});
+    } catch (error) {
         console.error("❌ Error al obtener el jugador con más titularidades:", error);
-        res.status(404).json({
-            message: error.message || "Error al obtener el jugador con más titularidades"
-        });
+        res.status(500).json({message: "Error al obtener el jugador con más titularidades"});
     }
 });
 
@@ -180,15 +125,10 @@ router.get("/jugador-mas-titularidades", async (req: Request, res: Response): Pr
 router.get("/jugadores-mas-titularidades", async (req: Request, res: Response): Promise<void> => {
     try {
         const jugadoresConMasTitularidades = await estadisticasUseCases.getJugadoresConMasTitularidades();
-        res.status(200).json({
-            message: "Lista de jugadores con más titularidades obtenida correctamente",
-            data: jugadoresConMasTitularidades
-        });
-    } catch (error: any) {
+        res.status(200).json({data: jugadoresConMasTitularidades});
+    } catch (error) {
         console.error("❌ Error al obtener los jugadores con más titularidades:", error);
-        res.status(404).json({
-            message: error.message || "Error al obtener los jugadores con más titularidades"
-        });
+        res.status(500).json({message: "Error al obtener los jugadores con más titularidades"});
     }
 });
 

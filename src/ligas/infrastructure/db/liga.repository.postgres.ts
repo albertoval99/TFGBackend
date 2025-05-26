@@ -9,7 +9,6 @@ export default class LigaRepositoryPostgres implements LigaRepository {
             VALUES ($1, $2, $3, $4, $5)
             RETURNING *
         `;
-
         const values = [
             liga.nombre_liga,
             liga.categoria,
@@ -17,9 +16,7 @@ export default class LigaRepositoryPostgres implements LigaRepository {
             liga.temporada,
             liga.descripcion
         ];
-
         const rows = await executeQuery(query, values);
-
         return rows[0];
     }
 
@@ -34,10 +31,7 @@ export default class LigaRepositoryPostgres implements LigaRepository {
     async getLigas(): Promise<Liga[]> {
         const query = "SELECT * FROM ligas";
         const result = await executeQuery(query);
-
-        if (result.length === 0) {
-            return [];
-        }
+        if (result.length === 0) return [];
         return result;
     }
 }

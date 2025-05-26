@@ -25,9 +25,7 @@ export default class LigaUseCases {
             console.log("❌ Falta la temporada de la liga");
             throw { message: "Falta la temporada de la liga" };
         }
-
         const ligaRegistrada = await this.ligaRepository.registrarLiga(liga);
-
         return ligaRegistrada;
     }
 
@@ -44,10 +42,8 @@ export default class LigaUseCases {
         const liga = await this.ligaRepository.getLigaById(id_liga);
         if (!liga) {
             console.log(`❌No se encontró la liga con id: ${id_liga}`);
-            throw new Error("Liga no encontrada");
+            throw { message: "Liga no encontrada" };
         }
         return liga;
     }
-
-    
 }

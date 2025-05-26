@@ -9,17 +9,13 @@ import Administrador from "../../domain/Adminisitrador";
 export default class UsuarioRepositoryPostgres implements UsuarioRepository {
 
     async getUserByEmail(email: string): Promise<Usuario | null> {
-
         const query = 'SELECT * FROM usuarios WHERE email = $1';
         const values = [email];
-
         const rows = await executeQuery(query, values);
-
         if (rows.length === 0) {
             console.log("❌ Usuario no encontrado con el email:", email);
             return null;
         }
-
         return rows[0];
     }
 
@@ -29,7 +25,6 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             VALUES ($1, $2, $3, $4, $5, $6)
             RETURNING *
         `;
-
         const values = [
             usuario.nombre,
             usuario.apellidos,
@@ -38,9 +33,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             usuario.rol,
             usuario.telefono
         ];
-
         const rows = await executeQuery(query, values);
-
         return rows[0];
     }
 
@@ -51,11 +44,8 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             RETURNING *
         `;
         const values = [entrenador.id_usuario, entrenador.id_equipo];
-
         const rows = await executeQuery(query, values);
-
         return rows[0];
-
     }
 
     async registrarArbitro(arbitro: Arbitro): Promise<Arbitro> {
@@ -65,9 +55,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             RETURNING *
         `;
         const values = [arbitro.id_usuario];
-
         const rows = await executeQuery(query, values);
-
         return rows[0];
     }
 
@@ -78,9 +66,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             RETURNING *
         `;
         const values = [jugador.id_usuario, jugador.id_equipo, jugador.posicion, jugador.numero_camiseta, jugador.activo];
-
         const rows = await executeQuery(query, values);
-
         return rows[0];
     }
 
@@ -98,13 +84,10 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         WHERE u.email = $1 AND u.rol = 'administrador'
     `;
         const values = [administrador.email];
-
         const result = await executeQuery(query, values);
-
         if (result.length === 0) {
             return null;
         }
-
         return result[0];
     }
 
@@ -117,11 +100,9 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         `;
         const values = [entrenador.email];
         const result = await executeQuery(query, values);
-
         if (result.length === 0) {
             return null;
         }
-
         return result[0];
     }
 
@@ -134,11 +115,9 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         `;
         const values = [arbitro.email];
         const result = await executeQuery(query, values);
-
         if (result.length === 0) {
             return null;
         }
-
         return result[0];
     }
 
@@ -151,33 +130,26 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         `;
         const values = [jugador.email];
         const result = await executeQuery(query, values);
-
         if (result.length === 0) {
             return null;
         }
-
         return result[0];
     }
-
     async getAllUsuarios(): Promise<Usuario[]> {
         const query = 'SELECT * FROM usuarios';
         const result = await executeQuery(query);
-
         return result.map((row: any) => ({
-            ...row //Devolver todo
+            ...row //Para devolver todo
         }));
     }
     async getEntrenadorById(id_usuario: number): Promise<Usuario | null> {
         const query = 'SELECT * FROM entrenadores WHERE id_usuario = $1';
         const values = [id_usuario];
-
         const rows = await executeQuery(query, values);
-
         if (rows.length === 0) {
             console.log("❌ Entrenador no encontrado con el ID:", id_usuario);
             return null;
         }
-
         return rows[0];
     }
 
@@ -189,14 +161,11 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         WHERE u.id_usuario = $1;
     `;
         const values = [id_usuario];
-
         const rows = await executeQuery(query, values);
-
         if (rows.length === 0) {
             console.log("❌ Jugador no encontrado con el ID:", id_usuario);
             return null;
         }
-
         return rows[0];
     }
 
@@ -208,17 +177,13 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         WHERE u.id_usuario = $1;
     `;
         const values = [id_usuario];
-
         const rows = await executeQuery(query, values);
-
         if (rows.length === 0) {
             console.log("❌ Arbitro no encontrado con el ID:", id_usuario);
             return null;
         }
-
         return rows[0];
     }
-
 
     async getJugadoresByEquipo(id_equipo: any): Promise<Jugador[]> {
         const query = `
@@ -235,9 +200,7 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             WHERE j.id_equipo = $1
         `;
         const values = [id_equipo];
-
         const rows = await executeQuery(query, values);
-
         if (rows.length === 0) {
             console.log("❌ No se encontraron jugadores para el equipo:", id_equipo);
             return [];
@@ -250,37 +213,30 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
             const actualizaciones = [];
             const values = [];
             let parameterIndex = 1;
-
             if (posicion !== undefined) {
                 actualizaciones.push(`posicion = $${parameterIndex}`);
                 values.push(posicion);
                 parameterIndex++;
             }
-
             if (numero_camiseta !== undefined) {
                 actualizaciones.push(`numero_camiseta = $${parameterIndex}`);
                 values.push(numero_camiseta);
                 parameterIndex++;
             }
-
             if (activo !== undefined) {
                 actualizaciones.push(`activo = $${parameterIndex}`);
                 values.push(activo);
                 parameterIndex++;
             }
-
             if (actualizaciones.length === 0) {
                 throw new Error("No se proporcionaron datos para actualizar");
             }
-
             values.push(id_jugador);
-
             const query = `
                 UPDATE jugadores 
                 SET ${actualizaciones.join(', ')} 
                 WHERE id_jugador = $${parameterIndex}
             `;
-
             await executeQuery(query, values);
         } catch (error) {
             console.error("❌ Error en repository al editar jugador:", error);
@@ -288,43 +244,33 @@ export default class UsuarioRepositoryPostgres implements UsuarioRepository {
         }
     }
 
-
     async actualizarUsuario(usuario: Usuario): Promise<Usuario> {
         let query = "UPDATE usuarios SET ";
-        let indiceValor = 1;
+        let parameterIndex = 1;
         const values = [];
         let camposActualizados = false;
-
         if (usuario.email !== undefined && usuario.email !== "") {
-            query += `email = $${indiceValor}`;
+            query += `email = $${parameterIndex}`;
             values.push(usuario.email);
-            indiceValor++;
+            parameterIndex++;
             camposActualizados = true;
         }
-
         if (usuario.telefono !== undefined && usuario.telefono !== "") {
             if (camposActualizados) {
                 query += ", ";
             }
-            query += `telefono = $${indiceValor}`;
+            query += `telefono = $${parameterIndex}`;
             values.push(usuario.telefono);
-            indiceValor++;
+            parameterIndex++;
             camposActualizados = true;
         }
-
         if (!camposActualizados) {
             throw new Error('No hay campos para actualizar');
         }
-
-        query += ` WHERE id_usuario = $${indiceValor}`;
+        query += ` WHERE id_usuario = $${parameterIndex}`;
         values.push(usuario.id_usuario);
-
         query += " RETURNING *";
-
         const result = await executeQuery(query, values);
-
         return result[0];
     }
-
-
 }

@@ -3,7 +3,6 @@ import jwt, { Secret } from "jsonwebtoken";//npm install jsonwebtoken
 import UsuarioUseCases from "../../usuarios/application/usuario.usecases";
 import UsuarioRepositoryPostgres from "../../usuarios/infrastructure/db/usuario.repository.postgres";
 import Usuario from "../../usuarios/domain/Usuario";
-import Administrador from "../../usuarios/domain/Adminisitrador";
 import { executeQuery } from "../db/postgres.db";
 
 const SECRET_KEY: Secret = "malladetaFootballZoneSecretKey";
@@ -12,7 +11,6 @@ const usuarioUseCases = new UsuarioUseCases(new UsuarioRepositoryPostgres());
 
 
 const createToken = (usuario: Usuario): string => {
-    console.log("Objeto usuario en createToken:", usuario);
     const payload = {
         user: {
             email: usuario.email,
@@ -29,7 +27,7 @@ const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
         const token: string | undefined = authHeader && authHeader.split(" ")[1];
         if (token) {
             const decoded: any = jwt.verify(token, SECRET_KEY);
-            if (!decoded || !decoded.user ||!decoded.user.id_usuario || !decoded.user.email || !decoded.user.rol) {
+            if (!decoded || !decoded.user || !decoded.user.id_usuario || !decoded.user.email || !decoded.user.rol) {
                 throw new Error("Token inválido o incompleto");
             }
             req.body.user = decoded.user;
@@ -38,7 +36,7 @@ const esAutorizado = (req: Request, res: Response, next: NextFunction) => {
             throw new Error("Token no proporcionado");
         }
     } catch (err) {
-        console.error("❌ Error en autenticación:", err.message);
+        console.log("❌ Error en autenticación:", err.message);
         res.status(401).json({ message: "Token inválido o expirado" });
     }
 };
@@ -64,7 +62,7 @@ const esAdministrador = async (req: Request, res: Response, next: NextFunction):
             res.status(403).json({ message: "Acceso denegado. Solo administradores." });
         }
     } catch (err) {
-        console.error("❌ Error en autorización de administrador:", err.message);
+        console.log("❌ Error en autorización de administrador:", err.message);
         res.status(401).json({ message: "Error de autorización" });
     }
 };
@@ -94,7 +92,7 @@ const esEntrenador = async (req: Request, res: Response, next: NextFunction): Pr
             res.status(403).json({ message: "Acceso denegado. Solo entrenadores." });
         }
     } catch (err) {
-        console.error("❌ Error en autorización de entrenador:", err.message);
+        console.log("❌ Error en autorización de entrenador:", err.message);
         res.status(401).json({ message: "Error de autorización" });
     }
 };
@@ -116,7 +114,7 @@ const esJugador = async (req: Request, res: Response, next: NextFunction): Promi
             res.status(403).json({ message: "Acceso denegado. Solo jugadores." });
         }
     } catch (err) {
-        console.error("❌ Error en autorización de jugador:", err.message);
+        console.log("❌ Error en autorización de jugador:", err.message);
         res.status(401).json({ message: "Error de autorización" });
     }
 };
@@ -137,7 +135,7 @@ const esArbitro = async (req: Request, res: Response, next: NextFunction): Promi
             res.status(403).json({ message: "Acceso denegado. Solo árbitros." });
         }
     } catch (err) {
-        console.error("❌ Error en autorización de árbitro:", err.message);
+        console.log("❌ Error en autorización de árbitro:", err.message);
         res.status(401).json({ message: "Error de autorización" });
     }
 };

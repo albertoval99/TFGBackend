@@ -1,4 +1,4 @@
-export interface EstadisticasJugador {
+export default interface EstadisticasJugador {
   id_jugador: number;
   nombre: string;
   apellidos: string;

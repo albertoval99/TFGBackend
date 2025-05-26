@@ -11,21 +11,23 @@ export default class EntrenamientoUseCases {
 
     async crearEntrenamiento(entrenamiento: Entrenamiento): Promise<Entrenamiento> {
         if (!entrenamiento.fecha_hora_entrenamiento) {
-            throw new Error("La fecha y hora del entrenamiento son obligatorias");
+            console.log("❌ La fecha y hora del entrenamiento son obligatorias");
+            throw { message: "La fecha y hora del entrenamiento son obligatorias" };
         }
         if (!entrenamiento.id_equipo) {
-            throw new Error("El ID del equipo es obligatorio");
+            console.log("❌ El ID del equipo es obligatorio");
+            throw { message: "El ID del equipo es obligatorio" };
         }
         if (!entrenamiento.duracion) {
-            throw new Error("La duración del entrenamiento es obligatoria");
+            console.log("❌ La duración del entrenamiento es obligatoria");
+            throw { message: "La duración del entrenamiento es obligatoria" };
         }
-
         if (new Date(entrenamiento.fecha_hora_entrenamiento) <= new Date()) {
-            throw new Error("La fecha del entrenamiento tiene que ser proxima a la hora actual");
+            console.log("❌ La fecha del entrenamiento tiene que ser proxima a la hora actual");
+            throw { message: "La fecha del entrenamiento tiene que ser proxima a la hora actual" };
         }
 
         const entrenamientoCreado = await this.entrenamientoRepository.crearEntrenamiento(entrenamiento);
-
         await this.entrenamientoRepository.crearAsistenciasJugadores(
             entrenamientoCreado.id_entrenamiento,
             entrenamientoCreado.id_equipo
@@ -37,7 +39,8 @@ export default class EntrenamientoUseCases {
     async eliminarEntrenamiento(id_entrenamiento: number, id_equipo: number): Promise<boolean> {
         const eliminado = await this.entrenamientoRepository.eliminarEntrenamiento(id_entrenamiento, id_equipo);
         if (!eliminado) {
-            throw new Error("No se pudo eliminar el entrenamiento o ya ha pasado la fecha");
+            console.log("❌ No se pudo eliminar el entrenamiento o ya ha pasado la fecha");
+            throw { message: "No se pudo eliminar el entrenamiento o ya ha pasado la fecha" };
         }
         return true;
     }
@@ -45,17 +48,13 @@ export default class EntrenamientoUseCases {
     async getEntrenamientosEquipo(id_equipo: number): Promise<Entrenamiento[]> {
         const entrenamientos = await this.entrenamientoRepository.getEntrenamientosEquipo(id_equipo);
         if (!entrenamientos || entrenamientos.length === 0) {
-            throw new Error("No hay entrenamientos planificados");
+            console.log("❌ No hay entrenamientos planificados");
+            throw { message: "No hay entrenamientos planificados" };
         }
         return entrenamientos;
     }
 
-    async actualizarAsistencia(
-        id_entrenamiento: number,
-        id_usuario: number,
-        asistio: boolean,
-        justificacion?: string
-    ): Promise<Asistencias> {
+    async actualizarAsistencia(id_entrenamiento: number, id_usuario: number, asistio: boolean, justificacion?: string): Promise<Asistencias> {
         const asistencia = await this.entrenamientoRepository.actualizarAsistencia(
             id_entrenamiento,
             id_usuario,
@@ -64,16 +63,17 @@ export default class EntrenamientoUseCases {
         );
 
         if (!asistencia) {
-            throw new Error("No se pudo actualizar la asistencia");
+            console.log("❌ No se pudo actualizar la asistencia");
+            throw { message: "No se pudo actualizar la asistencia" };
         }
-
         return asistencia;
     }
 
     async getAsistenciasEntrenamiento(id_entrenamiento: number): Promise<Asistencias[]> {
         const asistencias = await this.entrenamientoRepository.getAsistenciasEntrenamiento(id_entrenamiento);
         if (!asistencias || asistencias.length === 0) {
-            throw new Error("No hay asistencias confirmadas para este entrenamiento");
+            console.log("❌ No hay asistencias confirmadas para este entrenamiento");
+            throw { message: "No hay asistencias confirmadas para este entrenamiento" };
         }
         return asistencias;
     }

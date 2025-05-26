@@ -1,5 +1,5 @@
 import EstadisticasRepository from "../domain/estadisticas.repository";
-import { EstadisticasTotales } from "../domain/EstadisticasTotales";
+import EstadisticasTotales from "../domain/EstadisticasTotales";
 
 export default class EstadisticasUseCases {
     private estadisticasRepository: EstadisticasRepository;
@@ -13,7 +13,6 @@ export default class EstadisticasUseCases {
             console.log("❌ Falta el id del jugador");
             throw { message: "Falta el id del jugador" };
         }
-
         const estadisticas = await this.estadisticasRepository.getEstadisticasJugador(id_jugador);
         if (!estadisticas) {
             console.log(`❌ No se encontraron estadísticas para el jugador ${id_jugador}`);

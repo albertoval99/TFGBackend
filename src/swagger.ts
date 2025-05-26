@@ -3,13 +3,13 @@ import swaggerAutogen from "swagger-autogen";
 
 const doc = {
   info: {
-    title: "CafeShop API",
+    title: "Football Zone API",
     description: "API",
   },
   host: "localhost:8080",
 };
 
 const outputFile = "../doc/swagger.json";
-const routes = ["./server.ts"]; //esta ruta apunta a la raíz del proyecto donde están definidas todas las rutas
+const routes = ["./server.ts"]; 
 
 swaggerAutogen()(outputFile, routes, doc);

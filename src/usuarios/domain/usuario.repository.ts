@@ -21,5 +21,5 @@ export default interface UsuarioRepository {
     getAllUsuarios(): Promise<Usuario[]>;
     getJugadoresByEquipo(id_equipo): Promise<Jugador[]>;
     editarJugador(id_jugador: number, posicion?: string, numero_camiseta?: number, activo?: boolean): Promise<void>;
-    actualizarUsuario(usuario:Usuario): Promise<Usuario>;
+    actualizarUsuario(usuario: Usuario): Promise<Usuario>;
 }

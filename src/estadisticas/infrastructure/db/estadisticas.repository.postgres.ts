@@ -1,7 +1,6 @@
 import EstadisticasRepository from "../../domain/estadisticas.repository";
-import { EstadisticasTotales } from "../../domain/EstadisticasTotales";
 import { executeQuery } from '../../../context/db/postgres.db';
-
+import EstadisticasTotales from "../../domain/EstadisticasTotales";
 export default class EstadisticasRepositoryPostgres implements EstadisticasRepository {
     async getEstadisticasJugador(id_jugador: number): Promise<EstadisticasTotales> {
         const queryJugador = `
@@ -17,13 +16,9 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
         JOIN Equipos e ON j.id_equipo = e.id_equipo
         WHERE j.id_jugador = $1
     `;
-        const jugador = (await executeQuery(queryJugador, [id_jugador]))[0];
+        const jugador = (await executeQuery(queryJugador, [id_jugador]))[0]; //[0]-> primer resultado del array
 
-        if (!jugador) {
-            throw new Error('Jugador no encontrado');
-        }
-
-        // 2. Obtener estadísticas sumadas
+        // Obtengo las estadísticas sumadas
         const queryEstadisticas = `
         SELECT 
             SUM(goles) as total_goles,
@@ -35,7 +30,7 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
     `;
         const estadisticas = (await executeQuery(queryEstadisticas, [id_jugador]))[0];
 
-        // 3. Obtener total de titularidades
+        // Obtengo el total de titularidades
         const queryTitularidades = `
         SELECT COUNT(*) as total_titularidades
         FROM Alineaciones
@@ -43,7 +38,6 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
     `;
         const titularidades = (await executeQuery(queryTitularidades, [id_jugador]))[0];
 
-        // 4. Combinar todos los datos
         return {
             id_jugador: jugador.id_jugador,
             nombre: jugador.nombre,
@@ -78,7 +72,7 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
         `;
 
         const resultado = await executeQuery(query, []);
-        // solo los que han metido al menos un gol:
+        // Solo los que han metido mas de uno:
         const goleadores = resultado.filter(j => j.goles > 0);
 
         return goleadores.map(jugador => ({
@@ -110,7 +104,6 @@ export default class EstadisticasRepositoryPostgres implements EstadisticasRepos
         ORDER BY goles DESC
         LIMIT 1
         `;
-
         const result = await executeQuery(query);
         return result[0];
     }

@@ -1,4 +1,3 @@
-
 export default interface Entrenador {
     id_entrenador?: number;
     id_usuario?: number;

@@ -17,9 +17,8 @@ export default class UsuarioUseCases {
         const user = await this.usuarioRepository.getUserByEmail(email);
         if (!user) {
             console.log(`❌No se encontró el usuario con email: ${email}`);
-            throw new Error("Usuario no encontrado");
+            throw { message: "Usuario no encontrado" };
         }
-        console.log("✅ Usuario encontrado:", user);
         return user;
     }
 
@@ -27,9 +26,8 @@ export default class UsuarioUseCases {
         const user = await this.usuarioRepository.getEntrenadorById(id_usuario);
         if (!user) {
             console.log(`❌No se encontró el entrenador con id: ${id_usuario}`);
-            throw new Error("Entrenador no encontrado");
+            throw { message:"Entrenador no encontrado" };
         }
-        console.log("✅ Entrenador encontrado:", user);
         return user;
     }
 
@@ -37,9 +35,8 @@ export default class UsuarioUseCases {
         const user = await this.usuarioRepository.getJugadorCompletoById(id_usuario);
         if (!user) {
             console.log(`❌ No se encontró el jugador con id: ${id_usuario}`);
-            throw new Error("Jugador no encontrado");
+            throw { message: "Jugador no encontrado" };
         }
-        console.log("✅ Jugador encontrado:", user);
         return user;
     }
 
@@ -47,9 +44,8 @@ export default class UsuarioUseCases {
         const user = await this.usuarioRepository.getArbitroCompletoById(id_usuario);
         if (!user) {
             console.log(`❌ No se encontró el arbitro con id: ${id_usuario}`);
-            throw new Error("Arbitro no encontrado");
+            throw { message: "Arbitro no encontrado" };
         }
-        console.log("✅ Arbitro encontrado:", user);
         return user;
     }
 
@@ -76,15 +72,10 @@ export default class UsuarioUseCases {
             console.log("❌ El email ya está registrado");
             throw { message: "El email ya está registrado" };
         }
-
-
         const cifrada = hash(usuario.password);
         usuario.password = cifrada;
-
         const usuarioRegistrado = await this.usuarioRepository.registrarUsuario(usuario);
-
         return usuarioRegistrado;
-
     }
 
     async registrarEntrenador(entrenador: Entrenador): Promise<Entrenador> {
@@ -104,16 +95,13 @@ export default class UsuarioUseCases {
             console.log("❌ Falta la contraseña del entrenador");
             throw { message: "Falta la contraseña del entrenador" };
         }
-
         const usuarioExistente = await this.usuarioRepository.getUserByEmail(entrenador.email);
         if (usuarioExistente) {
             console.log("❌ El email ya está registrado");
             throw { message: "El email ya está registrado" };
         }
-
         const cifrada = hash(entrenador.password);
         entrenador.password = cifrada;
-
         try {
             const usuarioRegistrado = await this.usuarioRepository.registrarUsuario({
                 nombre: entrenador.nombre,
@@ -142,7 +130,7 @@ export default class UsuarioUseCases {
                     ...entrenadorRegistrado
                 };
             } catch (error) {
-                // Si falla el registro en la tabla entrenadores, eliminamos el usuario
+                // Si falla el registro en la tabla entrenadores, elimino el usuario
                 await this.usuarioRepository.eliminarUsuario(usuarioRegistrado.id_usuario);
                 console.log("❌ Error al registrar en la tabla entrenadores");
                 throw { message: "Error al registrar el entrenador" };
@@ -152,7 +140,6 @@ export default class UsuarioUseCases {
             throw { message: "Error al registrar el entrenador" };
         }
     }
-
 
     async registrarArbitro(arbitro: Arbitro): Promise<Arbitro> {
         if (!arbitro.nombre) {
@@ -171,16 +158,13 @@ export default class UsuarioUseCases {
             console.log("❌ Falta la contraseña del árbitro");
             throw { message: "Falta la contraseña del árbitro" };
         }
-
         const usuarioExistente = await this.usuarioRepository.getUserByEmail(arbitro.email);
         if (usuarioExistente) {
             console.log("❌ El email ya está registrado");
             throw { message: "El email ya está registrado" };
         }
-
         const cifrada = hash(arbitro.password);
         arbitro.password = cifrada;
-
         try {
             const usuarioRegistrado = await this.usuarioRepository.registrarUsuario({
                 nombre: arbitro.nombre,
@@ -190,7 +174,6 @@ export default class UsuarioUseCases {
                 rol: "arbitro",
                 telefono: arbitro.telefono
             });
-
             try {
                 const arbitroRegistrado = await this.usuarioRepository.registrarArbitro({
                     id_usuario: usuarioRegistrado.id_usuario,
@@ -202,13 +185,12 @@ export default class UsuarioUseCases {
                     telefono: arbitro.telefono,
                     foto: arbitro.foto
                 });
-
                 return {
                     ...usuarioRegistrado,
                     ...arbitroRegistrado
                 };
             } catch (error) {
-                // Si falla el registro en la tabla arbitros, eliminamos el usuario
+                // Si falla el registro en la tabla entrenadores, elimino el usuario
                 await this.usuarioRepository.eliminarUsuario(usuarioRegistrado.id_usuario);
                 console.log("❌ Error al registrar en la tabla arbitros");
                 throw { message: "Error al registrar el árbitro" };
@@ -243,28 +225,23 @@ export default class UsuarioUseCases {
             console.log("❌ Falta el número de camiseta del jugador");
             throw { message: "Falta el número de camiseta del jugador" };
         }
-
         const usuarioExistente = await this.usuarioRepository.getUserByEmail(jugador.email);
         if (usuarioExistente) {
             console.log("❌ El email ya está registrado");
             throw { message: "El email ya está registrado" };
         }
-
         const query = `
         SELECT * FROM jugadores 
         WHERE id_equipo = $1 AND numero_camiseta = $2 AND activo = true
     `;
         const values = [jugador.id_equipo, jugador.numero_camiseta];
         const result = await executeQuery(query, values);
-
         if (result.length > 0) {
             console.log("❌ El número de camiseta ya está en uso en este equipo");
             throw { message: "El número de camiseta ya está en uso en este equipo" };
         }
-
         const cifrada = hash(jugador.password);
         jugador.password = cifrada;
-
         try {
             const usuarioRegistrado = await this.usuarioRepository.registrarUsuario({
                 nombre: jugador.nombre,
@@ -274,7 +251,6 @@ export default class UsuarioUseCases {
                 rol: "jugador",
                 telefono: jugador.telefono
             });
-
             try {
                 const jugadorRegistrado = await this.usuarioRepository.registrarJugador({
                     id_usuario: usuarioRegistrado.id_usuario,
@@ -290,13 +266,12 @@ export default class UsuarioUseCases {
                     numero_camiseta: jugador.numero_camiseta,
                     activo: jugador.activo
                 });
-
                 return {
                     ...usuarioRegistrado,
                     ...jugadorRegistrado
                 };
             } catch (error) {
-                // Si falla el registro en la tabla jugadores, eliminamos el usuario
+                // Si falla el registro en la tabla entrenadores, elimino el usuario
                 await this.usuarioRepository.eliminarUsuario(usuarioRegistrado.id_usuario);
                 console.log("❌ Error al registrar en la tabla jugadores");
                 throw { message: `Error al registrar el jugador: ${error}` };
@@ -316,21 +291,16 @@ export default class UsuarioUseCases {
             console.log("❌ Falta la contraseña del administrador");
             throw { message: "Falta la contraseña del administrador" };
         }
-
         const adminEncontrado = await this.usuarioRepository.loginAdministrador(administrador);
-
         if (!adminEncontrado) {
-            console.log("❌ Administrador no encontrado");
+            console.log("❌ El email es incorrecto");
             throw { message: "El email es incorrecto" };
         }
-
         const passwordValida = compare(administrador.password, adminEncontrado.password);
-
         if (!passwordValida) {
             console.log("❌ Contraseña incorrecta");
             throw { message: "Contraseña incorrecta" };
         }
-
         return adminEncontrado;
     }
 
@@ -343,21 +313,16 @@ export default class UsuarioUseCases {
             console.log("❌ Falta la contraseña del entrenador");
             throw { message: "Falta la contraseña del entrenador" };
         }
-
         const entrenadorEncontrado = await this.usuarioRepository.loginEntrenador(entrenador);
-
         if (!entrenadorEncontrado) {
-            console.log("❌ Entrenador no encontrado");
+            console.log("❌ El email es incorrecto");
             throw { message: "El email es incorrecto" };
         }
-
         const passwordValida = compare(entrenador.password, entrenadorEncontrado.password);
-
         if (!passwordValida) {
             console.log("❌ Contraseña incorrecta");
             throw { message: "Contraseña incorrecta" };
         }
-
         return entrenadorEncontrado;
     }
 
@@ -371,12 +336,10 @@ export default class UsuarioUseCases {
             throw { message: "Falta la contraseña del árbitro" };
         }
         const arbitroEncontrado = await this.usuarioRepository.loginArbitro(arbitro);
-
         if (!arbitroEncontrado) {
-            console.log("❌ Árbitro no encontrado");
+            console.log("❌ El email es incorrecto");
             throw { message: "El email es incorrecto" };
         }
-
         const passwordValida = compare(arbitro.password, arbitroEncontrado.password);
 
         if (!passwordValida) {
@@ -396,21 +359,16 @@ export default class UsuarioUseCases {
             console.log("❌ Falta la contraseña del jugador");
             throw { message: "Falta la contraseña del jugador" };
         }
-
         const jugadorEncontrado = await this.usuarioRepository.loginJugador(jugador);
-
         if (!jugadorEncontrado) {
-            console.log("❌ Jugador no encontrado");
+            console.log("❌ El email es incorrecto");
             throw { message: "El email es incorrecto" };
         }
-
         const passwordValida = compare(jugador.password, jugadorEncontrado.password);
-
         if (!passwordValida) {
             console.log("❌ Contraseña incorrecta");
             throw { message: "Contraseña incorrecta" };
         }
-
         return jugadorEncontrado;
     }
 
@@ -423,16 +381,14 @@ export default class UsuarioUseCases {
             console.log("❌ No se encontraron usuarios");
             throw { message: "No se encontraron usuarios" };
         }
-
     }
 
     async getJugadoresByEquipo(id_equipo: number): Promise<Jugador[]> {
         const jugadores = await this.usuarioRepository.getJugadoresByEquipo(id_equipo);
         if (!jugadores || jugadores.length === 0) {
             console.log(`❌ No se encontraron jugadores para el equipo con id: ${id_equipo}`);
-            throw new Error("No se encontraron jugadores para este equipo");
+            throw { message: "No se encontraron jugadores para este equipo" };
         }
-        console.log("✅ Jugadores encontrados:", jugadores);
         return jugadores;
     }
 
@@ -443,12 +399,10 @@ export default class UsuarioUseCases {
                 console.log("❌ Usuario no encontrado:", id_usuario);
                 throw { message: "Usuario no encontrado" };
             }
-
             await this.usuarioRepository.eliminarUsuario(id_usuario);
-            console.log("✅ Usuario eliminado con éxito:", id_usuario);
         } catch (error) {
             console.error("❌ Error al eliminar usuario:", error);
-            throw { message: error.message || "Error al eliminar el usuario" };
+            throw { message: "Error al eliminar usuario" };
         }
     }
 
@@ -459,7 +413,6 @@ export default class UsuarioUseCases {
                     console.log("❌ Número de camiseta no válido:", numero_camiseta);
                     throw { message: "El número de camiseta debe estar entre 1 y 99" };
                 }
-
                 const query = `
                     SELECT * FROM jugadores 
                     WHERE id_equipo = (SELECT id_equipo FROM jugadores WHERE id_jugador = $1)
@@ -468,28 +421,24 @@ export default class UsuarioUseCases {
                 `;
                 const values = [id_jugador, numero_camiseta];
                 const result = await executeQuery(query, values);
-
                 if (result.length > 0) {
                     console.log("❌ El número de camiseta ya está en uso en este equipo");
                     throw { message: "El número de camiseta ya está en uso en este equipo" };
                 }
             }
-
             await this.usuarioRepository.editarJugador(id_jugador, posicion, numero_camiseta, activo);
-            console.log("✅ Jugador editado correctamente:", { id_jugador, posicion, numero_camiseta, activo });
         } catch (error) {
             console.error("❌ Error al editar jugador:", error);
-            throw { message: error.message || "Error al editar el jugador" };
+            throw { message: "Error al editar el jugador" };
         }
     }
 
     async actualizarUsuario(usuario: Usuario): Promise<Usuario> {
         if (!usuario.id_usuario) {
-            throw new Error("El id_usuario es obligatorio para actualizar");
+            throw { message: "El id_usuario es obligatorio para actualizar" };
         }
-
         if ((usuario.email === undefined || usuario.email === "") && (usuario.telefono === undefined || usuario.telefono === "")) {
-            throw new Error("Debe enviar al menos email o teléfono para actualizar");
+            throw { message: "Debe enviar al menos email o teléfono para actualizar" };
         }
         const usuarioActualizado = await this.usuarioRepository.actualizarUsuario(usuario);
         return usuarioActualizado;

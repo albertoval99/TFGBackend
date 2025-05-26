@@ -1,4 +1,4 @@
-import express, { Router, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { esAutorizado, esEntrenador, esJugador } from "../../../context/security/auth";
 import EntrenamientoUseCases from "../../application/entrenamiento.usecases";
 import EntrenamientoRepositoryPostgres from "../db/entrenamiento.repository.postgres";
@@ -17,7 +17,8 @@ router.post(
             const { fecha_hora_entrenamiento, duracion, id_equipo } = req.body;
 
             if (!id_equipo) {
-                throw new Error("No se encontró el equipo del entrenador");
+                console.log("❌ No se encontró el equipo del entrenador");
+                throw { message: "No se encontró el equipo del entrenador" };
             }
 
             const nuevoEntrenamiento: Entrenamiento = {
@@ -32,9 +33,9 @@ router.post(
                 message: "Entrenamiento creado exitosamente",
                 entrenamiento
             });
-        } catch (error: any) {
+        } catch (error) {
             console.error("❌ Error al crear entrenamiento:", error);
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: "Error al crear entrenamiento" });
         }
     }
 );
@@ -48,14 +49,16 @@ router.get(
             const id_equipo = req.params.id_equipo;
 
             if (!id_equipo) {
-                throw new Error("No se encontró el ID del equipo");
+                console.log("❌ No se encontró el ID del equipo");
+                throw { message: "No se encontró el ID del equipo" };
+
             }
 
             const entrenamientos = await entrenamientoUseCases.getEntrenamientosEquipo(parseInt(id_equipo));
             res.status(200).json(entrenamientos);
-        } catch (error: any) {
+        } catch (error) {
             console.error("❌ Error al obtener entrenamientos:", error);
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: "Error al obtener entrenamientos" });
         }
     }
 );
@@ -71,14 +74,16 @@ router.delete(
             const id_equipo = req.params.id_equipo;
 
             if (!id_equipo) {
-                throw new Error("No se encontró el ID del equipo");
+                console.log("❌ No se encontró el ID del equipo");
+                throw { message: "No se encontró el ID del equipo" };
+
             }
 
             await entrenamientoUseCases.eliminarEntrenamiento(parseInt(id_entrenamiento), parseInt(id_equipo));
             res.status(200).json({ message: "Entrenamiento eliminado exitosamente" });
-        } catch (error: any) {
+        } catch (error) {
             console.error("❌ Error al eliminar entrenamiento:", error);
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: "Error al eliminar entrenamiento" });
         }
     }
 );
@@ -94,7 +99,8 @@ router.put(
             const { asistio, justificacion, id_jugador } = req.body;
 
             if (!id_jugador) {
-                throw new Error("No se encontró el ID del jugador");
+                console.log("❌ No se encontró el ID del jugador");
+                throw { message: "No se encontró el ID del jugador" };
             }
 
             const asistencia = await entrenamientoUseCases.actualizarAsistencia(
@@ -108,9 +114,9 @@ router.put(
                 message: "Asistencia actualizada exitosamente",
                 asistencia
             });
-        } catch (error: any) {
+        } catch (error) {
             console.error("❌ Error al actualizar asistencia:", error);
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: "Error al actualizar asistencia" });
         }
     }
 );
@@ -126,9 +132,9 @@ router.get(
             const id_entrenamiento = req.params.id;
             const asistencias = await entrenamientoUseCases.getAsistenciasEntrenamiento(parseInt(id_entrenamiento));
             res.status(200).json(asistencias);
-        } catch (error: any) {
+        } catch (error) {
             console.error("❌ Error al obtener asistencias:", error);
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: "Error al obtener asistencias" });
         }
     }
 );
@@ -142,13 +148,10 @@ router.get(
         try {
             const id_jugador = req.params.id_jugador;
             const asistencias = await entrenamientoUseCases.getAsistenciasJugador(parseInt(id_jugador));
-
-            res.status(200).json({
-                asistencias
-            });
-        } catch (error: any) {
+            res.status(200).json({ asistencias });
+        } catch (error) {
             console.error("❌ Error al obtener asistencias:", error);
-            res.status(500).json({ message: error.message });
+            res.status(500).json({ message: "Error al obtener asistencias" });
         }
     }
 );

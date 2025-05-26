@@ -129,20 +129,6 @@ CREATE TABLE Estadisticas_Individuales (
     FOREIGN KEY (id_partido) REFERENCES Partidos (id_partido)
 );
 
-
-
-CREATE TABLE Estadisticas_Equipo (
-    id_estadistica_equipo SERIAL PRIMARY KEY,
-    id_equipo INTEGER NOT NULL,
-    id_partido INTEGER NOT NULL,
-    goles INTEGER DEFAULT 0,
-    tarjetas_amarillas INTEGER DEFAULT 0,
-    tarjetas_rojas INTEGER DEFAULT 0,
-    UNIQUE (id_equipo, id_partido),
-    FOREIGN KEY (id_equipo) REFERENCES Equipos (id_equipo),
-    FOREIGN KEY (id_partido) REFERENCES Partidos (id_partido)
-);
-
 CREATE TABLE Entrenamientos (
     id_entrenamiento SERIAL PRIMARY KEY,
     fecha_hora_entrenamiento TIMESTAMP NOT NULL,
@@ -163,7 +149,17 @@ CREATE TABLE Asistencias (
 );
 
 
-
+CREATE TABLE Estadisticas_Equipo (
+    id_estadistica_equipo SERIAL PRIMARY KEY,
+    id_equipo INTEGER NOT NULL,
+    id_partido INTEGER NOT NULL,
+    goles INTEGER DEFAULT 0,
+    tarjetas_amarillas INTEGER DEFAULT 0,
+    tarjetas_rojas INTEGER DEFAULT 0,
+    UNIQUE (id_equipo, id_partido),
+    FOREIGN KEY (id_equipo) REFERENCES Equipos (id_equipo),
+    FOREIGN KEY (id_partido) REFERENCES Partidos (id_partido)
+);
 CREATE TABLE Logros (
     id_logro SERIAL PRIMARY KEY,
     nombre_logro VARCHAR(100) NOT NULL UNIQUE,

@@ -35,7 +35,7 @@ export default class EquipoUseCases {
         const equipo = await this.equipoRepository.getEquipoById(id_equipo);
         if (!equipo) {
             console.log(`❌No se encontró el equipo con id: ${id_equipo}`);
-            throw new Error("Equipo no encontrado");
+            throw { message: "Equipo no encontrado" };
         }
         return equipo;
     }
@@ -67,7 +67,6 @@ export default class EquipoUseCases {
         }
 
         const equipoRegistrado = await this.equipoRepository.registrarEquipo(equipo);
-
         return equipoRegistrado;
     }
 
@@ -88,8 +87,8 @@ export default class EquipoUseCases {
         if (jugadores && jugadores.length > 0) {
             return jugadores;
         } else {
-            console.log(`ℹ️ No se encontraron jugadores para el equipo con id: ${id_equipo}`);
-            return []; // Devuelve array vacío en lugar de error si no hay jugadores
+            console.log(`❌ No se encontraron jugadores para el equipo con id: ${id_equipo}`);
+            return []; 
         }
     }
 }

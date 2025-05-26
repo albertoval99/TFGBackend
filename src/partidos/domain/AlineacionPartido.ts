@@ -1,4 +1,4 @@
-export interface AlineacionPartido {
+export default interface AlineacionPartido {
     id_jugador: number;
     id_partido: number;
     id_equipo: number;

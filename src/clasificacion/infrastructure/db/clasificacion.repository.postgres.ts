@@ -44,7 +44,7 @@ export default class ClasificacionRepositoryPostgres implements ClasificacionRep
         const rows = await executeQuery(query, values);
         return rows.map(row => ({
             id_equipo: Number(row.id_equipo),
-            victorias: Number(row.victorias)     
+            victorias: Number(row.victorias)
         }));
     }
 
@@ -68,13 +68,12 @@ export default class ClasificacionRepositoryPostgres implements ClasificacionRep
         const rows = await executeQuery(query, values);
         return rows.map(row => ({
             id_equipo: Number(row.id_equipo),
-            empates: Number(row.empates)     
+            empates: Number(row.empates)
         }));
     }
 
-    /**
-     * Obtiene goles a favor combinando locales y visitantes en un solo query.
-     */
+
+    // Obtengo los goles a favor combinando locales y visitantes en un solo query.
     async getGolesFavorPorEquipo(id_liga: number): Promise<GolesFavorPorEquipo[]> {
         const query = `
             SELECT id_equipo, SUM(goles) AS goles_favor
@@ -97,9 +96,8 @@ export default class ClasificacionRepositoryPostgres implements ClasificacionRep
         }));
     }
 
-    /**
-     * Obtiene goles en contra combinando locales y visitantes en un solo query.
-     */
+
+    //Obtiene goles en contra combinando locales y visitantes en un solo query.
     async getGolesContraPorEquipo(id_liga: number): Promise<GolesContraPorEquipo[]> {
         const query = `
             SELECT id_equipo, SUM(goles) AS goles_contra
