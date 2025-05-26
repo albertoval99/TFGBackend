@@ -2,8 +2,12 @@ import express, { Request, Response } from "express";
 import { esAutorizado, esAdministrador, esEntrenador, createToken } from "../../../context/security/auth";
 import UsuarioUseCases from "../../application/usuario.usecases";
 import UsuarioRepositoryPostgres from "../db/usuario.repository.postgres";
+import EquipoRepositoryPostgres from "../../../equipos/infrastructure/db/equipo.repository.postgres";
+import EquipoUseCases from "../../../equipos/application/equipo.usecases";
+import LigaRepositoryPostgres from "../../../ligas/infrastructure/db/liga.repository.postgres";
 const router = express.Router();
 const usuarioUseCases = new UsuarioUseCases(new UsuarioRepositoryPostgres);
+const equipoUseCases= new EquipoUseCases(new EquipoRepositoryPostgres, new LigaRepositoryPostgres);
 
 // POST http://localhost:3000/api/usuarios/registroEntrenador
 router.post(
@@ -114,6 +118,7 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
             res.status(400).json({ message: "Faltan campos obligatorios" });
             return;
         }
+
         let usuario;
         switch (rol) {
             case 'administrador':
@@ -132,25 +137,35 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
                 res.status(400).json({ message: "Tipo de usuario no válido" });
                 return;
         }
+
+        let equipo = null;
+
+        if (rol === 'entrenador' || rol === 'jugador') {
+            const id_equipo = usuario.id_equipo;
+            if (id_equipo) {
+                equipo = await equipoUseCases.getEquipoById(id_equipo);
+            }
+        }
+
         const token = createToken({
             email: usuario.email,
             rol: usuario.rol,
             id_usuario: usuario.id_usuario
         });
+
         res.status(200).json({
             usuario: {
                 ...usuario,
-                rol: usuario.rol
+                rol: usuario.rol,
+                equipo: equipo
             },
             token
         });
-
     } catch (error) {
         console.error(`❌ Error en login: ${error}`);
-        res.status(500).json({message: "Error en el inicio de sesión"});
+        res.status(500).json({ message: "Error en el inicio de sesión" });
     }
 });
-
 // GET http://localhost:3000/api/usuarios/
 router.get("/", async (req: Request, res: Response): Promise<void> => {
     try {
@@ -318,13 +333,13 @@ router.patch("/actualizar", esAutorizado, async (req: Request, res: Response) =>
         const { id_usuario, email, telefono } = req.body;
         const userIdToken = req.body.user.id_usuario;
         if (!id_usuario) {
-            res.status(400).json({ mensaje: "id_usuario es obligatorio" });
+            res.status(400).json({ message: "id_usuario es obligatorio" });
         }
         if (id_usuario !== userIdToken) {
-            res.status(403).json({ mensaje: "No tiene permiso para actualizar este usuario" });
+            res.status(403).json({ message: "No tiene permiso para actualizar este usuario" });
         }
         if ((email === undefined || email === "") && (telefono === undefined || telefono === "")) {
-            res.status(400).json({ mensaje: "Debe enviar al menos email o teléfono para actualizar" });
+            res.status(400).json({ message: "Debe enviar al menos email o teléfono para actualizar" });
         }
         const usuario = await usuarioUseCases.actualizarUsuario({
             id_usuario,
@@ -334,7 +349,7 @@ router.patch("/actualizar", esAutorizado, async (req: Request, res: Response) =>
         res.status(200).json({ usuario });
     } catch (error) {
         console.error("Error en la actualización:", error);
-        res.status(500).json({ mensaje: "Error actualizando usuario" });
+        res.status(500).json({ message: "Error actualizando usuario" });
     }
 });
 

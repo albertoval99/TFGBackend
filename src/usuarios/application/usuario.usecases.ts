@@ -6,6 +6,7 @@ import Entrenador from "../domain/Entrenador";
 import Arbitro from "../domain/Arbitro";
 import Jugador from "../domain/Jugador";
 import Administrador from "../domain/Adminisitrador";
+import EquipoRepository from "../../equipos/domain/equipo.repository";
 
 export default class UsuarioUseCases {
     private usuarioRepository: UsuarioRepository;
