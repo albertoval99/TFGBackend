@@ -1,7 +1,7 @@
 [
   {
     "jornada": 1,
-    "fecha_partido": "2024-09-22",
+    "fecha_partido": "2025-05-04",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 17,
@@ -13,7 +13,7 @@
   },
   {
     "jornada": 1,
-    "fecha_partido": "2024-09-22",
+    "fecha_partido": "2025-05-04",
     "hora_partido": "18:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 16,
@@ -25,7 +25,7 @@
   },
   {
     "jornada": 1,
-    "fecha_partido": "2024-09-22",
+    "fecha_partido": "2025-05-04",
     "hora_partido": "20:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 15,
@@ -37,7 +37,7 @@
   },
   {
     "jornada": 1,
-    "fecha_partido": "2024-09-22",
+    "fecha_partido": "2025-05-04",
     "hora_partido": "12:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 14,
@@ -49,7 +49,7 @@
   },
   {
     "jornada": 1,
-    "fecha_partido": "2024-09-22",
+    "fecha_partido": "2025-05-04",
     "hora_partido": "17:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 13,
@@ -61,7 +61,7 @@
   },
   {
     "jornada": 1,
-    "fecha_partido": "2024-09-22",
+    "fecha_partido": "2025-05-04",
     "hora_partido": "19:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 12,
@@ -73,7 +73,7 @@
   },
   {
     "jornada": 1,
-    "fecha_partido": "2024-09-22",
+    "fecha_partido": "2025-05-04",
     "hora_partido": "21:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 11,
@@ -85,7 +85,7 @@
   },
   {
     "jornada": 2,
-    "fecha_partido": "2024-09-29",
+    "fecha_partido": "2025-05-11",
     "hora_partido": "16:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 4,
@@ -97,7 +97,7 @@
   },
   {
     "jornada": 2,
-    "fecha_partido": "2024-09-29",
+    "fecha_partido": "2025-05-11",
     "hora_partido": "18:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 17,
@@ -109,7 +109,7 @@
   },
   {
     "jornada": 2,
-    "fecha_partido": "2024-09-29",
+    "fecha_partido": "2025-05-11",
     "hora_partido": "20:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 5,
@@ -121,7 +121,7 @@
   },
   {
     "jornada": 2,
-    "fecha_partido": "2024-09-29",
+    "fecha_partido": "2025-05-11",
     "hora_partido": "12:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 6,
@@ -133,7 +133,7 @@
   },
   {
     "jornada": 2,
-    "fecha_partido": "2024-09-29",
+    "fecha_partido": "2025-05-11",
     "hora_partido": "17:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 7,
@@ -145,7 +145,7 @@
   },
   {
     "jornada": 2,
-    "fecha_partido": "2024-09-29",
+    "fecha_partido": "2025-05-11",
     "hora_partido": "19:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 8,
@@ -157,7 +157,7 @@
   },
   {
     "jornada": 2,
-    "fecha_partido": "2024-09-29",
+    "fecha_partido": "2025-05-11",
     "hora_partido": "21:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 9,
@@ -169,7 +169,7 @@
   },
   {
     "jornada": 3,
-    "fecha_partido": "2024-10-06",
+    "fecha_partido": "2025-05-18",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 15,
@@ -181,7 +181,7 @@
   },
   {
     "jornada": 3,
-    "fecha_partido": "2024-10-06",
+    "fecha_partido": "2025-05-18",
     "hora_partido": "18:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 14,
@@ -193,7 +193,7 @@
   },
   {
     "jornada": 3,
-    "fecha_partido": "2024-10-06",
+    "fecha_partido": "2025-05-18",
     "hora_partido": "20:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 13,
@@ -205,7 +205,7 @@
   },
   {
     "jornada": 3,
-    "fecha_partido": "2024-10-06",
+    "fecha_partido": "2025-05-18",
     "hora_partido": "12:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 12,
@@ -217,7 +217,7 @@
   },
   {
     "jornada": 3,
-    "fecha_partido": "2024-10-06",
+    "fecha_partido": "2025-05-18",
     "hora_partido": "17:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 11,
@@ -229,7 +229,7 @@
   },
   {
     "jornada": 3,
-    "fecha_partido": "2024-10-06",
+    "fecha_partido": "2025-05-18",
     "hora_partido": "19:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 10,
@@ -241,7 +241,7 @@
   },
   {
     "jornada": 3,
-    "fecha_partido": "2024-10-06",
+    "fecha_partido": "2025-05-18",
     "hora_partido": "21:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 9,
@@ -253,7 +253,7 @@
   },
   {
     "jornada": 4,
-    "fecha_partido": "2024-10-20",
+    "fecha_partido": "2025-05-25",
     "hora_partido": "16:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 4,
@@ -265,7 +265,7 @@
   },
   {
     "jornada": 4,
-    "fecha_partido": "2024-10-20",
+    "fecha_partido": "2025-05-25",
     "hora_partido": "18:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 15,
@@ -277,7 +277,7 @@
   },
   {
     "jornada": 4,
-    "fecha_partido": "2024-10-20",
+    "fecha_partido": "2025-05-25",
     "hora_partido": "20:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 16,
@@ -289,7 +289,7 @@
   },
   {
     "jornada": 4,
-    "fecha_partido": "2024-10-20",
+    "fecha_partido": "2025-05-25",
     "hora_partido": "12:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 17,
@@ -301,7 +301,7 @@
   },
   {
     "jornada": 4,
-    "fecha_partido": "2024-10-20",
+    "fecha_partido": "2025-05-25",
     "hora_partido": "17:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 5,
@@ -313,7 +313,7 @@
   },
   {
     "jornada": 4,
-    "fecha_partido": "2024-10-20",
+    "fecha_partido": "2025-05-25",
     "hora_partido": "19:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 6,
@@ -325,7 +325,7 @@
   },
   {
     "jornada": 4,
-    "fecha_partido": "2024-10-20",
+    "fecha_partido": "2025-05-25",
     "hora_partido": "21:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 7,
@@ -337,7 +337,7 @@
   },
   {
     "jornada": 5,
-    "fecha_partido": "2024-10-27",
+    "fecha_partido": "2025-06-01",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 13,
@@ -349,7 +349,7 @@
   },
   {
     "jornada": 5,
-    "fecha_partido": "2024-10-27",
+    "fecha_partido": "2025-06-01",
     "hora_partido": "18:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 12,
@@ -361,7 +361,7 @@
   },
   {
     "jornada": 5,
-    "fecha_partido": "2024-10-27",
+    "fecha_partido": "2025-06-01",
     "hora_partido": "20:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 11,
@@ -373,7 +373,7 @@
   },
   {
     "jornada": 5,
-    "fecha_partido": "2024-10-27",
+    "fecha_partido": "2025-06-01",
     "hora_partido": "12:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 10,
@@ -385,7 +385,7 @@
   },
   {
     "jornada": 5,
-    "fecha_partido": "2024-10-27",
+    "fecha_partido": "2025-06-01",
     "hora_partido": "17:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 9,
@@ -397,7 +397,7 @@
   },
   {
     "jornada": 5,
-    "fecha_partido": "2024-10-27",
+    "fecha_partido": "2025-06-01",
     "hora_partido": "19:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 8,
@@ -409,7 +409,7 @@
   },
   {
     "jornada": 5,
-    "fecha_partido": "2024-10-27",
+    "fecha_partido": "2025-06-01",
     "hora_partido": "21:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 7,
@@ -421,7 +421,7 @@
   },
   {
     "jornada": 6,
-    "fecha_partido": "2024-11-10",
+    "fecha_partido": "2025-06-08",
     "hora_partido": "16:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 4,
@@ -433,7 +433,7 @@
   },
   {
     "jornada": 6,
-    "fecha_partido": "2024-11-10",
+    "fecha_partido": "2025-06-08",
     "hora_partido": "18:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 13,
@@ -445,7 +445,7 @@
   },
   {
     "jornada": 6,
-    "fecha_partido": "2024-11-10",
+    "fecha_partido": "2025-06-08",
     "hora_partido": "20:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 14,
@@ -457,7 +457,7 @@
   },
   {
     "jornada": 6,
-    "fecha_partido": "2024-11-10",
+    "fecha_partido": "2025-06-08",
     "hora_partido": "12:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 15,
@@ -469,7 +469,7 @@
   },
   {
     "jornada": 6,
-    "fecha_partido": "2024-11-10",
+    "fecha_partido": "2025-06-08",
     "hora_partido": "17:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 16,
@@ -481,7 +481,7 @@
   },
   {
     "jornada": 6,
-    "fecha_partido": "2024-11-10",
+    "fecha_partido": "2025-06-08",
     "hora_partido": "19:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 17,
@@ -493,7 +493,7 @@
   },
   {
     "jornada": 6,
-    "fecha_partido": "2024-11-10",
+    "fecha_partido": "2025-06-08",
     "hora_partido": "21:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 5,
@@ -505,7 +505,7 @@
   },
   {
     "jornada": 7,
-    "fecha_partido": "2024-11-17",
+    "fecha_partido": "2025-06-15",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 11,
@@ -517,7 +517,7 @@
   },
   {
     "jornada": 7,
-    "fecha_partido": "2024-11-17",
+    "fecha_partido": "2025-06-15",
     "hora_partido": "18:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 10,
@@ -529,7 +529,7 @@
   },
   {
     "jornada": 7,
-    "fecha_partido": "2024-11-17",
+    "fecha_partido": "2025-06-15",
     "hora_partido": "20:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 9,
@@ -541,7 +541,7 @@
   },
   {
     "jornada": 7,
-    "fecha_partido": "2024-11-17",
+    "fecha_partido": "2025-06-15",
     "hora_partido": "12:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 8,
@@ -553,7 +553,7 @@
   },
   {
     "jornada": 7,
-    "fecha_partido": "2024-11-17",
+    "fecha_partido": "2025-06-15",
     "hora_partido": "17:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 7,
@@ -565,7 +565,7 @@
   },
   {
     "jornada": 7,
-    "fecha_partido": "2024-11-17",
+    "fecha_partido": "2025-06-15",
     "hora_partido": "19:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 6,
@@ -577,7 +577,7 @@
   },
   {
     "jornada": 7,
-    "fecha_partido": "2024-11-17",
+    "fecha_partido": "2025-06-15",
     "hora_partido": "21:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 5,
@@ -589,7 +589,7 @@
   },
   {
     "jornada": 8,
-    "fecha_partido": "2024-11-24",
+    "fecha_partido": "2025-06-22",
     "hora_partido": "16:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 4,
@@ -601,7 +601,7 @@
   },
   {
     "jornada": 8,
-    "fecha_partido": "2024-11-24",
+    "fecha_partido": "2025-06-22",
     "hora_partido": "18:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 11,
@@ -613,7 +613,7 @@
   },
   {
     "jornada": 8,
-    "fecha_partido": "2024-11-24",
+    "fecha_partido": "2025-06-22",
     "hora_partido": "20:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 12,
@@ -625,7 +625,7 @@
   },
   {
     "jornada": 8,
-    "fecha_partido": "2024-11-24",
+    "fecha_partido": "2025-06-22",
     "hora_partido": "12:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 13,
@@ -637,7 +637,7 @@
   },
   {
     "jornada": 8,
-    "fecha_partido": "2024-11-24",
+    "fecha_partido": "2025-06-22",
     "hora_partido": "17:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 14,
@@ -649,7 +649,7 @@
   },
   {
     "jornada": 8,
-    "fecha_partido": "2024-11-24",
+    "fecha_partido": "2025-06-22",
     "hora_partido": "19:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 15,
@@ -661,7 +661,7 @@
   },
   {
     "jornada": 8,
-    "fecha_partido": "2024-11-24",
+    "fecha_partido": "2025-06-22",
     "hora_partido": "21:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 16,
@@ -673,7 +673,7 @@
   },
   {
     "jornada": 9,
-    "fecha_partido": "2024-12-01",
+    "fecha_partido": "2025-06-29",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 9,
@@ -685,7 +685,7 @@
   },
   {
     "jornada": 9,
-    "fecha_partido": "2024-12-01",
+    "fecha_partido": "2025-06-29",
     "hora_partido": "18:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 8,
@@ -697,7 +697,7 @@
   },
   {
     "jornada": 9,
-    "fecha_partido": "2024-12-01",
+    "fecha_partido": "2025-06-29",
     "hora_partido": "20:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 7,
@@ -709,7 +709,7 @@
   },
   {
     "jornada": 9,
-    "fecha_partido": "2024-12-01",
+    "fecha_partido": "2025-06-29",
     "hora_partido": "12:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 6,
@@ -721,7 +721,7 @@
   },
   {
     "jornada": 9,
-    "fecha_partido": "2024-12-01",
+    "fecha_partido": "2025-06-29",
     "hora_partido": "17:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 5,
@@ -733,7 +733,7 @@
   },
   {
     "jornada": 9,
-    "fecha_partido": "2024-12-01",
+    "fecha_partido": "2025-06-29",
     "hora_partido": "19:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 17,
@@ -745,7 +745,7 @@
   },
   {
     "jornada": 9,
-    "fecha_partido": "2024-12-01",
+    "fecha_partido": "2025-06-29",
     "hora_partido": "21:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 16,
@@ -757,7 +757,7 @@
   },
   {
     "jornada": 10,
-    "fecha_partido": "2024-12-15",
+    "fecha_partido": "2025-07-06",
     "hora_partido": "16:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 4,
@@ -769,7 +769,7 @@
   },
   {
     "jornada": 10,
-    "fecha_partido": "2024-12-15",
+    "fecha_partido": "2025-07-06",
     "hora_partido": "18:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 9,
@@ -781,7 +781,7 @@
   },
   {
     "jornada": 10,
-    "fecha_partido": "2024-12-15",
+    "fecha_partido": "2025-07-06",
     "hora_partido": "20:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 10,
@@ -793,7 +793,7 @@
   },
   {
     "jornada": 10,
-    "fecha_partido": "2024-12-15",
+    "fecha_partido": "2025-07-06",
     "hora_partido": "12:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 11,
@@ -805,7 +805,7 @@
   },
   {
     "jornada": 10,
-    "fecha_partido": "2024-12-15",
+    "fecha_partido": "2025-07-06",
     "hora_partido": "17:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 12,
@@ -817,7 +817,7 @@
   },
   {
     "jornada": 10,
-    "fecha_partido": "2024-12-15",
+    "fecha_partido": "2025-07-06",
     "hora_partido": "19:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 13,
@@ -829,7 +829,7 @@
   },
   {
     "jornada": 10,
-    "fecha_partido": "2024-12-15",
+    "fecha_partido": "2025-07-06",
     "hora_partido": "21:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 14,
@@ -841,7 +841,7 @@
   },
   {
     "jornada": 11,
-    "fecha_partido": "2024-12-22",
+    "fecha_partido": "2025-07-13",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 7,
@@ -853,7 +853,7 @@
   },
   {
     "jornada": 11,
-    "fecha_partido": "2024-12-22",
+    "fecha_partido": "2025-07-13",
     "hora_partido": "18:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 6,
@@ -865,7 +865,7 @@
   },
   {
     "jornada": 11,
-    "fecha_partido": "2024-12-22",
+    "fecha_partido": "2025-07-13",
     "hora_partido": "20:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 5,
@@ -877,7 +877,7 @@
   },
   {
     "jornada": 11,
-    "fecha_partido": "2024-12-22",
+    "fecha_partido": "2025-07-13",
     "hora_partido": "12:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 17,
@@ -889,7 +889,7 @@
   },
   {
     "jornada": 11,
-    "fecha_partido": "2024-12-22",
+    "fecha_partido": "2025-07-13",
     "hora_partido": "17:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 16,
@@ -901,7 +901,7 @@
   },
   {
     "jornada": 11,
-    "fecha_partido": "2024-12-22",
+    "fecha_partido": "2025-07-13",
     "hora_partido": "19:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 15,
@@ -913,7 +913,7 @@
   },
   {
     "jornada": 11,
-    "fecha_partido": "2024-12-22",
+    "fecha_partido": "2025-07-13",
     "hora_partido": "21:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 14,
@@ -925,7 +925,7 @@
   },
   {
     "jornada": 12,
-    "fecha_partido": "2025-01-12",
+    "fecha_partido": "2025-07-20",
     "hora_partido": "16:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 4,
@@ -937,7 +937,7 @@
   },
   {
     "jornada": 12,
-    "fecha_partido": "2025-01-12",
+    "fecha_partido": "2025-07-20",
     "hora_partido": "18:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 7,
@@ -949,7 +949,7 @@
   },
   {
     "jornada": 12,
-    "fecha_partido": "2025-01-12",
+    "fecha_partido": "2025-07-20",
     "hora_partido": "20:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 8,
@@ -961,7 +961,7 @@
   },
   {
     "jornada": 12,
-    "fecha_partido": "2025-01-12",
+    "fecha_partido": "2025-07-20",
     "hora_partido": "12:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 9,
@@ -973,7 +973,7 @@
   },
   {
     "jornada": 12,
-    "fecha_partido": "2025-01-12",
+    "fecha_partido": "2025-07-20",
     "hora_partido": "17:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 10,
@@ -985,7 +985,7 @@
   },
   {
     "jornada": 12,
-    "fecha_partido": "2025-01-12",
+    "fecha_partido": "2025-07-20",
     "hora_partido": "19:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 11,
@@ -997,7 +997,7 @@
   },
   {
     "jornada": 12,
-    "fecha_partido": "2025-01-12",
+    "fecha_partido": "2025-07-20",
     "hora_partido": "21:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 12,
@@ -1009,7 +1009,7 @@
   },
   {
     "jornada": 13,
-    "fecha_partido": "2025-01-19",
+    "fecha_partido": "2025-07-27",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 5,
@@ -1021,7 +1021,7 @@
   },
   {
     "jornada": 13,
-    "fecha_partido": "2025-01-19",
+    "fecha_partido": "2025-07-27",
     "hora_partido": "18:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 17,
@@ -1033,7 +1033,7 @@
   },
   {
     "jornada": 13,
-    "fecha_partido": "2025-01-19",
+    "fecha_partido": "2025-07-27",
     "hora_partido": "20:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 16,
@@ -1045,7 +1045,7 @@
   },
   {
     "jornada": 13,
-    "fecha_partido": "2025-01-19",
+    "fecha_partido": "2025-07-27",
     "hora_partido": "12:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 15,
@@ -1057,7 +1057,7 @@
   },
   {
     "jornada": 13,
-    "fecha_partido": "2025-01-19",
+    "fecha_partido": "2025-07-27",
     "hora_partido": "17:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 14,
@@ -1069,7 +1069,7 @@
   },
   {
     "jornada": 13,
-    "fecha_partido": "2025-01-19",
+    "fecha_partido": "2025-07-27",
     "hora_partido": "19:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 13,
@@ -1081,7 +1081,7 @@
   },
   {
     "jornada": 13,
-    "fecha_partido": "2025-01-19",
+    "fecha_partido": "2025-07-27",
     "hora_partido": "21:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 12,
@@ -1093,7 +1093,7 @@
   },
   {
     "jornada": 14,
-    "fecha_partido": "2025-01-26",
+    "fecha_partido": "2025-08-03",
     "hora_partido": "16:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 4,
@@ -1105,7 +1105,7 @@
   },
   {
     "jornada": 14,
-    "fecha_partido": "2025-01-26",
+    "fecha_partido": "2025-08-03",
     "hora_partido": "18:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 5,
@@ -1117,7 +1117,7 @@
   },
   {
     "jornada": 14,
-    "fecha_partido": "2025-01-26",
+    "fecha_partido": "2025-08-03",
     "hora_partido": "20:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 6,
@@ -1129,7 +1129,7 @@
   },
   {
     "jornada": 14,
-    "fecha_partido": "2025-01-26",
+    "fecha_partido": "2025-08-03",
     "hora_partido": "12:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 7,
@@ -1141,7 +1141,7 @@
   },
   {
     "jornada": 14,
-    "fecha_partido": "2025-01-26",
+    "fecha_partido": "2025-08-03",
     "hora_partido": "17:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 8,
@@ -1153,7 +1153,7 @@
   },
   {
     "jornada": 14,
-    "fecha_partido": "2025-01-26",
+    "fecha_partido": "2025-08-03",
     "hora_partido": "19:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 9,
@@ -1165,7 +1165,7 @@
   },
   {
     "jornada": 14,
-    "fecha_partido": "2025-01-26",
+    "fecha_partido": "2025-08-03",
     "hora_partido": "21:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 10,
@@ -1177,7 +1177,7 @@
   },
   {
     "jornada": 15,
-    "fecha_partido": "2025-02-02",
+    "fecha_partido": "2025-08-10",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 16,
@@ -1189,7 +1189,7 @@
   },
   {
     "jornada": 15,
-    "fecha_partido": "2025-02-02",
+    "fecha_partido": "2025-08-10",
     "hora_partido": "18:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 15,
@@ -1201,7 +1201,7 @@
   },
   {
     "jornada": 15,
-    "fecha_partido": "2025-02-02",
+    "fecha_partido": "2025-08-10",
     "hora_partido": "20:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 14,
@@ -1213,7 +1213,7 @@
   },
   {
     "jornada": 15,
-    "fecha_partido": "2025-02-02",
+    "fecha_partido": "2025-08-10",
     "hora_partido": "12:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 13,
@@ -1225,7 +1225,7 @@
   },
   {
     "jornada": 15,
-    "fecha_partido": "2025-02-02",
+    "fecha_partido": "2025-08-10",
     "hora_partido": "17:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 12,
@@ -1237,7 +1237,7 @@
   },
   {
     "jornada": 15,
-    "fecha_partido": "2025-02-02",
+    "fecha_partido": "2025-08-10",
     "hora_partido": "19:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 11,
@@ -1249,7 +1249,7 @@
   },
   {
     "jornada": 15,
-    "fecha_partido": "2025-02-02",
+    "fecha_partido": "2025-08-10",
     "hora_partido": "21:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 10,
@@ -1261,7 +1261,7 @@
   },
   {
     "jornada": 16,
-    "fecha_partido": "2025-02-09",
+    "fecha_partido": "2025-08-17",
     "hora_partido": "16:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 4,
@@ -1273,7 +1273,7 @@
   },
   {
     "jornada": 16,
-    "fecha_partido": "2025-02-09",
+    "fecha_partido": "2025-08-17",
     "hora_partido": "18:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 16,
@@ -1285,7 +1285,7 @@
   },
   {
     "jornada": 16,
-    "fecha_partido": "2025-02-09",
+    "fecha_partido": "2025-08-17",
     "hora_partido": "20:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 17,
@@ -1297,7 +1297,7 @@
   },
   {
     "jornada": 16,
-    "fecha_partido": "2025-02-09",
+    "fecha_partido": "2025-08-17",
     "hora_partido": "12:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 5,
@@ -1309,7 +1309,7 @@
   },
   {
     "jornada": 16,
-    "fecha_partido": "2025-02-09",
+    "fecha_partido": "2025-08-17",
     "hora_partido": "17:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 6,
@@ -1321,7 +1321,7 @@
   },
   {
     "jornada": 16,
-    "fecha_partido": "2025-02-09",
+    "fecha_partido": "2025-08-17",
     "hora_partido": "19:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 7,
@@ -1333,7 +1333,7 @@
   },
   {
     "jornada": 16,
-    "fecha_partido": "2025-02-09",
+    "fecha_partido": "2025-08-17",
     "hora_partido": "21:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 8,
@@ -1345,7 +1345,7 @@
   },
   {
     "jornada": 17,
-    "fecha_partido": "2025-02-16",
+    "fecha_partido": "2025-08-24",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 14,
@@ -1357,7 +1357,7 @@
   },
   {
     "jornada": 17,
-    "fecha_partido": "2025-02-16",
+    "fecha_partido": "2025-08-24",
     "hora_partido": "18:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 13,
@@ -1369,7 +1369,7 @@
   },
   {
     "jornada": 17,
-    "fecha_partido": "2025-02-16",
+    "fecha_partido": "2025-08-24",
     "hora_partido": "20:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 12,
@@ -1381,7 +1381,7 @@
   },
   {
     "jornada": 17,
-    "fecha_partido": "2025-02-16",
+    "fecha_partido": "2025-08-24",
     "hora_partido": "12:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 11,
@@ -1393,7 +1393,7 @@
   },
   {
     "jornada": 17,
-    "fecha_partido": "2025-02-16",
+    "fecha_partido": "2025-08-24",
     "hora_partido": "17:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 10,
@@ -1405,7 +1405,7 @@
   },
   {
     "jornada": 17,
-    "fecha_partido": "2025-02-16",
+    "fecha_partido": "2025-08-24",
     "hora_partido": "19:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 9,
@@ -1417,7 +1417,7 @@
   },
   {
     "jornada": 17,
-    "fecha_partido": "2025-02-16",
+    "fecha_partido": "2025-08-24",
     "hora_partido": "21:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 8,
@@ -1429,7 +1429,7 @@
   },
   {
     "jornada": 18,
-    "fecha_partido": "2025-02-23",
+    "fecha_partido": "2025-08-31",
     "hora_partido": "16:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 4,
@@ -1441,7 +1441,7 @@
   },
   {
     "jornada": 18,
-    "fecha_partido": "2025-02-23",
+    "fecha_partido": "2025-08-31",
     "hora_partido": "18:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 14,
@@ -1453,7 +1453,7 @@
   },
   {
     "jornada": 18,
-    "fecha_partido": "2025-02-23",
+    "fecha_partido": "2025-08-31",
     "hora_partido": "20:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 15,
@@ -1465,7 +1465,7 @@
   },
   {
     "jornada": 18,
-    "fecha_partido": "2025-02-23",
+    "fecha_partido": "2025-08-31",
     "hora_partido": "12:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 16,
@@ -1477,7 +1477,7 @@
   },
   {
     "jornada": 18,
-    "fecha_partido": "2025-02-23",
+    "fecha_partido": "2025-08-31",
     "hora_partido": "17:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 17,
@@ -1489,7 +1489,7 @@
   },
   {
     "jornada": 18,
-    "fecha_partido": "2025-02-23",
+    "fecha_partido": "2025-08-31",
     "hora_partido": "19:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 5,
@@ -1501,7 +1501,7 @@
   },
   {
     "jornada": 18,
-    "fecha_partido": "2025-02-23",
+    "fecha_partido": "2025-08-31",
     "hora_partido": "21:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 6,
@@ -1513,7 +1513,7 @@
   },
   {
     "jornada": 19,
-    "fecha_partido": "2025-03-02",
+    "fecha_partido": "2025-09-07",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 12,
@@ -1525,7 +1525,7 @@
   },
   {
     "jornada": 19,
-    "fecha_partido": "2025-03-02",
+    "fecha_partido": "2025-09-07",
     "hora_partido": "18:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 11,
@@ -1537,7 +1537,7 @@
   },
   {
     "jornada": 19,
-    "fecha_partido": "2025-03-02",
+    "fecha_partido": "2025-09-07",
     "hora_partido": "20:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 10,
@@ -1549,7 +1549,7 @@
   },
   {
     "jornada": 19,
-    "fecha_partido": "2025-03-02",
+    "fecha_partido": "2025-09-07",
     "hora_partido": "12:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 9,
@@ -1561,7 +1561,7 @@
   },
   {
     "jornada": 19,
-    "fecha_partido": "2025-03-02",
+    "fecha_partido": "2025-09-07",
     "hora_partido": "17:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 8,
@@ -1573,7 +1573,7 @@
   },
   {
     "jornada": 19,
-    "fecha_partido": "2025-03-02",
+    "fecha_partido": "2025-09-07",
     "hora_partido": "19:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 7,
@@ -1585,7 +1585,7 @@
   },
   {
     "jornada": 19,
-    "fecha_partido": "2025-03-02",
+    "fecha_partido": "2025-09-07",
     "hora_partido": "21:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 6,
@@ -1597,7 +1597,7 @@
   },
   {
     "jornada": 20,
-    "fecha_partido": "2025-03-16",
+    "fecha_partido": "2025-09-14",
     "hora_partido": "16:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 4,
@@ -1609,7 +1609,7 @@
   },
   {
     "jornada": 20,
-    "fecha_partido": "2025-03-16",
+    "fecha_partido": "2025-09-14",
     "hora_partido": "18:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 12,
@@ -1621,7 +1621,7 @@
   },
   {
     "jornada": 20,
-    "fecha_partido": "2025-03-16",
+    "fecha_partido": "2025-09-14",
     "hora_partido": "20:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 13,
@@ -1633,7 +1633,7 @@
   },
   {
     "jornada": 20,
-    "fecha_partido": "2025-03-16",
+    "fecha_partido": "2025-09-14",
     "hora_partido": "12:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 14,
@@ -1645,7 +1645,7 @@
   },
   {
     "jornada": 20,
-    "fecha_partido": "2025-03-16",
+    "fecha_partido": "2025-09-14",
     "hora_partido": "17:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 15,
@@ -1657,7 +1657,7 @@
   },
   {
     "jornada": 20,
-    "fecha_partido": "2025-03-16",
+    "fecha_partido": "2025-09-14",
     "hora_partido": "19:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 16,
@@ -1669,7 +1669,7 @@
   },
   {
     "jornada": 20,
-    "fecha_partido": "2025-03-16",
+    "fecha_partido": "2025-09-14",
     "hora_partido": "21:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 17,
@@ -1681,7 +1681,7 @@
   },
   {
     "jornada": 21,
-    "fecha_partido": "2025-03-23",
+    "fecha_partido": "2025-09-21",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 10,
@@ -1693,7 +1693,7 @@
   },
   {
     "jornada": 21,
-    "fecha_partido": "2025-03-23",
+    "fecha_partido": "2025-09-21",
     "hora_partido": "18:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 9,
@@ -1705,7 +1705,7 @@
   },
   {
     "jornada": 21,
-    "fecha_partido": "2025-03-23",
+    "fecha_partido": "2025-09-21",
     "hora_partido": "20:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 8,
@@ -1717,7 +1717,7 @@
   },
   {
     "jornada": 21,
-    "fecha_partido": "2025-03-23",
+    "fecha_partido": "2025-09-21",
     "hora_partido": "12:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 7,
@@ -1729,7 +1729,7 @@
   },
   {
     "jornada": 21,
-    "fecha_partido": "2025-03-23",
+    "fecha_partido": "2025-09-21",
     "hora_partido": "17:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 6,
@@ -1741,7 +1741,7 @@
   },
   {
     "jornada": 21,
-    "fecha_partido": "2025-03-23",
+    "fecha_partido": "2025-09-21",
     "hora_partido": "19:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 5,
@@ -1753,7 +1753,7 @@
   },
   {
     "jornada": 21,
-    "fecha_partido": "2025-03-23",
+    "fecha_partido": "2025-09-21",
     "hora_partido": "21:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 17,
@@ -1765,7 +1765,7 @@
   },
   {
     "jornada": 22,
-    "fecha_partido": "2025-03-30",
+    "fecha_partido": "2025-09-28",
     "hora_partido": "16:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 4,
@@ -1777,7 +1777,7 @@
   },
   {
     "jornada": 22,
-    "fecha_partido": "2025-03-30",
+    "fecha_partido": "2025-09-28",
     "hora_partido": "18:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 10,
@@ -1789,7 +1789,7 @@
   },
   {
     "jornada": 22,
-    "fecha_partido": "2025-03-30",
+    "fecha_partido": "2025-09-28",
     "hora_partido": "20:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 11,
@@ -1801,7 +1801,7 @@
   },
   {
     "jornada": 22,
-    "fecha_partido": "2025-03-30",
+    "fecha_partido": "2025-09-28",
     "hora_partido": "12:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 12,
@@ -1813,7 +1813,7 @@
   },
   {
     "jornada": 22,
-    "fecha_partido": "2025-03-30",
+    "fecha_partido": "2025-09-28",
     "hora_partido": "17:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 13,
@@ -1825,7 +1825,7 @@
   },
   {
     "jornada": 22,
-    "fecha_partido": "2025-03-30",
+    "fecha_partido": "2025-09-28",
     "hora_partido": "19:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 14,
@@ -1837,7 +1837,7 @@
   },
   {
     "jornada": 22,
-    "fecha_partido": "2025-03-30",
+    "fecha_partido": "2025-09-28",
     "hora_partido": "21:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 15,
@@ -1849,7 +1849,7 @@
   },
   {
     "jornada": 23,
-    "fecha_partido": "2025-04-06",
+    "fecha_partido": "2025-10-05",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 8,
@@ -1861,7 +1861,7 @@
   },
   {
     "jornada": 23,
-    "fecha_partido": "2025-04-06",
+    "fecha_partido": "2025-10-05",
     "hora_partido": "18:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 7,
@@ -1873,7 +1873,7 @@
   },
   {
     "jornada": 23,
-    "fecha_partido": "2025-04-06",
+    "fecha_partido": "2025-10-05",
     "hora_partido": "20:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 6,
@@ -1885,7 +1885,7 @@
   },
   {
     "jornada": 23,
-    "fecha_partido": "2025-04-06",
+    "fecha_partido": "2025-10-05",
     "hora_partido": "12:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 5,
@@ -1897,7 +1897,7 @@
   },
   {
     "jornada": 23,
-    "fecha_partido": "2025-04-06",
+    "fecha_partido": "2025-10-05",
     "hora_partido": "17:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 17,
@@ -1909,7 +1909,7 @@
   },
   {
     "jornada": 23,
-    "fecha_partido": "2025-04-06",
+    "fecha_partido": "2025-10-05",
     "hora_partido": "19:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 16,
@@ -1921,7 +1921,7 @@
   },
   {
     "jornada": 23,
-    "fecha_partido": "2025-04-06",
+    "fecha_partido": "2025-10-05",
     "hora_partido": "21:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 15,
@@ -1933,7 +1933,7 @@
   },
   {
     "jornada": 24,
-    "fecha_partido": "2025-04-13",
+    "fecha_partido": "2025-10-12",
     "hora_partido": "16:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 4,
@@ -1945,7 +1945,7 @@
   },
   {
     "jornada": 24,
-    "fecha_partido": "2025-04-13",
+    "fecha_partido": "2025-10-12",
     "hora_partido": "18:00",
     "equipo_local_id": 6,
     "equipo_visitante_id": 8,
@@ -1957,7 +1957,7 @@
   },
   {
     "jornada": 24,
-    "fecha_partido": "2025-04-13",
+    "fecha_partido": "2025-10-12",
     "hora_partido": "20:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 9,
@@ -1969,7 +1969,7 @@
   },
   {
     "jornada": 24,
-    "fecha_partido": "2025-04-13",
+    "fecha_partido": "2025-10-12",
     "hora_partido": "12:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 10,
@@ -1981,7 +1981,7 @@
   },
   {
     "jornada": 24,
-    "fecha_partido": "2025-04-13",
+    "fecha_partido": "2025-10-12",
     "hora_partido": "17:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 11,
@@ -1993,7 +1993,7 @@
   },
   {
     "jornada": 24,
-    "fecha_partido": "2025-04-13",
+    "fecha_partido": "2025-10-12",
     "hora_partido": "19:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 12,
@@ -2005,7 +2005,7 @@
   },
   {
     "jornada": 24,
-    "fecha_partido": "2025-04-13",
+    "fecha_partido": "2025-10-12",
     "hora_partido": "21:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 13,
@@ -2017,7 +2017,7 @@
   },
   {
     "jornada": 25,
-    "fecha_partido": "2025-04-27",
+    "fecha_partido": "2025-10-19",
     "hora_partido": "16:00",
     "equipo_local_id": 4,
     "equipo_visitante_id": 6,
@@ -2029,7 +2029,7 @@
   },
   {
     "jornada": 25,
-    "fecha_partido": "2025-04-27",
+    "fecha_partido": "2025-10-19",
     "hora_partido": "18:00",
     "equipo_local_id": 7,
     "equipo_visitante_id": 5,
@@ -2041,7 +2041,7 @@
   },
   {
     "jornada": 25,
-    "fecha_partido": "2025-04-27",
+    "fecha_partido": "2025-10-19",
     "hora_partido": "20:00",
     "equipo_local_id": 8,
     "equipo_visitante_id": 17,
@@ -2053,7 +2053,7 @@
   },
   {
     "jornada": 25,
-    "fecha_partido": "2025-04-27",
+    "fecha_partido": "2025-10-19",
     "hora_partido": "12:00",
     "equipo_local_id": 9,
     "equipo_visitante_id": 16,
@@ -2065,7 +2065,7 @@
   },
   {
     "jornada": 25,
-    "fecha_partido": "2025-04-27",
+    "fecha_partido": "2025-10-19",
     "hora_partido": "17:00",
     "equipo_local_id": 10,
     "equipo_visitante_id": 15,
@@ -2077,7 +2077,7 @@
   },
   {
     "jornada": 25,
-    "fecha_partido": "2025-04-27",
+    "fecha_partido": "2025-10-19",
     "hora_partido": "19:00",
     "equipo_local_id": 11,
     "equipo_visitante_id": 14,
@@ -2089,7 +2089,7 @@
   },
   {
     "jornada": 25,
-    "fecha_partido": "2025-04-27",
+    "fecha_partido": "2025-10-19",
     "hora_partido": "21:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 13,
@@ -2101,7 +2101,7 @@
   },
   {
     "jornada": 26,
-    "fecha_partido": "2025-05-04",
+    "fecha_partido": "2025-10-26",
     "hora_partido": "16:00",
     "equipo_local_id": 5,
     "equipo_visitante_id": 4,
@@ -2113,7 +2113,7 @@
   },
   {
     "jornada": 26,
-    "fecha_partido": "2025-05-04",
+    "fecha_partido": "2025-10-26",
     "hora_partido": "18:00",
     "equipo_local_id": 17,
     "equipo_visitante_id": 6,
@@ -2125,7 +2125,7 @@
   },
   {
     "jornada": 26,
-    "fecha_partido": "2025-05-04",
+    "fecha_partido": "2025-10-26",
     "hora_partido": "20:00",
     "equipo_local_id": 16,
     "equipo_visitante_id": 7,
@@ -2137,7 +2137,7 @@
   },
   {
     "jornada": 26,
-    "fecha_partido": "2025-05-04",
+    "fecha_partido": "2025-10-26",
     "hora_partido": "12:00",
     "equipo_local_id": 15,
     "equipo_visitante_id": 8,
@@ -2149,7 +2149,7 @@
   },
   {
     "jornada": 26,
-    "fecha_partido": "2025-05-04",
+    "fecha_partido": "2025-10-26",
     "hora_partido": "17:00",
     "equipo_local_id": 14,
     "equipo_visitante_id": 9,
@@ -2161,7 +2161,7 @@
   },
   {
     "jornada": 26,
-    "fecha_partido": "2025-05-04",
+    "fecha_partido": "2025-10-26",
     "hora_partido": "19:00",
     "equipo_local_id": 13,
     "equipo_visitante_id": 10,
@@ -2173,7 +2173,7 @@
   },
   {
     "jornada": 26,
-    "fecha_partido": "2025-05-04",
+    "fecha_partido": "2025-10-26",
     "hora_partido": "21:00",
     "equipo_local_id": 12,
     "equipo_visitante_id": 11,
