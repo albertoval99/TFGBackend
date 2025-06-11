@@ -1,7 +1,7 @@
 import app from "./server";
 import "./context/db/postgres.db"; //❌SI NO LO IMPORTAS NO SE CONECTA❌
 
-//const port = 3002;
+// const port = 3002;
 const port = 3000; //Para localhost y despliegue este
 
 app.listen( port,  () => {
